@@ -62,7 +62,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: config.index,
-      template: 'index.html',
+      template: process.env.NODE_ENV === 'github' ? 'github.index.ejs' : 'index.html',
       inject: true,
       minify: {
         removeComments: true,

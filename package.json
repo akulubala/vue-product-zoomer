@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
     "publish": "node publish/index.js",
-    "example": "node example/index.js",
+    "example": "NODE_ENV=production node example/index.js",
     "github": "NODE_ENV=github node example/index.js"
   },
   "dependencies": {

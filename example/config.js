@@ -3,7 +3,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-console.log(process.env.NODE_ENV)
 module.exports = {
   // Template for index.html
   index: path.resolve(__dirname, '../docs/index.html'),
@@ -11,7 +10,7 @@ module.exports = {
   // Paths
   assetsRoot: path.resolve(__dirname, '../docs'),
   assetsSubDirectory: 'assets',
-  assetsPublicPath: process.env.NODE_ENV === 'github' ? '/vue-product-zoomer/' : '/', // template assets path
+  assetsPublicPath: '/', // template assets path
 
   /**
    * Source Maps
