@@ -71,6 +71,14 @@
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
+  "homepage": "https://github.com/akulubala/vue-product-zoomer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akulubala/vue-product-zoomer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akulubala/vue-product-zoomer/issues"
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
