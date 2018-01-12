@@ -10,8 +10,8 @@ module.exports = {
 
   // Paths
   assetsRoot: path.resolve(__dirname, '../docs'),
-  assetsSubDirectory: 'example',
-  assetsPublicPath: '/vue-product-zoomer/', // template assets path
+  assetsSubDirectory: 'assets',
+  assetsPublicPath: '/', // template assets path
 
   /**
    * Source Maps

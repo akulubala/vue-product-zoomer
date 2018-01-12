@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ProductZoomer from '../dist/published/app.js'
+import ProductZoomer from '../published/app.js'
 
 export default {
   name: 'app',

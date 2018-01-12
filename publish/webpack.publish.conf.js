@@ -24,8 +24,7 @@ module.exports = {
   },
   output: {
     path: config.assetsRoot,
-    filename: path.join(config.assetsSubDirectory, '[name].js'),
-    publicPath: config.assetsPublicPath,
+    filename: '[name].js',
     library: 'ProductZoomer', // 这两项必须要，否则其他包不能加载 https://doc.webpack-china.org/guides/author-libraries/
     libraryTarget: 'umd'
   },
