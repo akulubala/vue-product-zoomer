@@ -9,13 +9,12 @@
 npm install vue-product-zoomer
 
 # useage
-npm run dev
+import ProductZoomer from 'vue-product-zoomer'
 
-# build for production with minification
-npm run build
+your vue components add `components: {
+                          ProductZoomer
+                        }`
 
-# build for production and view the bundle analyzer report
-npm run build --report
+more infos please check 'src/Example.vue'
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# Demo https://akulubala.github.io/vue-product-zoomer/

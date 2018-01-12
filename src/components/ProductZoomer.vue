@@ -11,8 +11,8 @@
             <i aria-hidden="true" class="fa fa-angle-left"></i>
         </a> 
         <div class="thumb-list col-xs-10 col-lg-10 col-md-10 col-sm-10">
-            <div v-for="thumb in thumbs">
-                <img :src="thumb.url" @click="chooseThumb(thumb)" class="img-responsive center-block col-xs-3 col-lg-3 col-md-3 col-sm-3" :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
+            <div v-for="(thumb, key) in thumbs">
+                <img v-show="key < 4" :src="thumb.url" @click="chooseThumb(thumb)" class="img-responsive center-block col-xs-3 col-lg-3 col-md-3 col-sm-3" :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
             </div>
         </div> 
         <a @click="moveThumbs('right')" class="control col-xs-1 col-lg-1 col-md-1 col-sm-1 text-right">
@@ -113,8 +113,6 @@ export default {
     chooseThumb (thumb) {
       this.choosedThumb = thumb
     }
-  },
-  components: {
   }
 }
 </script>

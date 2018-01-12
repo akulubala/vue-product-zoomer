@@ -6,12 +6,12 @@ const path = require('path')
 
 module.exports = {
   // Template for index.html
-  index: path.resolve(__dirname, '../dist/example/index.html'),
+  index: path.resolve(__dirname, '../docs/index.html'),
 
   // Paths
-  assetsRoot: path.resolve(__dirname, '../dist'),
+  assetsRoot: path.resolve(__dirname, '../docs'),
   assetsSubDirectory: 'example',
-  assetsPublicPath: '/vue-product-zoomer/dist/', // template assets path
+  assetsPublicPath: '/vue-product-zoomer/docs/', // template assets path
 
   /**
    * Source Maps
