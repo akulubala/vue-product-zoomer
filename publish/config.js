@@ -7,7 +7,7 @@ const path = require('path')
 module.exports = {
   // Paths
   assetsRoot: path.resolve(__dirname, '../published'),
-  assetsSubDirectory: './assets',
+  assetsSubDirectory: '/assets',
 
   /**
    * Source Maps
