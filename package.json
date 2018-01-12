@@ -1,7 +1,7 @@
 {
   "name": "vue-product-zoomer",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Vue Package for responsive Zoom Product Images . Under Bootstrap 3 environment.",
   "author": "Raymond Cheng",
   "private": true,
   "scripts": {
@@ -9,7 +9,8 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "publish": "NODE_ENV=publish node publish/index.js"
+    "publish": "node publish/index.js",
+    "example": "node example/index.js"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
