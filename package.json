@@ -2,8 +2,8 @@
   "name": "vue-product-zoomer",
   "version": "1.0.0",
   "description": "Vue Package for responsive Zoom Product Images . Under Bootstrap 3 environment.",
-  "author": "Raymond Cheng",
-  "private": true,
+  "author": "akulubala@gmail.com",
+  "private": false,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",

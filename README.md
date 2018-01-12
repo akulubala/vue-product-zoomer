@@ -1,14 +1,14 @@
 # vue-product-zoomer
 
-> A Vue.js project
+> Vue Product Image Zoomer Package, Useful For e-Shop Project.
 
-## Build Setup
+## Instruction 
 
 ``` bash
-# install dependencies
-npm install
+# install 
+npm install vue-product-zoomer
 
-# serve with hot reload at localhost:8080
+# useage
 npm run dev
 
 # build for production with minification
