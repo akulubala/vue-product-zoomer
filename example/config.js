@@ -10,7 +10,7 @@ module.exports = {
   // Paths
   assetsRoot: path.resolve(__dirname, '../docs'),
   assetsSubDirectory: 'assets',
-  assetsPublicPath: process.env.NODE_ENV === 'github' ? '/vue-product-zoomer/' : './', // template assets path
+  assetsPublicPath: process.env.NODE_ENV === 'github' ? '/vue-product-zoomer/' : '/', // template assets path
 
   /**
    * Source Maps

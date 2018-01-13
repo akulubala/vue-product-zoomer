@@ -1,9 +1,9 @@
 <template>
-<div class="product-zoomer" :class="baseBootstrapGrid">
+<div class="product-zoomer" :class="baseComponentClass">
     <div class="preview-box">
         <img :src="previewProduct.url" 
-              :data-zoom="previewProduct.url" 
-              class="preview-product img-responsive img-rounded center-block"
+             :data-zoom="previewProduct.url" 
+             class="img-responsive img-rounded center-block"
         />
     </div>
     <div class="control-box">
@@ -41,7 +41,7 @@ export default {
         return []
       }
     },
-    baseBootstrapGrid: {
+    baseComponentClass: {
       type: String,
       required: true,
       default: function () {
@@ -88,9 +88,9 @@ export default {
       }
       let drift = new Drift(document.querySelector('.preview-product'), {
         paneContainer: document.querySelector('.zoomer-container'),
-        hoverBoundingBox: false,
+        hoverBoundingBox: true,
         inlinePane: 200,
-        inlineOffsetY: -85
+        hoverDelay: 100
       })
       drift.setZoomImageURL(this.previewProduct.url)
     }
