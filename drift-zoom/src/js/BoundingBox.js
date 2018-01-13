@@ -56,26 +56,27 @@ export default class BoundingBox {
     removeClasses(this.el, this.openClasses);
   }
 
-  setPosition(percentageOffsetX, percentageOffsetY, triggerRect) {
+  setPosition(percentageOffsetX, percentageOffsetY, previewRect) {
     let pageXOffset = window.pageXOffset;
     let pageYOffset = window.pageYOffset;
-    console.log(this.el.clientWidth, this.el.getBoundingClientRect());
-    let inlineLeft = triggerRect.left + (percentageOffsetX * triggerRect.width)
-      - (this.el.clientWidth / 2) + pageXOffset;
-    let inlineTop = triggerRect.top + (percentageOffsetY * triggerRect.height)
-      - (this.el.clientHeight / 2) + pageYOffset;
+    let boundingBox = this.el.getBoundingClientRect();
+
+    let inlineLeft = previewRect.left + (percentageOffsetX * previewRect.width)
+      - (boundingBox.clientWidth / 2) + pageXOffset;
+    let inlineTop = previewRect.top + (percentageOffsetY * previewRect.height)
+      - (boundingBox.clientHeight / 2) + pageYOffset;
 
 
-    if (inlineLeft < triggerRect.left + pageXOffset) {
-      inlineLeft = triggerRect.left + pageXOffset;
-    } else if (inlineLeft + this.el.clientWidth > triggerRect.left + triggerRect.width + pageXOffset) {
-      inlineLeft = triggerRect.left + triggerRect.width - this.el.clientWidth + pageXOffset;
+    if (inlineLeft < previewRect.left + pageXOffset) {
+      inlineLeft = previewRect.left + pageXOffset;
+    } else if (inlineLeft + boundingBox.clientWidth > previewRect.left + previewRect.width + pageXOffset) {
+      inlineLeft = previewRect.left + previewRect.width - boundingBox.clientWidth + pageXOffset;
     }
 
-    if (inlineTop < triggerRect.top + pageYOffset) {
-      inlineTop = triggerRect.top + pageYOffset;
-    } else if (inlineTop + this.el.clientHeight > triggerRect.top + triggerRect.height + pageYOffset) {
-      inlineTop = triggerRect.top + triggerRect.height - this.el.clientHeight + pageYOffset;
+    if (inlineTop < previewRect.top + pageYOffset) {
+      inlineTop = previewRect.top + pageYOffset;
+    } else if (inlineTop + boundingBox.clientHeight > previewRect.top + previewRect.height + pageYOffset) {
+      inlineTop = previewRect.top + previewRect.height - boundingBox.clientHeight + pageYOffset;
     }
 
     this.el.style.left = `${inlineLeft}px`;
