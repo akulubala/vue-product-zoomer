@@ -1,14 +1,12 @@
 <template>
 <div class="row" style="display:flex;">
   <ProductZoomer
-    :base-thumbs="thumbs"
+    :base-images="images"
     :base-component-class="ComponentClass"
   />
   <div class="right-panel　col-lg-2 col-md-2 col-sm-2 zoomer-container">
             <h3>ffff</h3>
             <div class="price-content">
-                    <!-- <span class="price-type">金额</span>：
-                    <strong class="price">￥85</strong> -->
             </div>
             <div class="media">
                 <div class="media-left">

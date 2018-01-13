@@ -15,8 +15,11 @@
     "github": "NODE_ENV=github node example/index.js"
   },
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "bootstrap": "^3.3.7",
-    "drift-zoom": "^1.2.0",
+    "eslint-config-standard": "^10.2.1",
+    "espree": "^3.5.2",
     "font-awesome": "^4.7.0",
     "vue": "^2.5.2"
   },

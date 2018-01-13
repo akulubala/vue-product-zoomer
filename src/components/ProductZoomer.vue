@@ -1,8 +1,8 @@
 <template>
 <div class="product-zoomer" :class="baseComponentClass">
     <div class="preview-box">
-        <img :src="previewProduct.url" 
-             :data-zoom="previewProduct.url" 
+        <img id="previewImg" :src="previewImg.url" 
+             :data-zoom="previewLargeImg.url" 
              class="img-responsive img-rounded center-block"
         />
     </div>
@@ -23,22 +23,16 @@
 </template>
 
 <script>
-import Drift from 'drift-zoom'
+import Drift from '../../drift-zoom/src/js/Drift.js'
 
 export default {
   name: 'productzoomer',
   props: {
-    baseThumbs: {
-      type: Array,
+    baseImages: {
+      type: Object,
       required: true,
       default: function () {
-        return []
-      }
-    },
-    baseProductImages: {
-      type: Array,
-      default: function () {
-        return []
+        return {}
       }
     },
     baseComponentClass: {
@@ -57,27 +51,25 @@ export default {
   },
   data () {
     return {
-      'previewProduct': {},
+      'previewImg': {},
+      'previewLargeImg': {},
       'thumbs': [],
+      'normal_size': [],
+      'large_size': [],
       'choosedThumb': {}
     }
   },
   watch: {
     'choosedThumb': function (thumb) {
-      if (this.baseProductImages.length > 0) {
-        let matchProduct = this.baseProductImages.find((product) => {
-          return product.id === thumb.id
-        })
-        this.previewProduct = Object.assign({}, matchProduct)
-      } else {
-        this.previewProduct = Object.assign({}, thumb)
-      }
-      let options = {
-        paneContainer: document.querySelector('.zoomer-container'),
-        hoverBoundingBox: true,
-        inlinePane: 200,
-        inlineOffsetY: -85
-      }
+      let matchNormalImg = this.normal_size.find((img) => {
+        return img.id === thumb.id
+      });
+      let matchLargeImg = this.large_size.find((img) => {
+        return img.id === thumb.id
+      });
+      this.previewLargeImg = Object.assign({}, matchLargeImg);
+      this.previewImg = Object.assign({}, matchNormalImg);
+
       for (const key in this.baseZoomerOptions) {
         if (this.baseZoomerOptions.hasOwnProperty(key)) {
           const option = this.baseZoomerOptions
@@ -86,17 +78,37 @@ export default {
           }
         }
       }
-      let drift = new Drift(document.querySelector('.preview-product'), {
+      let drift = new Drift(document.getElementById('previewImg'), {
         paneContainer: document.querySelector('.zoomer-container'),
         hoverBoundingBox: true,
         inlinePane: 200,
-        hoverDelay: 100
+        hoverDelay: 100,
+        injectBaseStyles: true,
+        zoomFactor: 4
       })
-      drift.setZoomImageURL(this.previewProduct.url)
+      drift.setZoomImageURL(matchLargeImg.url)
     }
   },
   created () {
-    this.thumbs = this.baseThumbs
+    if (Object.keys(this.baseImages).length > 0) {
+      for (const key in this.baseImages) {
+        if (this.baseImages.hasOwnProperty(key)) {
+          this[key] = this.baseImages[key];
+        }
+      }
+    }
+    
+    if (this.normal_size.length === 0) {
+      console.log('Product Zoomer Need Normal Size Image At Least!!!');
+      return;
+    }
+    if (this.thumbs.length === 0) {
+      this.thumbs = Object.assign([], this.normal_size);
+    }
+    if (this.large_size.length === 0) {
+      this.large_size = Object.assign([], this.normal_size);
+    }
+
     this.choosedThumb = this.thumbs[0]
   },
   methods: {
@@ -120,7 +132,7 @@ export default {
 <style>
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "font-awesome/css/font-awesome.min.css";
-@import "drift-zoom/dist/drift-basic.min.css";
+@import "../../drift-zoom/src/css/drift-basic.css";
 .preview-box {
     margin-bottom: 1vh;
 }
