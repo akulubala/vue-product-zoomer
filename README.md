@@ -1,9 +1,11 @@
-[![npm](https://img.shields.io/npm/dt/express.svg)]([![npm](https://img.shields.io/npm/dw/localeval.svg)](https://www.npmjs.com/package/vue-product-zoomer))
+[![npm](https://img.shields.io/npm/dt/vue-product-zoomer.svg)](https://www.npmjs.com/package/vue-product-zoomer)
 [![GitHub issues](https://img.shields.io/github/issues/akulubala/vue-product-zoomer.svg)](https://github.com/akulubala/vue-product-zoomer/issues)
 [![GitHub license](https://img.shields.io/github/license/akulubala/vue-product-zoomer.svg)](https://github.com/akulubala/vue-product-zoomer/blob/master/LICENSE)
+
 # vue-product-zoomer
 
 > Vue Product Image Zoomer Package, Useful For e-Shop Project.
+> Demo: https://akulubala.github.io/vue-product-zoomer/
 
 ## Instruction 
 
@@ -151,4 +153,3 @@ import ProductZoomer from 'vue-product-zoomer'
 }`
 
 ```
-Demo https://akulubala.github.io/vue-product-zoomer/
