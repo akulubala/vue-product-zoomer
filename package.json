@@ -1,7 +1,7 @@
 {
   "name": "vue-product-zoomer",
   "version": "2.0.4",
-  "main": "published/app.js",
+  "main": "dist/app.js",
   "description": "Vue Package for responsive Zoom Product Images . Under Bootstrap 3 environment.",
   "author": "akulubala@gmail.com",
   "private": false,
@@ -9,10 +9,9 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "publish": "node publish/index.js",
-    "example-local": "node example/index.js",
-    "publish-gh-page": "NODE_ENV=github node publish/index.js",
-    "example-gh-page": "NODE_ENV=github node example/index.js"
+    "build": "node publish/index.js",
+    "build-example": "NODE_ENV=example node publish/index.js",
+    "example": "node example/index.js"
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
@@ -46,6 +45,7 @@
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-vue": "^4.2.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",

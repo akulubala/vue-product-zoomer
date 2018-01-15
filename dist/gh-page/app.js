@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "/vue-product-zoomer/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 32);
@@ -400,7 +400,7 @@ function throwIfMissing() {
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/fonts/glyphicons-halflings-regular.f4769f9.eot";
+module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regular.f4769f9.eot";
 
 /***/ }),
 /* 21 */
@@ -413,8 +413,8 @@ module.exports = __webpack_require__.p + "/assets/fonts/glyphicons-halflings-reg
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__drift_zoom_src_js_Drift_js__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__drift_zoom_src_js_Drift_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__drift_zoom_src_js_Drift_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_drift_zoom_src_js_Drift_js__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_drift_zoom_src_js_Drift_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__assets_drift_zoom_src_js_Drift_js__);
 
 
 
@@ -496,7 +496,7 @@ module.exports = __webpack_require__.p + "/assets/fonts/glyphicons-halflings-reg
         }
       }
     }
-    this.drift = new __WEBPACK_IMPORTED_MODULE_3__drift_zoom_src_js_Drift_js___default.a(document.getElementById('previewImg'), options);
+    this.drift = new __WEBPACK_IMPORTED_MODULE_3__assets_drift_zoom_src_js_Drift_js___default.a(document.getElementById('previewImg'), options);
   },
 
   watch: {
@@ -899,61 +899,61 @@ function toComment(sourceMap) {
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/fonts/glyphicons-halflings-regular.448c34a.woff2";
+module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regular.448c34a.woff2";
 
 /***/ }),
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/fonts/glyphicons-halflings-regular.fa27723.woff";
+module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regular.fa27723.woff";
 
 /***/ }),
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/fonts/glyphicons-halflings-regular.e18bbf6.ttf";
+module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regular.e18bbf6.ttf";
 
 /***/ }),
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/img/glyphicons-halflings-regular.8988968.svg";
+module.exports = __webpack_require__.p + "assets/img/glyphicons-halflings-regular.8988968.svg";
 
 /***/ }),
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/fonts/fontawesome-webfont.674f50d.eot";
+module.exports = __webpack_require__.p + "assets/fonts/fontawesome-webfont.674f50d.eot";
 
 /***/ }),
 /* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/fonts/fontawesome-webfont.674f50d.eot";
+module.exports = __webpack_require__.p + "assets/fonts/fontawesome-webfont.674f50d.eot";
 
 /***/ }),
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/fonts/fontawesome-webfont.af7ae50.woff2";
+module.exports = __webpack_require__.p + "assets/fonts/fontawesome-webfont.af7ae50.woff2";
 
 /***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/fonts/fontawesome-webfont.fee66e7.woff";
+module.exports = __webpack_require__.p + "assets/fonts/fontawesome-webfont.fee66e7.woff";
 
 /***/ }),
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/fonts/fontawesome-webfont.b06871f.ttf";
+module.exports = __webpack_require__.p + "assets/fonts/fontawesome-webfont.b06871f.ttf";
 
 /***/ }),
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/assets/img/fontawesome-webfont.912ec66.svg";
+module.exports = __webpack_require__.p + "assets/img/fontawesome-webfont.912ec66.svg";
 
 /***/ }),
 /* 48 */

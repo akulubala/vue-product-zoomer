@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Drift from '../../drift-zoom/src/js/Drift.js'
+import Drift from '../assets/drift-zoom/src/js/Drift.js';
 
 export default {
   name: 'productzoomer',
@@ -133,7 +133,7 @@ export default {
 <style>
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "font-awesome/css/font-awesome.min.css";
-@import "../../drift-zoom/src/css/drift-basic.css";
+@import "../assets/drift-zoom/src/css/drift-basic.css";
 .preview-box {
     margin-bottom: 1vh;
 }

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import ProductZoomer from '../gh-pages/app.js'
+import ProductZoomer from '../dist/gh-page/app.js'
 
 export default {
   name: 'app',
@@ -34,7 +34,7 @@ export default {
               'url': 'https://akulubala.github.io/vue-product-zoomer/images/thumbs/1.jpeg'
             },
             {
-              'id': 4,
+              'id': 2,
               'url': 'https://akulubala.github.io/vue-product-zoomer/images/thumbs/2.jpeg'
             },
             {
