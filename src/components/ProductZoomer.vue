@@ -49,6 +49,7 @@ export default {
             paneContainer: document.querySelector('.zoomer-container'),
             hoverBoundingBox: true,
             injectBaseStyles: true,
+            inlinePane: false,
             zoomFactor: 4
         }
       }

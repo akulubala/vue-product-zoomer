@@ -469,6 +469,7 @@ module.exports = __webpack_require__.p + "/assets/fonts/glyphicons-halflings-reg
           paneContainer: document.querySelector('.zoomer-container'),
           hoverBoundingBox: true,
           injectBaseStyles: true,
+          inlinePane: false,
           zoomFactor: 4
         };
       }
