@@ -65,12 +65,13 @@ export default {
       hoverBoundingBox: true,
       injectBaseStyles: true,
       inlinePane: 200,
-      zoomFactor: 4
+      zoomFactor: 4,
+      hoverDelay: 200
     }
-    if (Object.keys(this.baseImages) > 0) {
-      for (const key in this.baseImages) {
-        if (this.baseImages.hasOwnProperty(key)) {
-          const element = this.baseImages[key];
+    if (Object.keys(this.baseZoomerOptions).length > 0) {
+      for (const key in this.baseZoomerOptions) {
+        if (this.baseZoomerOptions.hasOwnProperty(key)) {
+          const element = this.baseZoomerOptions[key];
           options[key] = element
         }
       }

@@ -5,6 +5,7 @@
       <ProductZoomer
         :base-images="images"
         :base-component-class="ComponentClass"
+        :base-zoomer-options="zoomerOptions"
       />
       <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4 zoomer-container">
 
@@ -136,7 +137,10 @@ export default {
             }
           ]
       },
-      'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4'
+      'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4',
+      'zoomerOptions': {
+        'hoverDelay': 200
+      }
     }
   },
   components: {

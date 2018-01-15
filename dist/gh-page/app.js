@@ -485,12 +485,13 @@ module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regu
       hoverBoundingBox: true,
       injectBaseStyles: true,
       inlinePane: 200,
-      zoomFactor: 4
+      zoomFactor: 4,
+      hoverDelay: 200
     };
-    if (__WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys___default()(this.baseImages) > 0) {
-      for (var key in this.baseImages) {
-        if (this.baseImages.hasOwnProperty(key)) {
-          var element = this.baseImages[key];
+    if (__WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys___default()(this.baseZoomerOptions).length > 0) {
+      for (var key in this.baseZoomerOptions) {
+        if (this.baseZoomerOptions.hasOwnProperty(key)) {
+          var element = this.baseZoomerOptions[key];
           options[key] = element;
         }
       }
