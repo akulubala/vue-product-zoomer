@@ -153,8 +153,9 @@ export default class Trigger {
     let offsetX = movementX - rect.left;
     let offsetY = movementY - rect.top;
 
-    let percentageOffsetX = offsetX / this.settings.el.clientWidth; // mouse percent on preview
+    let percentageOffsetX = offsetX / this.settings.el.clientWidth;
     let percentageOffsetY = offsetY / this.settings.el.clientHeight;
+
     if (this.boundingBox) {
       this.boundingBox.setPosition(percentageOffsetX,
         percentageOffsetY, rect);

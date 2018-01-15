@@ -1,5 +1,6 @@
 <template>
-<div class="row" style="display:flex;">
+<div class="container">
+  <div class="row" style="display:flex;">
   <ProductZoomer
     :base-images="images"
     :base-component-class="ComponentClass"
@@ -67,6 +68,8 @@
             </div>
         </div>
 </div>
+</div>
+
 </template>
 
 <script>
@@ -112,7 +115,7 @@ export default {
             },
             {
               'id': 9,
-              'url': 'https://akulubala.github.io/vue-product-zoomer/images/thumbs/9.jpg'
+              'url': 'https://akulubala.github.io/vue-product-zoomer/images/thumbs/9.jpeg'
             }
           ],
           'normal_size': [
@@ -150,7 +153,7 @@ export default {
             },
             {
               'id': 9,
-              'url': 'https://akulubala.github.io/vue-product-zoomer/images/normal_size/9.jpg'
+              'url': 'https://akulubala.github.io/vue-product-zoomer/images/normal_size/9.jpeg'
             }
           ],
           'large_size': [
@@ -188,7 +191,7 @@ export default {
             },
             {
               'id': 9,
-              'url': 'https://akulubala.github.io/vue-product-zoomer/images/large_size/9.jpg'
+              'url': 'https://akulubala.github.io/vue-product-zoomer/images/large_size/9.jpeg'
             }
           ]
       },

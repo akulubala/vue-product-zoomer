@@ -1,8 +1,23 @@
 import throwIfMissing from './util/throwIfMissing';
 import { addClasses, removeClasses } from './util/dom';
 
+let __instance = (function () {
+  let instance;
+  return (newInstance) => {
+    if (newInstance) {
+      instance = newInstance;
+    }
+    return instance;
+  }
+}());
+
+
 export default class BoundingBox {
   constructor(options) {
+    if (__instance()) {
+      return __instance()
+    }
+
     this.isShowing = false;
 
     let {
@@ -16,6 +31,7 @@ export default class BoundingBox {
     this.openClasses = this._buildClasses('open');
 
     this._buildElement();
+    __instance(this);
   }
 
   _buildClasses(suffix) {
@@ -30,25 +46,24 @@ export default class BoundingBox {
   }
 
   _buildElement() {
-    this.el = document.createElement('div');
+    this.el = this.el ? this.el : document.createElement('div');
     addClasses(this.el, this._buildClasses('bounding-box'));
   }
 
   show(zoomPaneWidth, zoomPaneHeight) {
     this.isShowing = true;
-
-    this.settings.containerEl.appendChild(this.el);
+    document.querySelector('body').appendChild(this.el)
 
     let style = this.el.style;
-    style.width = `${zoomPaneWidth / this.settings.zoomFactor}px`;
-    style.height = `${zoomPaneHeight / this.settings.zoomFactor}px`;
+    style.width = `${Math.round(zoomPaneWidth / this.settings.zoomFactor)}px`;
+    style.height = `${Math.round(zoomPaneHeight / this.settings.zoomFactor)}px`;
 
     addClasses(this.el, this.openClasses);
   }
 
   hide() {
     if (this.isShowing) {
-      // this.settings.containerEl.removeChild(this.el);
+      document.querySelector('body').removeChild(this.el)
     }
 
     this.isShowing = false;
@@ -56,27 +71,26 @@ export default class BoundingBox {
     removeClasses(this.el, this.openClasses);
   }
 
-  setPosition(percentageOffsetX, percentageOffsetY, previewRect) {
+  setPosition(movementPercentageOffsetX, movementPercentageOffsetY, triggerRect) {
+
     let pageXOffset = window.pageXOffset;
     let pageYOffset = window.pageYOffset;
-    let boundingBox = this.el.getBoundingClientRect();
+    
+    let inlineLeft = triggerRect.left + (movementPercentageOffsetX * triggerRect.width)
+      - (this.el.clientWidth / 2) + pageXOffset;
+    let inlineTop = triggerRect.top + (movementPercentageOffsetY * triggerRect.height)
+      - (this.el.clientHeight / 2) + pageYOffset;
 
-    let inlineLeft = previewRect.left + (percentageOffsetX * previewRect.width)
-      - (boundingBox.clientWidth / 2) + pageXOffset;
-    let inlineTop = previewRect.top + (percentageOffsetY * previewRect.height)
-      - (boundingBox.clientHeight / 2) + pageYOffset;
-
-
-    if (inlineLeft < previewRect.left + pageXOffset) {
-      inlineLeft = previewRect.left + pageXOffset;
-    } else if (inlineLeft + boundingBox.clientWidth > previewRect.left + previewRect.width + pageXOffset) {
-      inlineLeft = previewRect.left + previewRect.width - boundingBox.clientWidth + pageXOffset;
+    if (inlineLeft < triggerRect.left + pageXOffset) {
+      inlineLeft = triggerRect.left + pageXOffset;
+    } else if (inlineLeft + this.el.clientWidth > triggerRect.left + triggerRect.width + pageXOffset) {
+      inlineLeft = triggerRect.left + triggerRect.width - this.el.clientWidth + pageXOffset;
     }
 
-    if (inlineTop < previewRect.top + pageYOffset) {
-      inlineTop = previewRect.top + pageYOffset;
-    } else if (inlineTop + boundingBox.clientHeight > previewRect.top + previewRect.height + pageYOffset) {
-      inlineTop = previewRect.top + previewRect.height - boundingBox.clientHeight + pageYOffset;
+    if (inlineTop < triggerRect.top + pageYOffset) {
+      inlineTop = triggerRect.top + pageYOffset;
+    } else if (inlineTop + this.el.clientHeight > triggerRect.top + triggerRect.height + pageYOffset) {
+      inlineTop = triggerRect.top + triggerRect.height - this.el.clientHeight + pageYOffset;
     }
 
     this.el.style.left = `${inlineLeft}px`;

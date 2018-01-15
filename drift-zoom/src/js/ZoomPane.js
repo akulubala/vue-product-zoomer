@@ -5,10 +5,24 @@ import { addClasses, removeClasses } from './util/dom';
 // account for, just in case.
 var divStyle = document.createElement('div').style;
 
-const HAS_ANIMATION = false
+const HAS_ANIMATION = typeof document === 'undefined' ?
+  false :
+  ('animation' in divStyle || 'webkitAnimation' in divStyle);
 
+let __instance = (function () {
+  let instance;
+  return (newInstance) => {
+    if (newInstance) {
+      instance = newInstance;
+    }
+    return instance;
+  }
+}());
 export default class ZoomPane {
   constructor(options = {}) {
+    if (__instance()) {
+      return __instance()
+    }
     this.isShowing = false;
 
     let {
@@ -32,6 +46,7 @@ export default class ZoomPane {
     this.loadingClasses = this._buildClasses('loading');
 
     this._buildElement();
+    __instance(this);
   }
 
   _buildClasses(suffix) {

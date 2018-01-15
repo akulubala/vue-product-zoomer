@@ -45,7 +45,12 @@ export default {
     baseZoomerOptions: {
       type: Object,
       default: function () {
-        return {}
+        return {
+            paneContainer: document.querySelector('.zoomer-container'),
+            hoverBoundingBox: true,
+            injectBaseStyles: true,
+            zoomFactor: 4
+        }
       }
     }
   },
@@ -70,22 +75,7 @@ export default {
       this.previewLargeImg = Object.assign({}, matchLargeImg);
       this.previewImg = Object.assign({}, matchNormalImg);
 
-      for (const key in this.baseZoomerOptions) {
-        if (this.baseZoomerOptions.hasOwnProperty(key)) {
-          const option = this.baseZoomerOptions
-          if (!options.hasOwnProperty(key)) {
-            options[key] = option
-          }
-        }
-      }
-      let drift = new Drift(document.getElementById('previewImg'), {
-        paneContainer: document.querySelector('.zoomer-container'),
-        hoverBoundingBox: true,
-        inlinePane: 200,
-        hoverDelay: 100,
-        injectBaseStyles: true,
-        zoomFactor: 4
-      })
+      let drift = new Drift(document.getElementById('previewImg'),this.baseZoomerOptions)
       drift.setZoomImageURL(matchLargeImg.url)
     }
   },

@@ -1,13 +1,17 @@
 <template>
-<div class="row" style="display:flex;">
-  <ProductZoomer
-    :base-images="images"
-    :base-component-class="ComponentClass"
-  />
-  <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4 zoomer-container">
+<main style="margin-top: 200px;">
+  <div class="container">
+    <div class="row" style="display:flex;">
+      <ProductZoomer
+        :base-images="images"
+        :base-component-class="ComponentClass"
+      />
+      <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4 zoomer-container">
 
+      </div>
+    </div>
   </div>
-</div>
+</main>
 </template>
 
 <script>
