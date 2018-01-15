@@ -11,7 +11,7 @@
   <div id="app"></div>
   <!-- built files will be auto injected -->
   <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+    <script src="/vue-product-zoomer/<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
     <% } %>
 </body>
 </html>

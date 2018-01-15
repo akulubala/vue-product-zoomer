@@ -10,8 +10,9 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "publish": "node publish/index.js",
-    "gh-pages": "NODE_ENV=github node publish/index.js",
-    "example": "NODE_ENV=production node example/index.js"
+    "example-local": "node example/index.js",
+    "publish-gh-page": "NODE_ENV=github node publish/index.js",
+    "example-gh-page": "NODE_ENV=github node example/index.js"
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
