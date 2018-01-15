@@ -6,8 +6,9 @@ const path = require('path')
 
 module.exports = {
   // Paths
-  assetsRoot: path.resolve(__dirname, '../published'),
+  assetsRoot: process.env.NODE_ENV === 'github' ? path.resolve(__dirname, '../gh-pages') : path.resolve(__dirname, '../published'),
   assetsSubDirectory: '/assets',
+  assetsPublicPath: process.env.NODE_ENV === 'github' ? '/vue-product-zoomer' : '/',
 
   /**
    * Source Maps

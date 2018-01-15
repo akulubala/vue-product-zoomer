@@ -5,75 +5,23 @@
     :base-images="images"
     :base-component-class="ComponentClass"
   />
-  <div class="right-panel　col-lg-2 col-md-2 col-sm-2 zoomer-container">
-            <h3>ffff</h3>
-            <div class="price-content">
-            </div>
-            <div class="media">
-                <div class="media-left">
-                    <span class="media-title media-middle">
-                        初次服务费：
-                    </span>
-                </div>
-                <div class="media-body">
-                    <div　class="col-lg-1２">
-                        <div 
-                         class="config-tag col-lg-12">
-                                １００
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="media">
-                <div class="media-left">
-                    <span class="media-title media-middle">
-                        后续服务费：
-                    </span>
-                </div>
-                <div class="media-body">
-                    <div　class="col-lg-1２">
-                        <div >
-                               ８０００
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="media">
-                <div class="media-left media-middle">
-                    <span class="media-title">
-                        数量：
-                    </span>
-                </div>
-                <div class="media-body">
-                    <div　class="col-lg-1２">
-                        <div class="input-group">
-                            <div class="count-input space-bottom">
-                                <a class="incr-btn decrease">–</a>
-                                <input class="quantity" type="text" name="quantity" value='1'/>
-                                <a class="incr-btn increase">&plus;</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="info-btn-box">
-                <div class="rent-price">
-                    合计金额：<strong id="sumPrice">500</strong> <span class="_price_explain"></span>
-                </div>
-                <button class="btn btn-primary">立即下单</button>
-                <button class="btn btn-danger">
-                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                    加入购物车
-                </button>
-            </div>
-        </div>
+  <div class="right-panel　col-lg-4 col-md-4 col-sm-4 zoomer-container">
+        <h3>ffff</h3>
+        <ul>
+          <li>How the Markdown format makes styled collaborative editing easy</li>
+          <li>How Markdown differs from traditional formatting approaches</li>
+          <li>How to use Markdown to format text</li>
+          <li>How to leverage GitHub’s automatic Markdown rendering</li>
+          <li>How to apply GitHub’s unique Markdown extensions</li>
+        </ul>
+  </div>
 </div>
 </div>
 
 </template>
 
 <script>
-import ProductZoomer from '../published/app.js'
+import ProductZoomer from '../gh-pages/app.js'
 
 export default {
   name: 'app',
@@ -86,7 +34,7 @@ export default {
               'url': 'https://akulubala.github.io/vue-product-zoomer/images/thumbs/1.jpeg'
             },
             {
-              'id': 2,
+              'id': 4,
               'url': 'https://akulubala.github.io/vue-product-zoomer/images/thumbs/2.jpeg'
             },
             {

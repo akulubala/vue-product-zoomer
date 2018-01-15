@@ -26,7 +26,8 @@ module.exports = {
     path: config.assetsRoot,
     filename: '[name].js',
     library: 'ProductZoomer', // 这两项必须要，否则其他包不能加载 https://doc.webpack-china.org/guides/author-libraries/
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    publicPath: config.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

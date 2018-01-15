@@ -28,6 +28,12 @@ import Drift from '../../drift-zoom/src/js/Drift.js'
 export default {
   name: 'productzoomer',
   props: {
+    baseZoomerOptions: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
     baseImages: {
       type: Object,
       required: true,
@@ -41,18 +47,6 @@ export default {
       default: function () {
         return ''
       }
-    },
-    baseZoomerOptions: {
-      type: Object,
-      default: function () {
-        return {
-            paneContainer: document.querySelector('.zoomer-container'),
-            hoverBoundingBox: true,
-            injectBaseStyles: true,
-            inlinePane: false,
-            zoomFactor: 4
-        }
-      }
     }
   },
   data () {
@@ -62,8 +56,27 @@ export default {
       'thumbs': [],
       'normal_size': [],
       'large_size': [],
-      'choosedThumb': {}
+      'choosedThumb': {},
+      'drift': null
     }
+  },
+  mounted() {
+    let options = {
+      paneContainer: document.querySelector('.zoomer-container'),
+      hoverBoundingBox: true,
+      injectBaseStyles: true,
+      inlinePane: 200,
+      zoomFactor: 4
+    }
+    if (Object.keys(this.baseImages) > 0) {
+      for (const key in this.baseImages) {
+        if (this.baseImages.hasOwnProperty(key)) {
+          const element = this.baseImages[key];
+          options[key] = element
+        }
+      }
+    }
+    this.drift = new Drift(document.getElementById('previewImg'), options);
   },
   watch: {
     'choosedThumb': function (thumb) {
@@ -75,9 +88,7 @@ export default {
       });
       this.previewLargeImg = Object.assign({}, matchLargeImg);
       this.previewImg = Object.assign({}, matchNormalImg);
-
-      let drift = new Drift(document.getElementById('previewImg'),this.baseZoomerOptions)
-      drift.setZoomImageURL(matchLargeImg.url)
+      this.drift.setZoomImageURL(matchLargeImg.url)
     }
   },
   created () {
@@ -99,7 +110,6 @@ export default {
     if (this.large_size.length === 0) {
       this.large_size = Object.assign([], this.normal_size);
     }
-
     this.choosedThumb = this.thumbs[0]
   },
   methods: {
