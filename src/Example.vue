@@ -4,6 +4,7 @@
   <ProductZoomer
     :base-images="images"
     :base-component-class="ComponentClass"
+    :base-zoomer-options="zoomerOptions"
   />
   <div class="right-panel　col-lg-4 col-md-4 col-sm-4 zoomer-container">
         <h3>ffff</h3>
@@ -143,7 +144,10 @@ export default {
             }
           ]
       },
-      'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4'
+      'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4',
+      'zoomerOptions': {
+        'hoverDelay': 800 // how long trigger bounding box
+      }
     }
   },
   components: {
