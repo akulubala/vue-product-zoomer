@@ -43,7 +43,6 @@ export default {
     },
     baseComponentClass: {
       type: String,
-      required: true,
       default: function () {
         return ''
       }
