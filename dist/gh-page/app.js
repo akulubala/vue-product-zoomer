@@ -463,7 +463,6 @@ module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regu
     },
     baseComponentClass: {
       type: String,
-      required: true,
       default: function _default() {
         return '';
       }
