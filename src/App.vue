@@ -7,7 +7,7 @@
         :base-component-class="ComponentClass"
         :base-zoomer-options="zoomerOptions"
       />
-      <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4 zoomer-container">
+      <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4" id="zoomer-container">
 
       </div>
     </div>
@@ -139,7 +139,10 @@ export default {
       },
       'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4',
       'zoomerOptions': {
-        'hoverDelay': 200
+        'zoomFactor': 3,
+        'inlinePane': true,
+        'hoverDelay': 300,
+        'namespace': 'xx'
       }
     }
   },
