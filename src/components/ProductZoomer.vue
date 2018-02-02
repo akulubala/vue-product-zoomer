@@ -1,7 +1,7 @@
 <template>
-<div class="product-zoomer" :class="baseComponentClass">
+<div :class="baseComponentClass +' '+ zoomer_box" >
     <div class="preview-box">
-        <img id="previewImg" :src="previewImg.url" 
+        <img :src="previewImg.url" 
              :data-zoom="previewLargeImg.url" 
              class="img-responsive img-rounded center-block"
         />
@@ -12,7 +12,7 @@
         </a> 
         <div class="thumb-list col-xs-10 col-lg-10 col-md-10 col-sm-10">
             <div v-for="(thumb, key) in thumbs">
-                <img v-show="key < 4" :src="thumb.url" @click="chooseThumb(thumb)" class="img-responsive center-block col-xs-3 col-lg-3 col-md-3 col-sm-3" :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
+                <img @mouseover="chooseThumb(thumb, $event)" v-show="key < 4" :src="thumb.url" @click="chooseThumb(thumb, $event)" class="img-responsive center-block col-xs-3 col-lg-3 col-md-3 col-sm-3" :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
             </div>
         </div> 
         <a @click="moveThumbs('right')" class="control col-xs-1 col-lg-1 col-md-1 col-sm-1 text-right">
@@ -56,27 +56,30 @@ export default {
       'normal_size': [],
       'large_size': [],
       'choosedThumb': {},
-      'drift': null
+      'drift': null,
+      'options': {
+        'zoomFactor': 4,
+        'inlinePane': false,
+        'hoverDelay': 200,
+        'namespace': 'zoomer',
+        'move_by_click': true,
+      }
+    }
+  },
+  computed:{
+    'zoomer_box': function() {
+      return this.options.namespace + '_zoomer_box';
     }
   },
   mounted() {
-    let options = {
-      paneContainer: document.querySelector('.zoomer-container'),
-      hoverBoundingBox: true,
-      injectBaseStyles: true,
-      inlinePane: 200,
-      zoomFactor: 4,
-      hoverDelay: 200
+    if (this.options.hasOwnProperty('zoomer_container_id')) {
+      this.options.paneContainer = document.getElementById(this.options.zoomer_container_id);
+    } else {
+      this.options.paneContainer = document.getElementById('zoomer-container');
     }
-    if (Object.keys(this.baseZoomerOptions).length > 0) {
-      for (const key in this.baseZoomerOptions) {
-        if (this.baseZoomerOptions.hasOwnProperty(key)) {
-          const element = this.baseZoomerOptions[key];
-          options[key] = element
-        }
-      }
-    }
-    this.drift = new Drift(document.getElementById('previewImg'), options);
+    this.options.injectBaseStyles = true;
+    let previewImg = '.' + this.zoomer_box + '>div>img';
+    this.drift = new Drift(document.querySelector(previewImg), this.options);
   },
   watch: {
     'choosedThumb': function (thumb) {
@@ -110,7 +113,21 @@ export default {
     if (this.large_size.length === 0) {
       this.large_size = Object.assign([], this.normal_size);
     }
-    this.choosedThumb = this.thumbs[0]
+    this.choosedThumb = this.thumbs[0];
+
+    if (Object.keys(this.baseZoomerOptions).length > 0) {
+      for (const key in this.baseZoomerOptions) {
+        if (this.baseZoomerOptions.hasOwnProperty(key)) {
+          const element = this.baseZoomerOptions[key];
+          this.options[key] = element
+        }
+      }
+    }
+    if (this.options.inlinePane === true) {
+      this.options.hoverBoundingBox = false;
+    } else {
+      this.options.hoverBoundingBox = true;
+    }
   },
   methods: {
     moveThumbs (direction) {
@@ -123,8 +140,16 @@ export default {
         this.thumbs = [...this.thumbs, moveThumb[0]]
       }
     },
-    chooseThumb (thumb) {
-      this.choosedThumb = thumb
+    chooseThumb (thumb, event) {
+      let eventType = event.type;
+      if (eventType === 'mouseover') {
+        if (this.options.move_by_click !== true) {
+          this.choosedThumb = thumb
+        }
+      } else {
+        this.choosedThumb = thumb
+      }
+      
     }
   }
 }

@@ -1,16 +1,46 @@
 <template>
-<main style="margin-top: 200px;">
-  <div class="container">
-    <div class="row" style="display:flex;">
-      <ProductZoomer
-        :base-images="images"
-        :base-component-class="ComponentClass"
-        :base-zoomer-options="zoomerOptions"
-      />
-      <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4 zoomer-container">
-
-      </div>
+<main>
+  <div class="container container-box">
+    <div class="row outline-example">
+          <ProductZoomer
+            :base-images="images"
+            :base-component-class="ComponentClass"
+            :base-zoomer-options="zoomerOptions"
+          />
+          <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6" id="zoomer">
+            <h3>With Container Zoomer</h3>
+            <pre>
+'zoomerOptions': {
+  'zoomFactor': 3,
+  'inlinePane': false,
+  'hoverDelay': 300,
+  'namespace': 'zoomer',
+  'zoomer_container_id': 'zoomer',
+  'move_by_click':false
+}
+            </pre>
+          </div>
     </div>
+    <hr>
+    <div class="row">
+        <ProductZoomer
+            :base-images="images"
+            :base-component-class="ComponentClass"
+            :base-zoomer-options="inlineZoomerOptions"
+          />
+        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6" id="zoomer">
+            <h3>inline Zoomer</h3>
+            <pre>
+zoomerOptions: {
+  'zoomFactor': 5,
+  'inlinePane': true,
+  'hoverDelay': 300,
+  'namespace': 'inline-zoomer',
+  'move_by_click':true
+}
+            </pre>
+          </div>
+      </div>
   </div>
 </main>
 </template>
@@ -139,7 +169,19 @@ export default {
       },
       'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4',
       'zoomerOptions': {
-        'hoverDelay': 200
+        'zoomFactor': 3,
+        'inlinePane': false,
+        'hoverDelay': 300,
+        'namespace': 'zoomer',
+        'zoomer_container_id': 'zoomer',
+        'move_by_click':false
+      },
+      'inlineZoomerOptions': {
+        'zoomFactor': 4,
+        'inlinePane': true,
+        'hoverDelay': 300,
+        'namespace': 'inline-zoomer',
+        'move_by_click':true
       }
     }
   },
@@ -148,3 +190,12 @@ export default {
   }
 }
 </script>
+<style>
+.container-box {
+  padding: 40px;
+}
+.outline-example {
+  display: flex;
+}
+</style>
+

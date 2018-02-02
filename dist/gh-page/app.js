@@ -409,10 +409,10 @@ module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regu
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_assign__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_assign__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_drift_zoom_src_js_Drift_js__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_drift_zoom_src_js_Drift_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__assets_drift_zoom_src_js_Drift_js__);
 
@@ -476,27 +476,31 @@ module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regu
       'normal_size': [],
       'large_size': [],
       'choosedThumb': {},
-      'drift': null
+      'drift': null,
+      'options': {
+        'zoomFactor': 4,
+        'inlinePane': false,
+        'hoverDelay': 200,
+        'namespace': 'zoomer',
+        'move_by_click': true
+      }
     };
   },
-  mounted: function mounted() {
-    var options = {
-      paneContainer: document.querySelector('.zoomer-container'),
-      hoverBoundingBox: true,
-      injectBaseStyles: true,
-      inlinePane: 200,
-      zoomFactor: 4,
-      hoverDelay: 200
-    };
-    if (__WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys___default()(this.baseZoomerOptions).length > 0) {
-      for (var key in this.baseZoomerOptions) {
-        if (this.baseZoomerOptions.hasOwnProperty(key)) {
-          var element = this.baseZoomerOptions[key];
-          options[key] = element;
-        }
-      }
+
+  computed: {
+    'zoomer_box': function zoomer_box() {
+      return this.options.namespace + '_zoomer_box';
     }
-    this.drift = new __WEBPACK_IMPORTED_MODULE_3__assets_drift_zoom_src_js_Drift_js___default.a(document.getElementById('previewImg'), options);
+  },
+  mounted: function mounted() {
+    if (this.options.hasOwnProperty('zoomer_container_id')) {
+      this.options.paneContainer = document.getElementById(this.options.zoomer_container_id);
+    } else {
+      this.options.paneContainer = document.getElementById('zoomer-container');
+    }
+    this.options.injectBaseStyles = true;
+    var previewImg = '.' + this.zoomer_box + '>div>img';
+    this.drift = new __WEBPACK_IMPORTED_MODULE_3__assets_drift_zoom_src_js_Drift_js___default.a(document.querySelector(previewImg), this.options);
   },
 
   watch: {
@@ -507,13 +511,13 @@ module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regu
       var matchLargeImg = this.large_size.find(function (img) {
         return img.id === thumb.id;
       });
-      this.previewLargeImg = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()({}, matchLargeImg);
-      this.previewImg = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()({}, matchNormalImg);
+      this.previewLargeImg = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_assign___default()({}, matchLargeImg);
+      this.previewImg = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_assign___default()({}, matchNormalImg);
       this.drift.setZoomImageURL(matchLargeImg.url);
     }
   },
   created: function created() {
-    if (__WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_keys___default()(this.baseImages).length > 0) {
+    if (__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys___default()(this.baseImages).length > 0) {
       for (var key in this.baseImages) {
         if (this.baseImages.hasOwnProperty(key)) {
           this[key] = this.baseImages[key];
@@ -526,12 +530,26 @@ module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regu
       return;
     }
     if (this.thumbs.length === 0) {
-      this.thumbs = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()([], this.normal_size);
+      this.thumbs = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_assign___default()([], this.normal_size);
     }
     if (this.large_size.length === 0) {
-      this.large_size = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()([], this.normal_size);
+      this.large_size = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_object_assign___default()([], this.normal_size);
     }
     this.choosedThumb = this.thumbs[0];
+
+    if (__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_keys___default()(this.baseZoomerOptions).length > 0) {
+      for (var _key in this.baseZoomerOptions) {
+        if (this.baseZoomerOptions.hasOwnProperty(_key)) {
+          var element = this.baseZoomerOptions[_key];
+          this.options[_key] = element;
+        }
+      }
+    }
+    if (this.options.inlinePane === true) {
+      this.options.hoverBoundingBox = false;
+    } else {
+      this.options.hoverBoundingBox = true;
+    }
   },
 
   methods: {
@@ -545,8 +563,15 @@ module.exports = __webpack_require__.p + "assets/fonts/glyphicons-halflings-regu
         this.thumbs = [].concat(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(this.thumbs), [_moveThumb[0]]);
       }
     },
-    chooseThumb: function chooseThumb(thumb) {
-      this.choosedThumb = thumb;
+    chooseThumb: function chooseThumb(thumb, event) {
+      var eventType = event.type;
+      if (eventType === 'mouseover') {
+        if (this.options.move_by_click !== true) {
+          this.choosedThumb = thumb;
+        }
+      } else {
+        this.choosedThumb = thumb;
+      }
     }
   }
 });
@@ -1886,29 +1911,74 @@ module.exports = { "default": __webpack_require__(78), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(79);
-module.exports = __webpack_require__(1).Object.assign;
+module.exports = __webpack_require__(1).Object.keys;
 
 
 /***/ }),
 /* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(3);
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__(10);
+var $keys = __webpack_require__(16);
 
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(80) });
+__webpack_require__(80)('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
+  };
+});
 
 
 /***/ }),
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// most Object methods by ES6 should accept primitives
+var $export = __webpack_require__(3);
+var core = __webpack_require__(1);
+var fails = __webpack_require__(8);
+module.exports = function (KEY, exec) {
+  var fn = (core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
+  exp[KEY] = exec(fn);
+  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
+};
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(82), __esModule: true };
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(83);
+module.exports = __webpack_require__(1).Object.assign;
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(3);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(84) });
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(16);
-var gOPS = __webpack_require__(81);
-var pIE = __webpack_require__(82);
+var gOPS = __webpack_require__(85);
+var pIE = __webpack_require__(86);
 var toObject = __webpack_require__(10);
 var IObject = __webpack_require__(25);
 var $assign = Object.assign;
@@ -1941,62 +2011,17 @@ module.exports = !$assign || __webpack_require__(8)(function () {
 
 
 /***/ }),
-/* 81 */
+/* 85 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 82 */
+/* 86 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
-
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(84), __esModule: true };
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(85);
-module.exports = __webpack_require__(1).Object.keys;
-
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.14 Object.keys(O)
-var toObject = __webpack_require__(10);
-var $keys = __webpack_require__(16);
-
-__webpack_require__(86)('keys', function () {
-  return function keys(it) {
-    return $keys(toObject(it));
-  };
-});
-
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// most Object methods by ES6 should accept primitives
-var $export = __webpack_require__(3);
-var core = __webpack_require__(1);
-var fails = __webpack_require__(8);
-module.exports = function (KEY, exec) {
-  var fn = (core.Object || {})[KEY] || Object[KEY];
-  var exp = {};
-  exp[KEY] = exec(fn);
-  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
-};
 
 
 /***/ }),
@@ -2625,9 +2650,6 @@ var ZoomPane = function () {
       (0, _dom.removeClasses)(_this.el, _this.loadingClasses);
     };
 
-    if (__instance()) {
-      return __instance();
-    }
     this.isShowing = false;
 
     var _options$container = options.container,
@@ -2842,89 +2864,83 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "product-zoomer", class: _vm.baseComponentClass },
-    [
-      _c("div", { staticClass: "preview-box" }, [
-        _c("img", {
-          staticClass: "img-responsive img-rounded center-block",
-          attrs: {
-            id: "previewImg",
-            src: _vm.previewImg.url,
-            "data-zoom": _vm.previewLargeImg.url
+  return _c("div", { class: _vm.baseComponentClass + " " + _vm.zoomer_box }, [
+    _c("div", { staticClass: "preview-box" }, [
+      _c("img", {
+        staticClass: "img-responsive img-rounded center-block",
+        attrs: { src: _vm.previewImg.url, "data-zoom": _vm.previewLargeImg.url }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "control-box" }, [
+      _c(
+        "a",
+        {
+          staticClass: "control col-xs-1 col-lg-1 col-md-1 col-sm-1",
+          on: {
+            click: function($event) {
+              _vm.moveThumbs("left")
+            }
           }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "control-box" }, [
-        _c(
-          "a",
-          {
-            staticClass: "control col-xs-1 col-lg-1 col-md-1 col-sm-1",
-            on: {
-              click: function($event) {
-                _vm.moveThumbs("left")
-              }
-            }
-          },
-          [
-            _c("i", {
-              staticClass: "fa fa-angle-left",
-              attrs: { "aria-hidden": "true" }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "thumb-list col-xs-10 col-lg-10 col-md-10 col-sm-10" },
-          _vm._l(_vm.thumbs, function(thumb, key) {
-            return _c("div", [
-              _c("img", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: key < 4,
-                    expression: "key < 4"
-                  }
-                ],
-                staticClass:
-                  "img-responsive center-block col-xs-3 col-lg-3 col-md-3 col-sm-3",
-                class: { "choosed-thumb": thumb.id === _vm.choosedThumb.id },
-                attrs: { src: thumb.url },
-                on: {
-                  click: function($event) {
-                    _vm.chooseThumb(thumb)
-                  }
-                }
-              })
-            ])
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-angle-left",
+            attrs: { "aria-hidden": "true" }
           })
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass:
-              "control col-xs-1 col-lg-1 col-md-1 col-sm-1 text-right",
-            on: {
-              click: function($event) {
-                _vm.moveThumbs("right")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "thumb-list col-xs-10 col-lg-10 col-md-10 col-sm-10" },
+        _vm._l(_vm.thumbs, function(thumb, key) {
+          return _c("div", [
+            _c("img", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: key < 4,
+                  expression: "key < 4"
+                }
+              ],
+              staticClass:
+                "img-responsive center-block col-xs-3 col-lg-3 col-md-3 col-sm-3",
+              class: { "choosed-thumb": thumb.id === _vm.choosedThumb.id },
+              attrs: { src: thumb.url },
+              on: {
+                mouseover: function($event) {
+                  _vm.chooseThumb(thumb, $event)
+                },
+                click: function($event) {
+                  _vm.chooseThumb(thumb, $event)
+                }
               }
-            }
-          },
-          [
-            _c("i", {
-              staticClass: "fa fa-angle-right",
-              attrs: { "aria-hidden": "true" }
             })
-          ]
-        )
-      ])
-    ]
-  )
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "control col-xs-1 col-lg-1 col-md-1 col-sm-1 text-right",
+          on: {
+            click: function($event) {
+              _vm.moveThumbs("right")
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-angle-right",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
