@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.css"],"names":[],"mappings":"AACA,eACE,YAAc,CACf,AACD,iBACE,oBAAqB,AACrB,oBAAqB,AACrB,YAAc,CACf","file":"app.css","sourcesContent":["\n.container-box {\n  padding: 40px;\n}\n.outline-example {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n"]}
