@@ -20,9 +20,6 @@ let __instance = (function () {
 }());
 export default class ZoomPane {
   constructor(options = {}) {
-    if (__instance()) {
-      return __instance()
-    }
     this.isShowing = false;
 
     let {

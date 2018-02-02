@@ -5,7 +5,7 @@
 # vue-product-zoomer
 
 > Vue Product Image Zoomer Package, Useful For e-Shop Project.
-> Demo: http://yoohooworld.com/images/vue-product-zoomer/
+> Demo: https://akulubala.github.io/vue-product-zoomer/
 
 ## Instruction 
 
@@ -18,10 +18,42 @@ import ProductZoomer from 'vue-product-zoomer'
 
 # Usage
 <ProductZoomer
-    :base-images="images"
-    :base-component-class="ComponentClass"
-    :base-zoomer-options="zoomerOptions"
-  />
+  :base-images="images"
+  :base-component-class="ComponentClass"
+  :base-zoomer-options="zoomerOptions"
+/>
+
+
+## Options
+
+|    images                                     | component-class |         zoomer-options         |
+| --------------------------------------------  | --------------- | ------------------------------ |
+| {                                             |    String       | {                              |
+|    {                                          |                 |    zoomFactor: integer,        |
+|      'thumbs':                                |base class added |    inlinePane: boolean,        |
+|      [                                        |to zoomer        |    hoverDelay: integer,        |
+|        {'id':'unique id', 'url': 'image url'},|component        |    namespace: String,          |
+|        {'id':'unique id', 'url': 'image url'} |                 |    move_by_click: boolean,     |
+|      ]                                        |                 |    zoomer_container_id: String |
+|    },                                         |                 | }                              |
+|    {                                          |                 |                                |
+|      'normal_size':                           |                 | zoomFactor: scale for zoomer,  |
+|      [                                        |                 | this option can change bounding|
+|        {'id':'unique id', 'url': 'image url'},|                 | box size and zoom factor       |
+|        {'id':'unique id', 'url': 'image url'} |                 | inlinePane: if zoomer inline ? |
+|      ]                                        |                 | if inlinePane is false, then   |
+|    },                                         |                 | zoomer_container_id must,      |
+|    {                                          |                 | hoverDelay: how long after     |
+|      'large_size':                            |                 | zoomer take effect.            |
+|      [                                        |                 | namespace: when mutiple zoomer |
+|        {'id':'unique id', 'url': 'image url'},|                 | on one page, must present      |
+|        {'id':'unique id', 'url': 'image url'} |                 | move_ty_click: change image by |
+|      ]                                        |                 | click or mouseover
+|    }                                          |
+| }                                             |
+| if thumbs or large_size not present,          | 
+|    they will be normal_size, normal_size      |
+|    must present                               | 
 
 
 `export default {
@@ -37,34 +69,6 @@ import ProductZoomer from 'vue-product-zoomer'
             {
               'id': 2,
               'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/2.jpeg'
-            },
-            {
-              'id': 3,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/3.jpeg'
-            },
-            {
-              'id': 4,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/4.jpeg'
-            },
-            {
-              'id': 5,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/5.jpeg'
-            },
-            {
-              'id': 6,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/6.jpeg'
-            },
-            {
-              'id': 7,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/7.jpeg'
-            },
-            {
-              'id': 8,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/8.jpeg'
-            },
-            {
-              'id': 9,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/9.jpeg'
             }
           ],
           'normal_size': [
@@ -75,34 +79,6 @@ import ProductZoomer from 'vue-product-zoomer'
             {
               'id': 2,
               'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/2.jpeg'
-            },
-            {
-              'id': 3,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/3.jpeg'
-            },
-            {
-              'id': 4,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/4.jpeg'
-            },
-            {
-              'id': 5,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/5.jpeg'
-            },
-            {
-              'id': 6,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/6.jpeg'
-            },
-            {
-              'id': 7,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/7.jpeg'
-            },
-            {
-              'id': 8,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/8.jpeg'
-            },
-            {
-              'id': 9,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/9.jpeg'
             }
           ],
           'large_size': [
@@ -113,38 +89,18 @@ import ProductZoomer from 'vue-product-zoomer'
             {
               'id': 2,
               'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/2.jpeg'
-            },
-            {
-              'id': 3,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/3.jpeg'
-            },
-            {
-              'id': 4,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/4.jpeg'
-            },
-            {
-              'id': 5,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/5.jpeg'
-            },
-            {
-              'id': 6,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/6.jpeg'
-            },
-            {
-              'id': 7,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/7.jpeg'
-            },
-            {
-              'id': 8,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/8.jpeg'
-            },
-            {
-              'id': 9,
-              'url': 'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/9.jpeg'
             }
           ]
       },
-      'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4'
+      'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4',
+      'zoomerOptions': {
+        'zoomFactor': 3,
+        'inlinePane': false,
+        'hoverDelay': 300,
+        'namespace': 'zoomer',
+        'zoomer_container_id': 'zoomer',
+        'move_by_click':false
+      }
     }
   },
   components: {

@@ -1,29 +1,52 @@
 <template>
-<div class="container">
-  <div class="row" style="display:flex;">
-  <ProductZoomer
-    :base-images="images"
-    :base-component-class="ComponentClass"
-    :base-zoomer-options="zoomerOptions"
-  />
-  <div class="right-panel　col-lg-4 col-md-4 col-sm-4 zoomer-container">
-        <h3>ffff</h3>
-        <ul>
-          <li>How the Markdown format makes styled collaborative editing easy</li>
-          <li>How Markdown differs from traditional formatting approaches</li>
-          <li>How to use Markdown to format text</li>
-          <li>How to leverage GitHub’s automatic Markdown rendering</li>
-          <li>How to apply GitHub’s unique Markdown extensions</li>
-        </ul>
+<main>
+  <div class="container container-box">
+    <div class="row outline-example">
+          <ProductZoomer
+            :base-images="images"
+            :base-component-class="ComponentClass"
+            :base-zoomer-options="zoomerOptions"
+          />
+          <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6" id="zoomer">
+            <h3>With Container Zoomer</h3>
+            <pre>
+'zoomerOptions': {
+  'zoomFactor': 3,
+  'inlinePane': false,
+  'hoverDelay': 300,
+  'namespace': 'zoomer',
+  'zoomer_container_id': 'zoomer',
+  'move_by_click':false
+}
+            </pre>
+          </div>
+    </div>
+    <hr>
+    <div class="row">
+        <ProductZoomer
+            :base-images="images"
+            :base-component-class="ComponentClass"
+            :base-zoomer-options="inlineZoomerOptions"
+          />
+        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6" id="zoomer">
+            <h3>inline Zoomer</h3>
+            <pre>
+zoomerOptions: {
+  'zoomFactor': 5,
+  'inlinePane': true,
+  'hoverDelay': 300,
+  'namespace': 'inline-zoomer',
+  'move_by_click':true
+}
+            </pre>
+          </div>
+      </div>
   </div>
-</div>
-</div>
-
+</main>
 </template>
 
 <script>
 import ProductZoomer from '../dist/gh-page/app.js'
-
 export default {
   name: 'app',
   data () {
@@ -146,7 +169,19 @@ export default {
       },
       'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4',
       'zoomerOptions': {
-        'hoverDelay': 800 // how long trigger bounding box
+        'zoomFactor': 3,
+        'inlinePane': false,
+        'hoverDelay': 300,
+        'namespace': 'zoomer',
+        'zoomer_container_id': 'zoomer',
+        'move_by_click':false
+      },
+      'inlineZoomerOptions': {
+        'zoomFactor': 4,
+        'inlinePane': true,
+        'hoverDelay': 300,
+        'namespace': 'inline-zoomer',
+        'move_by_click':true
       }
     }
   },
@@ -155,3 +190,13 @@ export default {
   }
 }
 </script>
+<style>
+.container-box {
+  padding: 40px;
+}
+.outline-example {
+  display: flex;
+}
+</style>
+
+
