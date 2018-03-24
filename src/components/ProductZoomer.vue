@@ -10,10 +10,8 @@
         <a @click="moveThumbs('left')" class="control col-xs-1 col-lg-1 col-md-1 col-sm-1">
             <i aria-hidden="true" class="fa fa-angle-left"></i>
         </a> 
-        <div class="thumb-list col-xs-10 col-lg-10 col-md-10 col-sm-10">
-            <div v-for="(thumb, key) in thumbs">
-                <img @mouseover="chooseThumb(thumb, $event)" v-show="key < 4" :src="thumb.url" @click="chooseThumb(thumb, $event)" class="img-responsive center-block col-xs-3 col-lg-3 col-md-3 col-sm-3" :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
-            </div>
+        <div class="thumb-list col-xs-10 col-lg-10 col-md-10 col-sm-10" style="border:none">
+                <img @mouseover="chooseThumb(thumb, $event)" v-show="key < 4" :src="thumb.url" @click="chooseThumb(thumb, $event)" v-for="(thumb, key) in thumbs" class="img-responsive center-block col-xs-3 col-lg-3 col-md-3 col-sm-3" :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
         </div> 
         <a @click="moveThumbs('right')" class="control col-xs-1 col-lg-1 col-md-1 col-sm-1 text-right">
             <i aria-hidden="true" class="fa fa-angle-right"></i>
@@ -169,7 +167,7 @@ export default {
     cursor: pointer;
 }
 .thumb-list img {
-    padding: 1vh;
+    padding: 2px;
 }
 .row .control-box {
     display: flex;
