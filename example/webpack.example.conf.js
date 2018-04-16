@@ -112,11 +112,6 @@ const webpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../dist/gh-page/assets'),
         to: config.assetsSubDirectory,
         ignore: ['.*']
-      },
-      {
-        from: path.resolve(__dirname, '../src/assets/images'),
-        to: config.assetsRoot + '/images',
-        ignore: ['.*']
       }
     ])
   ]

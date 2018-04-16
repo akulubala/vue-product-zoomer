@@ -1,15 +1,15 @@
+
 [![npm](https://img.shields.io/npm/dt/vue-product-zoomer.svg)](https://www.npmjs.com/package/vue-product-zoomer)
 [![GitHub issues](https://img.shields.io/github/issues/akulubala/vue-product-zoomer.svg)](https://github.com/akulubala/vue-product-zoomer/issues)
 [![GitHub license](https://img.shields.io/github/license/akulubala/vue-product-zoomer.svg)](https://github.com/akulubala/vue-product-zoomer/blob/master/LICENSE)
 
 # vue-product-zoomer
 
-> Vue Product Image Zoomer Package, Useful For e-Shop Project.
-> Demo: https://akulubala.github.io/vue-product-zoomer/
+>  Vue Product Image Zoomer Package, Useful For e-Shop Project.
+>  Demo: https://akulubala.github.io/vue-product-zoomer/
 
 ## Instruction 
 
-``` bash
 # install 
 npm install vue-product-zoomer
 
@@ -24,39 +24,51 @@ import ProductZoomer from 'vue-product-zoomer'
 />
 
 
-## Options
+# Options
 
-|    images                                     | component-class |         zoomer-options         |
-| --------------------------------------------  | --------------- | ------------------------------ |
-| {                                             |    String       | {                              |
-|    {                                          |                 |    zoomFactor: integer,        |
-|      'thumbs':                                |base class added |    inlinePane: boolean,        |
-|      [                                        |to zoomer        |    hoverDelay: integer,        |
-|        {'id':'unique id', 'url': 'image url'},|component        |    namespace: String,          |
-|        {'id':'unique id', 'url': 'image url'} |                 |    move_by_click: boolean,     |
-|      ]                                        |                 |    zoomer_container_id: String |
-|    },                                         |                 | }                              |
-|    {                                          |                 |                                |
-|      'normal_size':                           |                 | zoomFactor: scale for zoomer,  |
-|      [                                        |                 | this option can change bounding|
-|        {'id':'unique id', 'url': 'image url'},|                 | box size and zoom factor       |
-|        {'id':'unique id', 'url': 'image url'} |                 | inlinePane: if zoomer inline ? |
-|      ]                                        |                 | if inlinePane is false, then   |
-|    },                                         |                 | zoomer_container_id must,      |
-|    {                                          |                 | hoverDelay: how long after     |
-|      'large_size':                            |                 | zoomer take effect.            |
-|      [                                        |                 | namespace: when mutiple zoomer |
-|        {'id':'unique id', 'url': 'image url'},|                 | on one page, must present      |
-|        {'id':'unique id', 'url': 'image url'} |                 | move_ty_click: change image by |
-|      ]                                        |                 | click or mouseover
-|    }                                          |
-| }                                             |
-| if thumbs or large_size not present,          | 
-|    they will be normal_size, normal_size      |
-|    must present                               | 
+### images:
+```javascript
+{                                               
+    {                                                           
+      'thumbs':    // optional, if not present will use normal_size instead                           
+      [                                        
+        {'id':'unique id', 'url': 'image url'},
+        {'id':'unique id', 'url': 'image url'} 
+      ]                                         
+    },                                             
+    {                                             
+      'normal_size':  // required                          
+      [                                             
+        {'id':'unique id', 'url': 'image url'},      
+        {'id':'unique id', 'url': 'image url'}       
+      ]                                               
+    },                                                
+    {                                                 
+      'large_size':    //optional, if not present will use normal_size instead                              
+      [                                               
+        {'id':'unique id', 'url': 'image url'},       
+        {'id':'unique id', 'url': 'image url'}                  
+      ]                                        
+    }                                          
+ }               
+```
+### ComponentClass  (optional)
 
-
-`export default {
+A string added to zoomer component
+### zoomerOptions
+```javascript
+{
+	'zoomFactor': 3, // scale for zoomer
+	'inlinePane': false, // default is false, if set to true, zoomer_container_id must preset
+	'hoverDelay': 300, // how long after the zoomer take effect
+	'namespace': 'zoomer', // add a namespace for zoomer component, useful when on page have mutiple zoomer 
+	'zoomer_container_id': 'zoomer', // when not inlinePane must present, container must have a fixed width and size otherwise will not show zoomer take effect
+	'move_by_click':false // move image by click thumb image or by mouseover
+}
+```
+# Example
+```javascript
+export default {
   name: 'app',
   data () {
     return {
@@ -106,6 +118,6 @@ import ProductZoomer from 'vue-product-zoomer'
   components: {
     ProductZoomer
   }
-}`
+}
 
 ```
