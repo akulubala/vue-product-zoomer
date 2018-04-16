@@ -19,7 +19,6 @@ import ProductZoomer from 'vue-product-zoomer'
 # Usage
 <ProductZoomer
   :base-images="images"
-  :base-component-class="ComponentClass"
   :base-zoomer-options="zoomerOptions"
 />
 
@@ -59,7 +58,7 @@ A string added to zoomer component
 ```javascript
 {
 	'zoomFactor': 3, // scale for zoomer
-	'inlinePane': false, // default is false, if set to true, zoomer_container_id must preset
+	'pane': 'pane', // three type of pane ['pane', 'container-round', 'container']
 	'hoverDelay': 300, // how long after the zoomer take effect
 	'namespace': 'zoomer', // add a namespace for zoomer component, useful when on page have mutiple zoomer 
 	'zoomer_container_id': 'zoomer', // when not inlinePane must present, container must have a fixed width and size otherwise will not show zoomer take effect
@@ -104,10 +103,9 @@ export default {
             }
           ]
       },
-      'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4',
       'zoomerOptions': {
         'zoomFactor': 3,
-        'inlinePane': false,
+        'pane': 'container-round',
         'hoverDelay': 300,
         'namespace': 'zoomer',
         'zoomer_container_id': 'zoomer',

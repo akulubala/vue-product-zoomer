@@ -2,17 +2,18 @@
 <main>
   <div class="container container-box">
     <div class="row outline-example">
-          <ProductZoomer
-            :base-images="images"
-            :base-component-class="ComponentClass"
-            :base-zoomer-options="zoomerOptions"
-          />
-          <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6" id="zoomer">
-            <h3>With Container Zoomer</h3>
+          <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+            <ProductZoomer
+              :base-images="images"
+              :base-zoomer-options="zoomerOptions"
+            />
+          </div>
+          <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+            <h3>With A Pane Container Zoomer</h3>
             <pre>
 'zoomerOptions': {
   'zoomFactor': 3,
-  'inlinePane': false,
+  'pane': 'pane',
   'hoverDelay': 300,
   'namespace': 'zoomer',
   'zoomer_container_id': 'zoomer',
@@ -23,19 +24,41 @@
     </div>
     <hr>
     <div class="row">
-        <ProductZoomer
-            :base-images="images"
-            :base-component-class="ComponentClass"
-            :base-zoomer-options="inlineZoomerOptions"
-          />
-        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6" id="zoomer">
-            <h3>inline Zoomer</h3>
+        <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+          <ProductZoomer
+              :base-images="images"
+              :base-zoomer-options="containerRoundOptions"
+            />
+        </div>
+        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+            <h3>Inside Zoomer Container With Round Effect</h3>
             <pre>
-zoomerOptions: {
+containerRoundOptions: {
   'zoomFactor': 5,
-  'inlinePane': true,
+  'pane': 'container-round',
   'hoverDelay': 300,
   'namespace': 'inline-zoomer',
+  'move_by_click':true
+}
+            </pre>
+          </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+          <ProductZoomer
+              :base-images="images"
+              :base-zoomer-options="containerOptions"
+            />
+        </div>
+        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+            <h3>Inside Zoomer Container</h3>
+            <pre>
+containerOptions: {
+  'zoomFactor': 5,
+  'pane': 'container',
+  'hoverDelay': 300,
+  'namespace': 'container-inside-zoomer',
   'move_by_click':true
 }
             </pre>
@@ -167,20 +190,25 @@ export default {
             }
           ]
       },
-      'ComponentClass': 'col-xs-4 col-lg-4 col-md-4 col-sm-4',
       'zoomerOptions': {
         'zoomFactor': 3,
-        'inlinePane': false,
+        'pane': 'pane',
         'hoverDelay': 300,
         'namespace': 'zoomer',
-        'zoomer_container_id': 'zoomer',
         'move_by_click':false
       },
-      'inlineZoomerOptions': {
+      'containerRoundOptions': {
         'zoomFactor': 4,
-        'inlinePane': true,
+        'pane': 'container-round',
         'hoverDelay': 300,
         'namespace': 'inline-zoomer',
+        'move_by_click':true
+      },
+      'containerOptions': {
+        'zoomFactor': 4,
+        'pane': 'container',
+        'hoverDelay': 300,
+        'namespace': 'container-zoomer',
         'move_by_click':true
       }
     }
