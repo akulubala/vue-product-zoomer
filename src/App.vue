@@ -16,7 +16,6 @@
   'pane': 'pane',
   'hoverDelay': 300,
   'namespace': 'zoomer',
-  'zoomer_container_id': 'zoomer',
   'move_by_click':false
 }
             </pre>

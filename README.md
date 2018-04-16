@@ -61,7 +61,6 @@ A string added to zoomer component
 	'pane': 'pane', // three type of pane ['pane', 'container-round', 'container']
 	'hoverDelay': 300, // how long after the zoomer take effect
 	'namespace': 'zoomer', // add a namespace for zoomer component, useful when on page have mutiple zoomer 
-	'zoomer_container_id': 'zoomer', // when not inlinePane must present, container must have a fixed width and size otherwise will not show zoomer take effect
 	'move_by_click':false // move image by click thumb image or by mouseover
 }
 ```
@@ -108,7 +107,6 @@ export default {
         'pane': 'container-round',
         'hoverDelay': 300,
         'namespace': 'zoomer',
-        'zoomer_container_id': 'zoomer',
         'move_by_click':false
       }
     }
