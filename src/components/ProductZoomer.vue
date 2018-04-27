@@ -3,19 +3,19 @@
     <div class="preview-box" >
         <img :src="previewImg.url" 
              :data-zoom="previewLargeImg.url" 
-             class="img-responsive center-block"
+             class="responsive-image"
         />
     </div>
     <div class="control-box">
-        <a @click="moveThumbs('left')" class="control col-xs-1 col-lg-1 col-md-1 col-sm-1">
+        <div @click="moveThumbs('left')" class="control">
             <i aria-hidden="true" class="fa fa-angle-left"></i>
-        </a> 
-        <div class="thumb-list col-xs-10 col-lg-10 col-md-10 col-sm-10" style="border:none">
-                <img @mouseover="chooseThumb(thumb, $event)" v-show="key < 4" :src="thumb.url" @click="chooseThumb(thumb, $event)" v-for="(thumb, key) in thumbs" class="img-responsive center-block col-xs-3 col-lg-3 col-md-3 col-sm-3" :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
-        </div> 
-        <a @click="moveThumbs('right')" class="control col-xs-1 col-lg-1 col-md-1 col-sm-1 text-right">
+        </div>
+        <div class="thumb-list">
+              <img @mouseover="chooseThumb(thumb, $event)" v-show="key < 7" :key="key" :src="thumb.url" @click="chooseThumb(thumb, $event)" v-for="(thumb, key) in thumbs" class="responsive-image" :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
+        </div>
+        <div @click="moveThumbs('right')" class="control">
             <i aria-hidden="true" class="fa fa-angle-right"></i>
-        </a>
+        </div>
     </div>
     <div :id="pane_id" class="pane-container"></div>
 </div>
@@ -71,26 +71,29 @@ export default {
     if (this.options.pane === 'container-round') {
       this.options.inlinePane = true;
     } else {
-      this.options.paneContainer = document.getElementById(this.pane_id);
       this.options.inlinePane = false;
+      this.options.paneContainer = document.getElementById(this.pane_id);
       if (this.options.pane === 'pane') {
         window.addEventListener("load", () => {
           let rect = document
             .querySelector("." + this.zoomer_box)
             .getBoundingClientRect();
-          document
-            .querySelector(".pane-container")
+            this.options.paneContainer
             .setAttribute(
               "style",
               "width:" +
                 rect.width * 1.2 +
                 "px;height:" +
                 rect.height +
-                "px;right:-" +
+                "px;left:" +
                 rect.width * 1.2 +
-                "px;position:absolute;z-index:10000;top:0px"
+                "px;top:" +
+                rect.top +
+                "px;"
             );
         });
+      } else {
+
       }
     }
     this.options.injectBaseStyles = true;
@@ -172,32 +175,43 @@ export default {
 </script>
 
 <style>
-@import "bootstrap/dist/css/bootstrap.min.css";
 @import "font-awesome/css/font-awesome.min.css";
 @import "../assets/drift-zoom/src/css/drift-basic.css";
 .preview-box {
   margin-bottom: 1vh;
 }
-.control,
-.thumb-list {
-  padding: 0px;
+.control {
+  display: grid;
+  align-items: center;
+  font-size: xx-large;
 }
 .control i {
   cursor: pointer;
 }
-.thumb-list img {
-  padding: 2px;
+.control-box {
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  grid-column-gap: 5px;
 }
-.row .control-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: xx-large;
+.control-box .thumb-list {
+  display: grid;
+  grid-template-columns:auto auto auto auto auto auto auto;
+  grid-column-gap: 4px;
 }
 .choosed-thumb {
-  border: 2px solid #e53e41;
+  border-radius: 0px;
+  box-shadow: 0px 0px 0px 2px #e53e41;
 }
 .pane-container {
   display: none;
+  position:absolute;
+  z-index:10000;
+  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+}
+.responsive-image {
+  height: auto;
+  width: 100%;
 }
 </style>

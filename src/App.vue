@@ -1,14 +1,14 @@
 <template>
 <main>
   <div class="container container-box">
-    <div class="row outline-example">
-          <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+    <div>
+          <div style="width: 600px">
             <ProductZoomer
               :base-images="images"
               :base-zoomer-options="zoomerOptions"
             />
           </div>
-          <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+          <div>
             <h3>With A Pane Container Zoomer</h3>
             <pre>
 'zoomerOptions': {
@@ -23,14 +23,14 @@
           </div>
     </div>
     <hr>
-    <div class="row">
-        <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+    <div>
+        <div style="width: 600px">
           <ProductZoomer
               :base-images="images"
               :base-zoomer-options="containerRoundOptions"
             />
         </div>
-        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+        <div>
             <h3>Inside Zoomer Container With Round Effect</h3>
             <pre>
 containerRoundOptions: {
@@ -44,14 +44,14 @@ containerRoundOptions: {
           </div>
       </div>
       <hr>
-      <div class="row">
-        <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+      <div>
+        <div style="width: 600px">
           <ProductZoomer
               :base-images="images"
               :base-zoomer-options="containerOptions"
             />
         </div>
-        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+        <div>
             <h3>Inside Zoomer Container</h3>
             <pre>
 containerOptions: {
