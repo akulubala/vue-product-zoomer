@@ -2,7 +2,7 @@
 <main>
   <div class="container container-box">
     <div>
-          <div style="width: 600px">
+          <div style="width: 400px">
             <ProductZoomer
               :base-images="images"
               :base-zoomer-options="zoomerOptions"
@@ -24,7 +24,7 @@
     </div>
     <hr>
     <div>
-        <div style="width: 600px">
+        <div style="width: 400px">
           <ProductZoomer
               :base-images="images"
               :base-zoomer-options="containerRoundOptions"
@@ -45,7 +45,7 @@ containerRoundOptions: {
       </div>
       <hr>
       <div>
-        <div style="width: 600px">
+        <div style="width: 400px">
           <ProductZoomer
               :base-images="images"
               :base-zoomer-options="containerOptions"
@@ -195,21 +195,24 @@ export default {
         'pane': 'pane',
         'hoverDelay': 300,
         'namespace': 'zoomer',
-        'move_by_click':false
+        'move_by_click':false,
+        'scroll_items': 7
       },
       'containerRoundOptions': {
         'zoomFactor': 4,
         'pane': 'container-round',
         'hoverDelay': 300,
         'namespace': 'inline-zoomer',
-        'move_by_click':true
+        'move_by_click':true,
+        'scroll_items': 5
       },
       'containerOptions': {
         'zoomFactor': 4,
         'pane': 'container',
         'hoverDelay': 300,
         'namespace': 'container-zoomer',
-        'move_by_click':true
+        'move_by_click':true,
+        'scroll_items': 4
       }
     }
   },
