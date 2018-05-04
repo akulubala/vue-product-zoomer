@@ -55,6 +55,22 @@ import ProductZoomer from 'vue-product-zoomer'
 
 A string added to zoomer component
 ### zoomerOptions
+there have there default values, you can always pass an custom value to overwrite.
+
+default: 
+```
+{
+  'zoomFactor': 4,
+  'pane': 'container',
+  'hoverDelay': 300,
+  'namespace': 'container-zoomer',
+  'move_by_click':true,
+  'scroll_items': 4,
+  'choosed_thumb_border_color': "#ff3d00"
+}
+```
+
+
 ```javascript
 {
 	'zoomFactor': 3, // scale for zoomer
@@ -63,6 +79,8 @@ A string added to zoomer component
 	'namespace': 'zoomer', // add a namespace for zoomer component, useful when on page have mutiple zoomer 
 	'zoomer_container_id': 'zoomer', // when not inlinePane must present, container must have a fixed width and size otherwise will not show zoomer take effect
 	'move_by_click':false // move image by click thumb image or by mouseover
+  'scroll_items': 5, // thumbs for scroll
+  'choosed_thumb_border_color': "#bbdefb" // choosed thumb border color
 }
 ```
 # Example
@@ -104,12 +122,13 @@ export default {
           ]
       },
       'zoomerOptions': {
-        'zoomFactor': 3,
-        'pane': 'container-round',
+        'zoomFactor': 4,
+        'pane': 'container',
         'hoverDelay': 300,
-        'namespace': 'zoomer',
-        'zoomer_container_id': 'zoomer',
-        'move_by_click':false
+        'namespace': 'container-zoomer',
+        'move_by_click':true,
+        'scroll_items': 4,
+        'choosed_thumb_border_color': "#ff3d00"
       }
     }
   },

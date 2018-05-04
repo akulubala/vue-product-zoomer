@@ -11,7 +11,15 @@
             <i aria-hidden="true" class="fa fa-angle-left"></i>
         </div>
         <div class="thumb-list">
-              <img @mouseover="chooseThumb(thumb, $event)" v-show="key < baseZoomerOptions.scroll_items" :key="key" :src="thumb.url" @click="chooseThumb(thumb, $event)" v-for="(thumb, key) in thumbs" class="responsive-image" :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
+              <img @mouseover="chooseThumb(thumb, $event)" 
+                  v-show="key < options.scroll_items" 
+                  :key="key" 
+                  :src="thumb.url" 
+                  @click="chooseThumb(thumb, $event)" 
+                  v-for="(thumb, key) in thumbs" 
+                  class="responsive-image" 
+                  v-bind:style="{'boxShadow' : thumb.id === choosedThumb.id ? '0px 0px 0px 2px ' + options.choosed_thumb_border_color : ''}"
+                  :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
         </div>
         <div @click="moveThumbs('right')" class="control">
             <i aria-hidden="true" class="fa fa-angle-right"></i>
@@ -51,11 +59,13 @@ export default {
       choosedThumb: {},
       drift: null,
       options: {
-        zoomFactor: 4,
-        pane: "pane",
-        hoverDelay: 200,
-        namespace: "zoomer",
-        move_by_click: true
+        'zoomFactor': 4,
+        'pane': 'container',
+        'hoverDelay': 300,
+        'namespace': 'container-zoomer',
+        'move_by_click':true,
+        'scroll_items': 4,
+        'choosed_thumb_border_color': "#ff3d00"
       }
     };
   },
@@ -68,7 +78,14 @@ export default {
     }
   },
   mounted() {
-    document.querySelector("." + this.zoomer_box + " .thumb-list").setAttribute("style", "grid-template-columns: repeat(" + this.baseZoomerOptions.scroll_items +", auto)");
+    document
+      .querySelector("." + this.zoomer_box + " .thumb-list")
+      .setAttribute(
+        "style",
+        "grid-template-columns: repeat(" +
+          this.baseZoomerOptions.scroll_items +
+          ", auto)"
+      );
     let t = setInterval(() => {
       if (document.readyState === "complete") {
         if (this.options.pane === "container-round") {
@@ -77,29 +94,31 @@ export default {
           this.options.inlinePane = false;
           this.options.paneContainer = document.getElementById(this.pane_id);
           let rect = document
-              .querySelector("." + this.zoomer_box)
-              .getBoundingClientRect();
-            let customStyle = "";
+            .querySelector("." + this.zoomer_box)
+            .getBoundingClientRect();
+          let customStyle = "";
           if (this.options.pane === "pane") {
-            customStyle = "width:" +
-                  rect.width * 1.2 +
-                  "px;height:" +
-                  rect.height +
-                  "px;left:" +
-                  (rect.right + window.scrollX + 5) +
-                  "px;top:" +
-                  (rect.top + window.scrollY) +
-                  "px;";
+            customStyle =
+              "width:" +
+              rect.width * 1.2 +
+              "px;height:" +
+              rect.height +
+              "px;left:" +
+              (rect.right + window.scrollX + 5) +
+              "px;top:" +
+              (rect.top + window.scrollY) +
+              "px;";
           } else {
-            customStyle = "width:" +
-                  rect.width +
-                  "px;height:" +
-                  rect.height +
-                  "px;left:" +
-                  (rect.x + window.scrollX) +
-                  "px;top:" +
-                  (rect.top + window.scrollY) +
-                  "px;";
+            customStyle =
+              "width:" +
+              rect.width +
+              "px;height:" +
+              rect.height +
+              "px;left:" +
+              (rect.x + window.scrollX) +
+              "px;top:" +
+              (rect.top + window.scrollY) +
+              "px;";
           }
           this.options.paneContainer.setAttribute("style", customStyle);
         }
@@ -218,7 +237,6 @@ export default {
 }
 .choosed-thumb {
   border-radius: 0px;
-  box-shadow: 0px 0px 0px 2px #e53e41;
 }
 .pane-container {
   display: none;

@@ -1,14 +1,14 @@
 <template>
 <main>
-  <div class="container container-box">
-    <div class="row outline-example">
-          <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+  <div>
+    <div>
+          <div style="width: 25%">
             <ProductZoomer
               :base-images="images"
               :base-zoomer-options="zoomerOptions"
             />
           </div>
-          <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+          <div>
             <h3>With A Pane Container Zoomer</h3>
             <pre>
 'zoomerOptions': {
@@ -16,50 +16,54 @@
   'pane': 'pane',
   'hoverDelay': 300,
   'namespace': 'zoomer',
-  'zoomer_container_id': 'zoomer',
-  'move_by_click':false
+  'move_by_click':false,
+  'scroll_items': 7,
+  'choosed_thumb_border_color': "#dd2c00"
 }
             </pre>
           </div>
     </div>
     <hr>
-    <div class="row">
-        <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+    <div>
+        <div style="width: 400px">
           <ProductZoomer
               :base-images="images"
               :base-zoomer-options="containerRoundOptions"
             />
         </div>
-        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+        <div>
             <h3>Inside Zoomer Container With Round Effect</h3>
             <pre>
-containerRoundOptions: {
-  'zoomFactor': 5,
+'containerRoundOptions': {
+  'zoomFactor': 4,
   'pane': 'container-round',
   'hoverDelay': 300,
   'namespace': 'inline-zoomer',
-  'move_by_click':true
+  'move_by_click':true,
+  'scroll_items': 5,
+  'choosed_thumb_border_color': "#bbdefb"
 }
             </pre>
           </div>
       </div>
       <hr>
-      <div class="row">
-        <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+      <div>
+        <div style="width: 400px">
           <ProductZoomer
               :base-images="images"
               :base-zoomer-options="containerOptions"
             />
         </div>
-        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+        <div>
             <h3>Inside Zoomer Container</h3>
             <pre>
-containerOptions: {
-  'zoomFactor': 5,
+'containerOptions': {
+  'zoomFactor': 4,
   'pane': 'container',
   'hoverDelay': 300,
-  'namespace': 'container-inside-zoomer',
-  'move_by_click':true
+  'namespace': 'container-zoomer',
+  'move_by_click':true,
+  'scroll_items': 4
 }
             </pre>
           </div>
@@ -70,6 +74,7 @@ containerOptions: {
 
 <script>
 import ProductZoomer from '../dist/gh-page/app.js'
+
 export default {
   name: 'app',
   data () {
@@ -195,21 +200,26 @@ export default {
         'pane': 'pane',
         'hoverDelay': 300,
         'namespace': 'zoomer',
-        'move_by_click':false
+        'move_by_click':false,
+        'scroll_items': 7,
+        'choosed_thumb_border_color': "#dd2c00"
       },
       'containerRoundOptions': {
         'zoomFactor': 4,
         'pane': 'container-round',
         'hoverDelay': 300,
         'namespace': 'inline-zoomer',
-        'move_by_click':true
+        'move_by_click':true,
+        'scroll_items': 5,
+        'choosed_thumb_border_color': "#bbdefb"
       },
       'containerOptions': {
         'zoomFactor': 4,
         'pane': 'container',
         'hoverDelay': 300,
         'namespace': 'container-zoomer',
-        'move_by_click':true
+        'move_by_click':true,
+        'scroll_items': 4,
       }
     }
   },
@@ -218,13 +228,4 @@ export default {
   }
 }
 </script>
-<style>
-.container-box {
-  padding: 40px;
-}
-.outline-example {
-  display: flex;
-}
-</style>
-
 
