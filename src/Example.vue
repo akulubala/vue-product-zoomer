@@ -1,7 +1,6 @@
 <template>
 <main>
   <div>
-    <div>
           <div style="width: 25%">
             <ProductZoomer
               :base-images="images"
@@ -22,9 +21,7 @@
 }
             </pre>
           </div>
-    </div>
     <hr>
-    <div>
         <div style="width: 400px">
           <ProductZoomer
               :base-images="images"
@@ -45,9 +42,7 @@
 }
             </pre>
           </div>
-      </div>
       <hr>
-      <div>
         <div style="width: 400px">
           <ProductZoomer
               :base-images="images"
@@ -67,7 +62,6 @@
 }
             </pre>
           </div>
-      </div>
   </div>
 </main>
 </template>

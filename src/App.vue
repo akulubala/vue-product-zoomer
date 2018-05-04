@@ -1,7 +1,6 @@
 <template>
 <main>
   <div>
-    <div>
           <div style="width: 25%">
             <ProductZoomer
               :base-images="images"
@@ -11,19 +10,18 @@
           <div>
             <h3>With A Pane Container Zoomer</h3>
             <pre>
-'zoomerOptions': {
-  'zoomFactor': 3,
-  'pane': 'pane',
-  'hoverDelay': 300,
-  'namespace': 'zoomer',
-  'zoomer_container_id': 'zoomer',
-  'move_by_click':false
-}
+        'zoomerOptions': {
+          'zoomFactor': 3,
+          'pane': 'pane',
+          'hoverDelay': 300,
+          'namespace': 'zoomer',
+          'move_by_click':false,
+          'scroll_items': 7,
+          'choosed_thumb_border_color': "#dd2c00"
+        }
             </pre>
           </div>
-    </div>
     <hr>
-    <div>
         <div style="width: 400px">
           <ProductZoomer
               :base-images="images"
@@ -33,18 +31,18 @@
         <div>
             <h3>Inside Zoomer Container With Round Effect</h3>
             <pre>
-containerRoundOptions: {
-  'zoomFactor': 5,
-  'pane': 'container-round',
-  'hoverDelay': 300,
-  'namespace': 'inline-zoomer',
-  'move_by_click':true
-}
+        'containerRoundOptions': {
+          'zoomFactor': 4,
+          'pane': 'container-round',
+          'hoverDelay': 300,
+          'namespace': 'inline-zoomer',
+          'move_by_click':true,
+          'scroll_items': 5,
+          'choosed_thumb_border_color': "#bbdefb"
+        }
             </pre>
           </div>
-      </div>
       <hr>
-      <div>
         <div style="width: 400px">
           <ProductZoomer
               :base-images="images"
@@ -54,16 +52,16 @@ containerRoundOptions: {
         <div>
             <h3>Inside Zoomer Container</h3>
             <pre>
-containerOptions: {
-  'zoomFactor': 5,
-  'pane': 'container',
-  'hoverDelay': 300,
-  'namespace': 'container-inside-zoomer',
-  'move_by_click':true
-}
+        'containerOptions': {
+          'zoomFactor': 4,
+          'pane': 'container',
+          'hoverDelay': 300,
+          'namespace': 'container-zoomer',
+          'move_by_click':true,
+          'scroll_items': 4
+        }
             </pre>
           </div>
-      </div>
   </div>
 </main>
 </template>
