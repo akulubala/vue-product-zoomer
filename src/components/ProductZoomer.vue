@@ -4,6 +4,7 @@
         <img :src="previewImg.url" 
              :data-zoom="previewLargeImg.url" 
              class="responsive-image"
+             draggable="false"
         />
     </div>
     <div class="control-box">
@@ -12,6 +13,7 @@
         </div>
         <div class="thumb-list">
               <img @mouseover="chooseThumb(thumb, $event)" 
+                  draggable="false"
                   v-show="key < options.scroll_items" 
                   :key="key" 
                   :src="thumb.url" 
