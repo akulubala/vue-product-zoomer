@@ -8,7 +8,7 @@
     </div>
     <div class="control-box">
         <div @click="moveThumbs('left')" class="control">
-            <i aria-hidden="true" class="fa fa-angle-left"></i>
+            <i aria-hidden="true" :class="controlLeftClass"></i>
         </div>
         <div class="thumb-list">
               <img @mouseover="chooseThumb(thumb, $event)" 
@@ -22,7 +22,7 @@
                   :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
         </div>
         <div @click="moveThumbs('right')" class="control">
-            <i aria-hidden="true" class="fa fa-angle-right"></i>
+            <i aria-hidden="true" :class="controlRightClass"></i>
         </div>
     </div>
     <div :id="pane_id" class="pane-container"></div>
@@ -35,6 +35,12 @@ import Drift from "../assets/drift-zoom/src/js/Drift.js";
 export default {
   name: "productzoomer",
   props: {
+    controlLeftClass: {
+        default: 'fa fa-angle-left'
+    },
+    controlRightClass: {
+        default: 'fa fa-angle-right'
+    },
     baseZoomerOptions: {
       type: Object,
       default: function() {
