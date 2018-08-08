@@ -1,9 +1,9 @@
 'use strict'
 const path = require('path')
 const config = require('./config')
-const vueLoaderConfig = require('../build/vue-loader.conf')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const vueLoaderConfig = require('./vue-loader.conf')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -41,13 +41,6 @@ module.exports = {
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client'), resolve('drift-zoom/src/js')]
       },
       {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
-      },
-      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -67,8 +60,7 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
-          name: path.posix.join(config.assetsSubDirectory, 'fonts/[name].[hash:7].[ext]')
+          limit: 1000000
         }
       }
     ]
@@ -82,11 +74,6 @@ module.exports = {
         }
       },
       parallel: true
-    }),
-    // extract css into its own file
-    new ExtractTextPlugin({
-      filename: path.join(config.assetsPublicPath, 'assets/css/vue-product-zoomer.css'),
-      allChunks: true
     })
   ],
   node: {

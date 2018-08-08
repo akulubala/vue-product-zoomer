@@ -9,7 +9,7 @@
     </div>
     <div class="control-box">
         <div @click="moveThumbs('left')" class="control">
-            <i aria-hidden="true" class="fa fa-angle-left"></i>
+          <font-awesome-icon :icon="move_button.left"></font-awesome-icon>
         </div>
         <div class="thumb-list">
               <img @mouseover="chooseThumb(thumb, $event)" 
@@ -24,7 +24,7 @@
                   :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
         </div>
         <div @click="moveThumbs('right')" class="control">
-            <i aria-hidden="true" class="fa fa-angle-right"></i>
+          <font-awesome-icon :icon="move_button.right"></font-awesome-icon>
         </div>
     </div>
     <div :id="pane_id" class="pane-container"></div>
@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import Drift from "../assets/drift-zoom/src/js/Drift.js";
+import Drift from "../assets/drift-zoom/src/js/Drift.js"
 
 export default {
-  name: "productzoomer",
+  name: "product-zoomer",
   props: {
     baseZoomerOptions: {
       type: Object,
@@ -67,7 +67,8 @@ export default {
         'namespace': 'container-zoomer',
         'move_by_click':true,
         'scroll_items': 4,
-        'choosed_thumb_border_color': "#ff3d00"
+        'choosed_thumb_border_color': "#ff3d00",
+        'move_button_style': 'chevron'
       }
     };
   },
@@ -77,6 +78,18 @@ export default {
     },
     pane_id: function() {
       return this.options.namespace + "-pane-container";
+    },
+    move_button: function() {
+      return this.options.move_button_style === 'chevron' ? 
+              {
+                "left": "chevron-left",
+                "right": "chevron-right"
+              }
+              :
+              {
+                "left": "angle-double-left",
+                "right": "angle-double-right"
+              }
     }
   },
   mounted() {
@@ -215,7 +228,6 @@ export default {
 </script>
 
 <style>
-@import "font-awesome/css/font-awesome.min.css";
 @import "../assets/drift-zoom/src/css/drift-basic.css";
 .preview-box {
   margin-bottom: 1vh;
@@ -223,9 +235,7 @@ export default {
 .control {
   display: grid;
   align-items: center;
-  font-size: xx-large;
-}
-.control i {
+  font-size: x-large;
   cursor: pointer;
 }
 .control-box {
