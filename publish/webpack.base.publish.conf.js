@@ -2,7 +2,8 @@
 const path = require('path')
 const config = require('./config')
 const vueLoaderConfig = require('../build/vue-loader.conf')
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -40,6 +41,13 @@ module.exports = {
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client'), resolve('drift-zoom/src/js')]
       },
       {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -65,6 +73,22 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false
+        }
+      },
+      parallel: true
+    }),
+    // extract css into its own file
+    new ExtractTextPlugin({
+      filename: path.join(config.assetsPublicPath, 'assets/css/vue-product-zoomer.css'),
+      allChunks: true
+    })
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).

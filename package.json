@@ -9,7 +9,7 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node publish/index.js",
+    "build": "NODE_ENV=production node publish/index.js",
     "build-example": "NODE_ENV=example node publish/index.js",
     "example": "node example/index.js"
   },
