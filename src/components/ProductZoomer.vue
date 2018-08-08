@@ -35,7 +35,7 @@
 import Drift from "../assets/drift-zoom/src/js/Drift.js"
 
 export default {
-  name: "product-zoomer",
+  name: "ProductZoomer",
   props: {
     baseZoomerOptions: {
       type: Object,
