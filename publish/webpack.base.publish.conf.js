@@ -1,7 +1,8 @@
 'use strict'
 const path = require('path')
 const config = require('./config')
-const vueLoaderConfig = require('../build/vue-loader.conf')
+const vueLoaderConfig = require('./vue-loader.conf')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 
 function resolve (dir) {
@@ -59,12 +60,22 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
-          name: path.posix.join(config.assetsSubDirectory, 'fonts/[name].[hash:7].[ext]')
+          limit: 1000000
         }
       }
     ]
   },
+  plugins: [
+    // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false
+        }
+      },
+      parallel: true
+    })
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).
