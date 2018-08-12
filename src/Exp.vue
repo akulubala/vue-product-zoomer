@@ -67,8 +67,6 @@
 </template>
 
 <script>
-import ProductZoomer from '../dist/gh-page/app.js'
-
 export default {
   name: 'app',
   data () {
@@ -205,7 +203,8 @@ export default {
         'namespace': 'inline-zoomer',
         'move_by_click':true,
         'scroll_items': 5,
-        'choosed_thumb_border_color': "#bbdefb"
+        'choosed_thumb_border_color': "#bbdefb",
+        'move_button_style': 'angle-double'
       },
       'containerOptions': {
         'zoomFactor': 4,
@@ -216,9 +215,6 @@ export default {
         'scroll_items': 4,
       }
     }
-  },
-  components: {
-    ProductZoomer
   }
 }
 </script>

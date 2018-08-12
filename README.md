@@ -15,6 +15,7 @@ npm install vue-product-zoomer
 
 # Import
 import ProductZoomer from 'vue-product-zoomer'
+Vue.use(ProductZoomer)
 
 # Usage
 <ProductZoomer
@@ -79,7 +80,8 @@ default:
 	'namespace': 'zoomer', // add a namespace for zoomer component, useful when on page have mutiple zoomer 
 	'move_by_click':false // move image by click thumb image or by mouseover
   'scroll_items': 5, // thumbs for scroll
-  'choosed_thumb_border_color': "#bbdefb" // choosed thumb border color
+  'choosed_thumb_border_color': "#bbdefb", // choosed thumb border color
+   'move_button_style': 'chevron'// default chevron , can be set to angle-double
 }
 ```
 # Example
@@ -130,9 +132,6 @@ export default {
         'choosed_thumb_border_color': "#ff3d00"
       }
     }
-  },
-  components: {
-    ProductZoomer
   }
 }
 
