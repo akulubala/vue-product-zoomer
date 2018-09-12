@@ -11,11 +11,11 @@
 ## Instruction 
 
 # install 
-npm install vue-product-zoomer
+> npm install vue-product-zoomer
 
 # Import
-import ProductZoomer from 'vue-product-zoomer'
-Vue.use(ProductZoomer)
+> import ProductZoomer from 'vue-product-zoomer'
+> Vue.use(ProductZoomer)
 
 # Usage
 <ProductZoomer
