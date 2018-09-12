@@ -19,11 +19,12 @@
 > Vue.use(ProductZoomer)
 
 # Usage
+```
 <ProductZoomer
   :base-images="images"
   :base-zoomer-options="zoomerOptions"
 />
-
+```
 
 # Options
 
