@@ -237,6 +237,7 @@ export default {
   align-items: center;
   font-size: x-large;
   cursor: pointer;
+  justify-content: center;
 }
 .control-box {
   display: grid;
