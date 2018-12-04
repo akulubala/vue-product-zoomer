@@ -59,6 +59,7 @@
 A string added to zoomer component
 ### zoomerOptions
 there have there default values, you can always pass an custom value to overwrite.
+Also you can use named slots `left` and `right` to replace default arrow buttons.
 
 default: 
 ```
