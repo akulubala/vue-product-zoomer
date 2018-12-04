@@ -9,7 +9,9 @@
     </div>
     <div class="control-box">
         <div @click="moveThumbs('left')" class="control">
-          <font-awesome-icon :icon="move_button.left"></font-awesome-icon>
+          <slot name="left">
+            <font-awesome-icon :icon="move_button.left"></font-awesome-icon>
+          </slot>
         </div>
         <div class="thumb-list">
               <img @mouseover="chooseThumb(thumb, $event)" 
@@ -24,7 +26,9 @@
                   :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
         </div>
         <div @click="moveThumbs('right')" class="control">
-          <font-awesome-icon :icon="move_button.right"></font-awesome-icon>
+          <slot name="right">
+            <font-awesome-icon :icon="move_button.right"></font-awesome-icon>
+          </slot>
         </div>
     </div>
     <div :id="pane_id" class="pane-container"></div>
