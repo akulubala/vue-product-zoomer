@@ -7,8 +7,8 @@
              draggable="false"
         />
     </div>
-    <div class="control-box">
-        <div @click="moveThumbs('left')" class="control">
+    <div class="zoomer-control-box">
+        <div @click="moveThumbs('left')" class="zoomer-control">
           <slot name="left">
             <font-awesome-icon :icon="move_button.left"></font-awesome-icon>
           </slot>
@@ -25,7 +25,7 @@
                   v-bind:style="{'boxShadow' : thumb.id === choosedThumb.id ? '0px 0px 0px 2px ' + options.choosed_thumb_border_color : ''}"
                   :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
         </div>
-        <div @click="moveThumbs('right')" class="control">
+        <div @click="moveThumbs('right')" class="zoomer-control">
           <slot name="right">
             <font-awesome-icon :icon="move_button.right"></font-awesome-icon>
           </slot>
@@ -231,24 +231,24 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import "../assets/drift-zoom/src/css/drift-basic.css";
 .preview-box {
   margin-bottom: 1vh;
 }
-.control {
+.zoomer-control {
   display: grid;
   align-items: center;
   font-size: x-large;
   cursor: pointer;
   justify-content: center;
 }
-.control-box {
+.zoomer-control-box {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   grid-column-gap: 5px;
 }
-.control-box .thumb-list {
+.zoomer-control-box .thumb-list {
   display: grid;
   grid-column-gap: 4px;
 }
