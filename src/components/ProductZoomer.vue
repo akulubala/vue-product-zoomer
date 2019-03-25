@@ -1,8 +1,14 @@
 <template>
 <div :class="zoomer_box">
     <div class="preview-box" >
-        <img :src="previewImg.url" 
-             :data-zoom="previewLargeImg.url" 
+        <img v-if="baseZoomerOptions.zoomFactor > 0"
+             :src="previewImg.url"
+             :data-zoom="previewLargeImg.url"
+             class="responsive-image"
+             draggable="false"
+        />
+        <img v-else
+             :src="previewImg.url"
              class="responsive-image"
              draggable="false"
         />
