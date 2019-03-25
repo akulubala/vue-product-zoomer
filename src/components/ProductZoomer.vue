@@ -13,21 +13,21 @@
              draggable="false"
         />
     </div>
-    <div class="zoomer-control-box">
+    <div v-if="displaySlider" class="zoomer-control-box">
         <div @click="moveThumbs('left')" class="zoomer-control">
           <slot name="left">
             <font-awesome-icon :icon="move_button.left"></font-awesome-icon>
           </slot>
         </div>
         <div class="thumb-list">
-              <img @mouseover="chooseThumb(thumb, $event)" 
+              <img @mouseover="chooseThumb(thumb, $event)"
                   draggable="false"
-                  v-show="key < options.scroll_items" 
-                  :key="key" 
-                  :src="thumb.url" 
-                  @click="chooseThumb(thumb, $event)" 
-                  v-for="(thumb, key) in thumbs" 
-                  class="responsive-image" 
+                  v-show="key < options.scroll_items"
+                  :key="key"
+                  :src="thumb.url"
+                  @click="chooseThumb(thumb, $event)"
+                  v-for="(thumb, key) in thumbs"
+                  class="responsive-image"
                   v-bind:style="{'boxShadow' : thumb.id === choosedThumb.id ? '0px 0px 0px 2px ' + options.choosed_thumb_border_color : ''}"
                   :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
         </div>
@@ -59,7 +59,11 @@ export default {
       default: function() {
         return {};
       }
-    }
+    },
+    displaySlider: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -90,7 +94,7 @@ export default {
       return this.options.namespace + "-pane-container";
     },
     move_button: function() {
-      return this.options.move_button_style === 'chevron' ? 
+      return this.options.move_button_style === 'chevron' ?
               {
                 "left": "chevron-left",
                 "right": "chevron-right"
@@ -103,14 +107,16 @@ export default {
     }
   },
   mounted() {
-    document
-      .querySelector("." + this.zoomer_box + " .thumb-list")
-      .setAttribute(
-        "style",
-        "grid-template-columns: repeat(" +
-          this.baseZoomerOptions.scroll_items +
-          ", auto)"
-      );
+    if (this.displaySlider) {
+      document
+        .querySelector("." + this.zoomer_box + " .thumb-list")
+        .setAttribute(
+          "style",
+          "grid-template-columns: repeat(" +
+            this.baseZoomerOptions.scroll_items +
+            ", auto)"
+        );
+    }
     let t = setInterval(() => {
       if (document.readyState === "complete") {
         if (this.options.pane === "container-round") {
@@ -237,8 +243,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import "../assets/drift-zoom/src/css/drift-basic.css";
+</style>
+
+<style scoped>
 .preview-box {
   margin-bottom: 1vh;
 }
