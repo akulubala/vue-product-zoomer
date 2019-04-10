@@ -1,10 +1,11 @@
 <template>
 <div :class="zoomer_box">
     <div class="preview-box" >
-        <img :src="previewImg.url" 
-             :data-zoom="previewLargeImg.url" 
+        <img :src="previewImg.url"
+             :data-zoom="previewLargeImg.url"
              class="responsive-image"
              draggable="false"
+             @click="$emit(clickEvent, previewImg)"
         />
     </div>
     <div class="zoomer-control-box">
@@ -14,14 +15,14 @@
           </slot>
         </div>
         <div class="thumb-list">
-              <img @mouseover="chooseThumb(thumb, $event)" 
+              <img @mouseover="chooseThumb(thumb, $event)"
                   draggable="false"
-                  v-show="key < options.scroll_items" 
-                  :key="key" 
-                  :src="thumb.url" 
-                  @click="chooseThumb(thumb, $event)" 
-                  v-for="(thumb, key) in thumbs" 
-                  class="responsive-image" 
+                  v-show="key < options.scroll_items"
+                  :key="key"
+                  :src="thumb.url"
+                  @click="chooseThumb(thumb, $event)"
+                  v-for="(thumb, key) in thumbs"
+                  class="responsive-image"
                   v-bind:style="{'boxShadow' : thumb.id === choosedThumb.id ? '0px 0px 0px 2px ' + options.choosed_thumb_border_color : ''}"
                   :class="{'choosed-thumb': thumb.id === choosedThumb.id}">
         </div>
@@ -52,6 +53,13 @@ export default {
       required: true,
       default: function() {
         return {};
+      }
+    },
+    clickEvent: {
+      type: String,
+      required: false,
+      default: function() {
+        return 'clickedOnImage'
       }
     }
   },
@@ -84,7 +92,7 @@ export default {
       return this.options.namespace + "-pane-container";
     },
     move_button: function() {
-      return this.options.move_button_style === 'chevron' ? 
+      return this.options.move_button_style === 'chevron' ?
               {
                 "left": "chevron-left",
                 "right": "chevron-right"
