@@ -5,6 +5,8 @@
             <ProductZoomer
               :base-images="images"
               :base-zoomer-options="zoomerOptions"
+              click-event="customEventName"
+              @clicked="someCustomMethod"
             />
           </div>
           <div>
@@ -218,6 +220,15 @@ export default {
   },
   components: {
     ProductZoomer
+  },
+  methods: {
+    someCustomMethod (previewImage) {
+      //  As parameter we get image that was clicked on
+      //  Do, whatever you want, when user clicked on preview Image
+
+      alert('You clicked on image with id: ' + previewImage.id)
+      console.log(previewImage)
+    }
   }
 }
 </script>

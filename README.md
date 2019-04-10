@@ -19,10 +19,22 @@
 > Vue.use(ProductZoomer)
 
 # Usage
+
+### Basic:
 ```
 <ProductZoomer
   :base-images="images"
   :base-zoomer-options="zoomerOptions"
+/>
+```
+
+### Tracking click on preview image:
+```
+<ProductZoomer
+  :base-images="images"
+  :base-zoomer-options="zoomerOptions"
+  :clickEvent="customEventName"
+  @customEventName="someCustomMethod"
 />
 ```
 
