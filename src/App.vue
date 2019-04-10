@@ -6,7 +6,7 @@
               :base-images="images"
               :base-zoomer-options="zoomerOptions"
               click-event="customEventName"
-              @clicked="someCustomMethod"
+              @customEventName="someCustomMethod"
             />
           </div>
           <div>
