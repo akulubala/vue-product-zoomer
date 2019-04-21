@@ -45,15 +45,15 @@ const RULES = `
 
 export default function injectBaseStylesheet() {
   if (document.querySelector('.drift-base-styles')) {
-    return;
+    return
   }
 
-  let styleEl = document.createElement('style');
-  styleEl.type = 'text/css';
-  styleEl.classList.add('drift-base-styles');
+  let styleEl = document.createElement('style')
+  styleEl.type = 'text/css'
+  styleEl.classList.add('drift-base-styles')
 
-  styleEl.appendChild(document.createTextNode(RULES));
+  styleEl.appendChild(document.createTextNode(RULES))
 
-  let head = document.head;
-  head.insertBefore(styleEl, head.firstChild);
+  let head = document.head
+  head.insertBefore(styleEl, head.firstChild)
 }
