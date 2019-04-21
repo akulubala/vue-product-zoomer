@@ -12,7 +12,7 @@
           <a @click="showDemo(3)">Demo Three</a>
         </li>
         <li :class="{ 'is-active': show == 4}">
-          <a href>Documents</a>
+          <a href="http://www.yoohooworld.com/#/">Documents</a>
         </li>
       </ul>
     </div>

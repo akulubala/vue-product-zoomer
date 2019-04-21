@@ -1,2 +1,2 @@
-- [Demo](http://localhost:3000/demo.html)
+- [Demo](http://www.yoohooworld.com/demo.html)
 - [Instructions](/)
