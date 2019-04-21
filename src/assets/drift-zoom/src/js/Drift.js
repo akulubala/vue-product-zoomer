@@ -1,17 +1,17 @@
-import { isDOMElement } from './util/dom';
-import injectBaseStylesheet from './injectBaseStylesheet';
+import { isDOMElement } from './util/dom'
+import injectBaseStylesheet from './injectBaseStylesheet'
 
-import Trigger from './Trigger';
-import ZoomPane from './ZoomPane';
+import Trigger from './Trigger'
+import ZoomPane from './ZoomPane'
 
 export default class Drift {
-  VERSION = '1.2.0'
-
   constructor(triggerEl, options = {}) {
-    this.triggerEl = triggerEl;
+    this.triggerEl = triggerEl
 
     if (!isDOMElement(this.triggerEl)) {
-      throw new TypeError('`new Drift` requires a DOM element as its first argument.');
+      throw new TypeError(
+        '`new Drift` requires a DOM element as its first argument.'
+      )
     }
 
     // A bit unexpected if you haven't seen this pattern before.
@@ -70,37 +70,58 @@ export default class Drift {
       hoverBoundingBox = false,
       // If true, a bounding box will show the area currently being previewed
       // during touch events
-      touchBoundingBox = false,
-    } = options;
+      touchBoundingBox = false
+    } = options
 
     if (inlinePane !== true && !isDOMElement(paneContainer)) {
-      throw new TypeError('`paneContainer` must be a DOM element when `inlinePane !== true`');
+      throw new TypeError(
+        '`paneContainer` must be a DOM element when `inlinePane !== true`'
+      )
     }
-    if(!isDOMElement(inlineContainer)){
-      throw new TypeError('`inlineContainer` must be a DOM element');
+    if (!isDOMElement(inlineContainer)) {
+      throw new TypeError('`inlineContainer` must be a DOM element')
     }
 
-    this.settings = { namespace, showWhitespaceAtEdges, containInline, inlineOffsetX, inlineOffsetY, inlineContainer, sourceAttribute, zoomFactor, paneContainer, inlinePane, handleTouch, onShow, onHide, injectBaseStyles, hoverDelay, touchDelay, hoverBoundingBox, touchBoundingBox };
+    this.settings = {
+      namespace,
+      showWhitespaceAtEdges,
+      containInline,
+      inlineOffsetX,
+      inlineOffsetY,
+      inlineContainer,
+      sourceAttribute,
+      zoomFactor,
+      paneContainer,
+      inlinePane,
+      handleTouch,
+      onShow,
+      onHide,
+      injectBaseStyles,
+      hoverDelay,
+      touchDelay,
+      hoverBoundingBox,
+      touchBoundingBox
+    }
 
     if (this.settings.injectBaseStyles) {
-      injectBaseStylesheet();
+      injectBaseStylesheet()
     }
 
-    this._buildZoomPane();
-    this._buildTrigger();
+    this._buildZoomPane()
+    this._buildTrigger()
   }
 
   get isShowing() {
-    return this.zoomPane.isShowing;
+    return this.zoomPane.isShowing
   }
 
   get zoomFactor() {
-    return this.settings.zoomFactor;
+    return this.settings.zoomFactor
   }
 
   set zoomFactor(zf) {
-    this.settings.zoomFactor = zf;
-    this.zoomPane.settings.zoomFactor = zf;
+    this.settings.zoomFactor = zf
+    this.zoomPane.settings.zoomFactor = zf
   }
 
   _buildZoomPane() {
@@ -114,7 +135,7 @@ export default class Drift {
       inlineOffsetX: this.settings.inlineOffsetX,
       inlineOffsetY: this.settings.inlineOffsetY,
       inlineContainer: this.settings.inlineContainer
-    });
+    })
   }
 
   _buildTrigger() {
@@ -130,23 +151,23 @@ export default class Drift {
       hoverBoundingBox: this.settings.hoverBoundingBox,
       touchBoundingBox: this.settings.touchBoundingBox,
       namespace: this.settings.namespace,
-      zoomFactor: this.settings.zoomFactor,
-    });
+      zoomFactor: this.settings.zoomFactor
+    })
   }
 
   setZoomImageURL(imageURL) {
-    this.zoomPane._setImageURL(imageURL);
-  };
+    this.zoomPane._setImageURL(imageURL)
+  }
 
   disable() {
-    this.trigger.enabled = false;
+    this.trigger.enabled = false
   }
 
   enable() {
-    this.trigger.enabled = true;
+    this.trigger.enabled = true
   }
 
   destroy = () => {
-    this.trigger._unbindEvents();
-  };
+    this.trigger._unbindEvents()
+  }
 }
