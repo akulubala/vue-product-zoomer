@@ -1,2 +1,2 @@
-- [案例](http://localhost:3000/demo.html)
+- [案例](http://www.yoohooworld.com/demo.html)
 - [使用说明](zh-cn/)
