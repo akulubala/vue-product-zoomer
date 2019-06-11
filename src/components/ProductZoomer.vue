@@ -8,31 +8,21 @@
         draggable="false"
       >
     </div>
-    <div class="zoomer-control-box">
-      <div @click="moveThumbs('left')" class="zoomer-control">
-        <slot name="left">
-          <font-awesome-icon :icon="move_button.left"></font-awesome-icon>
-        </slot>
-      </div>
-      <div class="thumb-list">
-        <img
-          @mouseover="chooseThumb(thumb, $event)"
-          draggable="false"
-          v-show="key < options.scroll_items"
-          :key="key"
-          :src="thumb.url"
-          @click="chooseThumb(thumb, $event)"
-          v-for="(thumb, key) in thumbs"
-          class="responsive-image"
-          v-bind:style="{'boxShadow' : thumb.id === choosedThumb.id ? '0px 0px 0px 2px ' + options.choosed_thumb_border_color : ''}"
-          :class="{'choosed-thumb': thumb.id === choosedThumb.id}"
-        >
-      </div>
-      <div @click="moveThumbs('right')" class="zoomer-control">
-        <slot name="right">
-          <font-awesome-icon :icon="move_button.right"></font-awesome-icon>
-        </slot>
-      </div>
+    <div class="thumb-list">
+      <img @click="moveThumbs('left')" src="../assets/svg-icons/arrow-left-s-line.svg" class="zoomer-control" alt="move icon">
+      <img
+        @mouseover="chooseThumb(thumb, $event)"
+        draggable="false"
+        v-show="key < options.scroll_items"
+        :key="key"
+        :src="thumb.url"
+        @click="chooseThumb(thumb, $event)"
+        v-for="(thumb, key) in thumbs"
+        class="responsive-image"
+        v-bind:style="{'boxShadow' : thumb.id === choosedThumb.id ? '0px 0px 0px 2px ' + options.choosed_thumb_border_color : ''}"
+        :class="{'choosed-thumb': thumb.id === choosedThumb.id}"
+      >
+      <img @click="moveThumbs('right')" src="../assets/svg-icons/arrow-right-s-line.svg" class="zoomer-control" alt="move icon">
     </div>
     <div :id="pane_id" class="pane-container"></div>
   </div>
@@ -75,7 +65,8 @@ export default {
         move_by_click: true,
         scroll_items: 4,
         choosed_thumb_border_color: "#ff3d00",
-        move_button_style: "chevron"
+        move_button_style: "chevron",
+        scroller_position: "bottom"
       }
     };
   },
@@ -90,68 +81,38 @@ export default {
       return this.options.move_button_style === "chevron"
         ? {
             left: "chevron-left",
-            right: "chevron-right"
+            right: "chevron-right",
+            top: "chevron-top",
+            bottom: "chevron-bottom",
           }
         : {
             left: "angle-double-left",
-            right: "angle-double-right"
+            right: "angle-double-right",
+            top: "angle-double-top",
+            bottom: "angle-double-bottom",
           };
     }
   },
   mounted() {
-    document
-      .querySelector("." + this.zoomer_box + " .thumb-list")
-      .setAttribute(
-        "style",
-        "grid-template-columns: repeat(" +
-          this.baseZoomerOptions.scroll_items +
-          ", auto)"
-      );
-    let t = setInterval(() => {
-      if (document.readyState === "complete") {
-        if (this.options.pane === "container-round") {
-          this.options.inlinePane = true;
-        } else {
-          this.options.inlinePane = false;
-          this.options.paneContainer = document.getElementById(this.pane_id);
-          console.log(this.options.paneContainer);
-          let rect = document.querySelector("." + this.zoomer_box);
-          let customStyle = "";
-          if (this.options.pane === "pane") {
-            customStyle =
-              "width:" +
-              rect.getBoundingClientRect().width * 1.2 +
-              "px;height:" +
-              rect.getBoundingClientRect().height +
-              "px;left:" +
-              (rect.getBoundingClientRect().right + window.scrollX + 5) +
-              "px;top:" +
-              (rect.getBoundingClientRect().top + window.scrollY) +
-              "px;";
-          } else {
-            customStyle =
-              "width:" +
-              rect.getBoundingClientRect().width +
-              "px;height:" +
-              (rect.getBoundingClientRect().height + 2) +
-              "px;left:" +
-              (rect.getBoundingClientRect().x + window.scrollX) +
-              "px;top:" +
-              (rect.getBoundingClientRect().top + window.scrollY) +
-              "px;";
-          }
-          this.options.paneContainer.setAttribute("style", customStyle);
+    window.addEventListener('load', () => {
+        switch (this.options.scroller_position) {
+          case "left":
+            this.scrollerAtLeft();
+            break;
+          case "bottom":
+            this.scrollerAtBottom();
+            break;
+          case "right":
+            this.scrollerAtRight();
+            break;
+          case "top":
+            this.scrollerAtTop();
+            break;
+          default:
+            this.scrollerAtBottom();
+            break;
         }
-
-        this.options.injectBaseStyles = true;
-        let previewImg = "." + this.zoomer_box + ">div>img";
-        this.drift = new Drift(
-          document.querySelector(previewImg),
-          this.options
-        );
-        clearInterval(t);
-      }
-    }, 500);
+    })
   },
   watch: {
     choosedThumb: function(thumb) {
@@ -226,6 +187,64 @@ export default {
       } else {
         this.choosedThumb = thumb;
       }
+    },
+    scrollerAtBottom() {
+      let scrollerItemsCount = parseInt(this.baseZoomerOptions.scroll_items) + 2
+      document
+          .querySelector("." + this.zoomer_box + " .thumb-list")
+          .setAttribute(
+            "style",
+            "grid-template-columns:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
+               this.baseZoomerOptions.scroll_items + ", auto) calc(100%/" + scrollerItemsCount + "/2)"
+          );
+      if (this.options.pane === "container-round") {
+        this.options.inlinePane = true;
+      } else {
+        this.options.inlinePane = false;
+        this.options.paneContainer = document.getElementById(this.pane_id);
+        let rect = document.querySelector("." + this.zoomer_box);
+        let customStyle = "";
+        if (this.options.pane === "pane") {
+          customStyle =
+            "width:" +
+            rect.getBoundingClientRect().width * 1.2 +
+            "px;height:" +
+            rect.getBoundingClientRect().height +
+            "px;left:" +
+            (rect.getBoundingClientRect().right + window.scrollX + 5) +
+            "px;top:" +
+            (rect.getBoundingClientRect().top + window.scrollY) +
+            "px;";
+        } else {
+          customStyle =
+            "width:" +
+            rect.getBoundingClientRect().width +
+            "px;height:" +
+            (rect.getBoundingClientRect().height + 2) +
+            "px;left:" +
+            (rect.getBoundingClientRect().x + window.scrollX) +
+            "px;top:" +
+            (rect.getBoundingClientRect().top + window.scrollY) +
+            "px;";
+        }
+        this.options.paneContainer.setAttribute("style", customStyle);
+      }
+
+      this.options.injectBaseStyles = true;
+      let previewImg = "." + this.zoomer_box + ">div>img";
+      this.drift = new Drift(
+        document.querySelector(previewImg),
+        this.options
+      );
+    },
+    scrollerAtTop() {
+
+    },
+    scrollerAtRight() {
+      
+    },
+    scrollerAtLeft() {
+
     }
   }
 };
@@ -238,21 +257,13 @@ export default {
 .preview-box {
   margin-bottom: 1vh;
 }
-.zoomer-control {
+.thumb-list {
   display: grid;
   align-items: center;
-  font-size: x-large;
+  grid-column-gap: 0.2em;
+}
+.zoomer-control {
   cursor: pointer;
-  justify-content: center;
-}
-.zoomer-control-box {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  grid-column-gap: 5px;
-}
-.zoomer-control-box .thumb-list {
-  display: grid;
-  grid-column-gap: 4px;
 }
 .choosed-thumb {
   border-radius: 0px;
