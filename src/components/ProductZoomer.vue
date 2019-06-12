@@ -1,13 +1,11 @@
 <template>
-  <div :class="zoomer_box">
-    <div class="preview-box">
+  <div :class="base_container">
       <img
         :src="previewImg.url"
         :data-zoom="previewLargeImg.url"
-        class="responsive-image"
+        class="responsive-image preview-box"
         draggable="false"
       >
-    </div>
     <div class="thumb-list">
       <img @click="moveThumbs('left')" src="../assets/svg-icons/arrow-left-s-line.svg" class="zoomer-control" alt="move icon">
       <img
@@ -71,8 +69,8 @@ export default {
     };
   },
   computed: {
-    zoomer_box: function() {
-      return this.options.namespace + "-zoomer-box";
+    base_container: function() {
+      return this.options.namespace + "-base-container scroller-at-bottom";
     },
     pane_id: function() {
       return this.options.namespace + "-pane-container";
@@ -191,18 +189,18 @@ export default {
     scrollerAtBottom() {
       let scrollerItemsCount = parseInt(this.baseZoomerOptions.scroll_items) + 2
       document
-          .querySelector("." + this.zoomer_box + " .thumb-list")
+          .querySelector(".scroller-at-bottom .thumb-list")
           .setAttribute(
             "style",
             "grid-template-columns:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
-               this.baseZoomerOptions.scroll_items + ", auto) calc(100%/" + scrollerItemsCount + "/2)"
+               (scrollerItemsCount - 2) + ", auto) calc(100%/" + scrollerItemsCount + "/2);visibility:visible;"
           );
       if (this.options.pane === "container-round") {
         this.options.inlinePane = true;
       } else {
         this.options.inlinePane = false;
         this.options.paneContainer = document.getElementById(this.pane_id);
-        let rect = document.querySelector("." + this.zoomer_box);
+        let rect = document.querySelector("." + this.options.namespace + "-base-container");
         let customStyle = "";
         if (this.options.pane === "pane") {
           customStyle =
@@ -231,7 +229,7 @@ export default {
       }
 
       this.options.injectBaseStyles = true;
-      let previewImg = "." + this.zoomer_box + ">div>img";
+      let previewImg = ".preview-box";
       this.drift = new Drift(
         document.querySelector(previewImg),
         this.options
@@ -244,7 +242,7 @@ export default {
       
     },
     scrollerAtLeft() {
-
+      
     }
   }
 };
@@ -254,14 +252,43 @@ export default {
 </style>
 
 <style scoped>
-.preview-box {
-  margin-bottom: 1vh;
+.scroller-at-bottom {
+  display: grid;
+  grid-gap: 0.5em;
+  grid-template-columns: 1fr;
 }
-.thumb-list {
+
+.scroller-at-bottom .preview-box {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2 ;
+}
+
+.scroller-at-bottom .thumb-list {
   display: grid;
   align-items: center;
   grid-column-gap: 0.2em;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3 ;
+  visibility: hidden;
 }
+
+.scroller-at-right {
+  
+}
+
+.scroller-at-left {
+  
+}
+
+.scroller-at-top {
+  
+}
+
+.responsive-image {
+  height: auto;
+  width: 100%;
+}
+
 .zoomer-control {
   cursor: pointer;
 }
@@ -273,9 +300,5 @@ export default {
   position: absolute;
   z-index: 10000;
   pointer-events: none;
-}
-.responsive-image {
-  height: auto;
-  width: 100%;
 }
 </style>

@@ -41,7 +41,7 @@
     </div>
     <div class="columns" id="pane-container-round" v-show="show == 2">
       <div class="column is-4 is-offset-2">
-        <ProductZoomer :base-images="images" :base-zoomer-options="containerRoundOptions"/>
+        <!-- <ProductZoomer :base-images="images" :base-zoomer-options="containerRoundOptions"/> -->
       </div>
       <div class="column is-4 content">
         <h5 class="is-size-4">Inside Zoomer Container With Round Effect</h5>
@@ -64,7 +64,7 @@
     </div>
     <div class="columns" id="inside-container" v-if="show == 3">
       <div class="column is-4 is-offset-2">
-        <ProductZoomer :base-images="images" :base-zoomer-options="containerOptions"/>
+        <!-- <ProductZoomer :base-images="images" :base-zoomer-options="containerOptions"/> -->
       </div>
       <div class="column is-4 content">
         <h5 class="is-size-4">Inside Zoomer Container</h5>
