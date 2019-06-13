@@ -243,7 +243,7 @@ export default {
         hoverDelay: 300,
         namespace: "zoomer",
         move_by_click: false,
-        scroll_items: 7,
+        scroll_items: 4,
         choosed_thumb_border_color: "#dd2c00"
       },
       containerRoundOptions: {

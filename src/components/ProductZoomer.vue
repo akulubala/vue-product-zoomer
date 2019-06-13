@@ -1,5 +1,5 @@
 <template>
-  <div :class="base_container">
+  <div :class="options.namespace + '-base-container scroller-at-' + options.scroller_position">
       <img
         :src="previewImg.url"
         :data-zoom="previewLargeImg.url"
@@ -7,7 +7,29 @@
         draggable="false"
       >
     <div class="thumb-list">
-      <img @click="moveThumbs('left')" src="../assets/svg-icons/arrow-left-s-line.svg" class="zoomer-control" alt="move icon">
+      <img v-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'line'"
+           @click="moveThumbs('backward')"
+           src="../assets/svg-icons/arrow-left-s-line.svg"
+           class="zoomer-control responsive-image"
+           alt="move thumb icon"
+      >
+      <img v-else-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'fill'"
+           @click="moveThumbs('backward')"
+           src="../assets/svg-icons/arrow-left-s-fill.svg" 
+           class="zoomer-control responsive-image"
+           alt="move thumb icon"
+      >
+      <img v-else-if="['left', 'right'].includes(options.scroller_position) && options.scroller_button_style === 'line'" 
+           @click="moveThumbs('backward')"
+           src="../assets/svg-icons/arrow-up-s-line.svg" 
+           class="zoomer-control responsive-image"
+           alt="move thumb icon"
+      >
+      <img @click="moveThumbs('backward')"
+           src="../assets/svg-icons/arrow-up-s-fill.svg" 
+           class="zoomer-control responsive-image"
+           alt="move thumb icon"
+      v-else>
       <img
         @mouseover="chooseThumb(thumb, $event)"
         draggable="false"
@@ -20,14 +42,64 @@
         v-bind:style="{'boxShadow' : thumb.id === choosedThumb.id ? '0px 0px 0px 2px ' + options.choosed_thumb_border_color : ''}"
         :class="{'choosed-thumb': thumb.id === choosedThumb.id}"
       >
-      <img @click="moveThumbs('right')" src="../assets/svg-icons/arrow-right-s-line.svg" class="zoomer-control" alt="move icon">
+      <img v-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'line'"
+           @click="moveThumbs('forward')"
+           src="../assets/svg-icons/arrow-right-s-line.svg"
+           class="zoomer-control responsive-image"
+           alt="move thumb icon"
+      >
+      <img v-else-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'fill'"
+           @click="moveThumbs('forward')"
+           src="../assets/svg-icons/arrow-right-s-fill.svg" 
+           class="zoomer-control responsive-image"
+           alt="move thumb icon"
+      >
+      <img v-else-if="['left', 'right'].includes(options.scroller_position) && options.scroller_button_style === 'line'" 
+           @click="moveThumbs('forward')"
+           src="../assets/svg-icons/arrow-down-s-line.svg"
+           class="zoomer-control responsive-image"
+           alt="move thumb icon"
+      >
+      <img v-else-if="['left', 'right'].includes(options.scroller_position) && options.scroller_button_style === 'fill'" 
+           @click="moveThumbs('forward')"
+           src="../assets/svg-icons/arrow-down-s-fill.svg"
+           class="zoomer-control responsive-image"
+           alt="move thumb icon"
+      >
     </div>
-    <div :id="pane_id" class="pane-container"></div>
+    <div :id="pane_container_id" class="pane-container"></div>
   </div>
 </template>
 
 <script>
 import Drift from "../assets/drift-zoom/src/js/Drift.js";
+function caculatePane(paneStyle = 'pane', rect) {
+  let customStyle = "";
+  if (paneStyle === "pane") {
+    customStyle =
+      "width:" +
+      rect.width * 1.2 +
+      "px;height:" +
+      rect.height +
+      "px;left:" +
+      (rect.right + window.scrollX + 5) +
+      "px;top:" +
+      (rect.top + window.scrollY) +
+      "px;";
+  } else {
+    customStyle =
+      "width:" +
+      rect.width +
+      "px;height:" +
+      (rect.height + 2) +
+      "px;left:" +
+      (rect.x + window.scrollX) +
+      "px;top:" +
+      (rect.top + window.scrollY) +
+      "px;";
+  }
+  return customStyle;
+}
 
 export default {
   name: "ProductZoomer",
@@ -63,53 +135,66 @@ export default {
         move_by_click: true,
         scroll_items: 4,
         choosed_thumb_border_color: "#ff3d00",
-        move_button_style: "chevron",
-        scroller_position: "bottom"
+        scroller_button_style: "line",
+        scroller_position: "left",
+        preview_ratio_thumb: "4"
       }
     };
   },
   computed: {
-    base_container: function() {
-      return this.options.namespace + "-base-container scroller-at-bottom";
+    base_container_div: function() {
+      return document.querySelector('.' + this.options.namespace + '-base-container');
     },
-    pane_id: function() {
+    pane_container_id: function() {
       return this.options.namespace + "-pane-container";
     },
-    move_button: function() {
-      return this.options.move_button_style === "chevron"
-        ? {
-            left: "chevron-left",
-            right: "chevron-right",
-            top: "chevron-top",
-            bottom: "chevron-bottom",
-          }
-        : {
-            left: "angle-double-left",
-            right: "angle-double-right",
-            top: "angle-double-top",
-            bottom: "angle-double-bottom",
-          };
+    preview_img: function() {
+      return '.' + this.options.namespace + '-base-container .preview-box';
     }
   },
   mounted() {
+    if (!["left", "right", "top", "bottom"].includes(this.options.scroller_position)) {
+        throw "scroller_position is invalid";
+    }
+    if (!["fill", "line"].includes(this.options.scroller_button_style)) {
+        throw "scroller_button_style is invalid";
+    }
     window.addEventListener('load', () => {
         switch (this.options.scroller_position) {
           case "left":
+            this.base_container_div.setAttribute("style", "grid-template-columns:1fr " + this.options.preview_ratio_thumb + "fr;");
             this.scrollerAtLeft();
             break;
           case "bottom":
+            this.base_container_div.setAttribute("style", "grid-template-rows:" + this.options.preview_ratio_thumb + "fr 1fr;");
             this.scrollerAtBottom();
             break;
           case "right":
+            this.base_container_div.setAttribute("style", "grid-template-columns:1fr " + this.options.preview_ratio_thumb + "fr;");
             this.scrollerAtRight();
             break;
           case "top":
+            this.base_container_div.setAttribute("style", "grid-template-rows:" + this.options.preview_ratio_thumb + "fr 1fr;");
             this.scrollerAtTop();
             break;
           default:
             this.scrollerAtBottom();
             break;
         }
+
+        this.options.injectBaseStyles = true;
+        if (this.options.pane === "container-round") {
+          this.options.inlinePane = true;
+        } else {
+          this.options.inlinePane = false;
+          this.options.paneContainer = document.getElementById(this.pane_container_id);
+          let rect = document.querySelector("." + this.options.namespace + "-base-container .preview-box").getBoundingClientRect();
+          document.getElementById(this.pane_container_id).setAttribute("style", caculatePane(this.options.pane, rect));
+        }
+        this.drift = new Drift(
+          document.querySelector(this.preview_img),
+          this.options
+        );
     })
   },
   watch: {
@@ -168,7 +253,7 @@ export default {
   methods: {
     moveThumbs(direction) {
       let len = this.thumbs.length;
-      if (direction === "right") {
+      if (direction === "backward") {
         const moveThumb = this.thumbs.splice(len - 1, 1);
         this.thumbs = [moveThumb[0], ...this.thumbs];
       } else {
@@ -195,45 +280,6 @@ export default {
             "grid-template-columns:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
                (scrollerItemsCount - 2) + ", auto) calc(100%/" + scrollerItemsCount + "/2);visibility:visible;"
           );
-      if (this.options.pane === "container-round") {
-        this.options.inlinePane = true;
-      } else {
-        this.options.inlinePane = false;
-        this.options.paneContainer = document.getElementById(this.pane_id);
-        let rect = document.querySelector("." + this.options.namespace + "-base-container");
-        let customStyle = "";
-        if (this.options.pane === "pane") {
-          customStyle =
-            "width:" +
-            rect.getBoundingClientRect().width * 1.2 +
-            "px;height:" +
-            rect.getBoundingClientRect().height +
-            "px;left:" +
-            (rect.getBoundingClientRect().right + window.scrollX + 5) +
-            "px;top:" +
-            (rect.getBoundingClientRect().top + window.scrollY) +
-            "px;";
-        } else {
-          customStyle =
-            "width:" +
-            rect.getBoundingClientRect().width +
-            "px;height:" +
-            (rect.getBoundingClientRect().height + 2) +
-            "px;left:" +
-            (rect.getBoundingClientRect().x + window.scrollX) +
-            "px;top:" +
-            (rect.getBoundingClientRect().top + window.scrollY) +
-            "px;";
-        }
-        this.options.paneContainer.setAttribute("style", customStyle);
-      }
-
-      this.options.injectBaseStyles = true;
-      let previewImg = ".preview-box";
-      this.drift = new Drift(
-        document.querySelector(previewImg),
-        this.options
-      );
     },
     scrollerAtTop() {
 
@@ -242,7 +288,15 @@ export default {
       
     },
     scrollerAtLeft() {
-      
+      let scrollerItemsCount = parseInt(this.baseZoomerOptions.scroll_items) + 2;
+      let height = document.querySelector('.preview-box').height;
+      document
+          .querySelector(".scroller-at-left .thumb-list")
+          .setAttribute(
+            "style",
+            "height:" + height + "px !important;grid-template-rows:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
+               (scrollerItemsCount - 2) + ", auto) calc(100%/" + scrollerItemsCount + "/2);visibility:visible;"
+          );    
     }
   }
 };
@@ -252,10 +306,31 @@ export default {
 </style>
 
 <style scoped>
+.scroller-at-top {
+  display: grid;
+  grid-gap: 0.2em;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+.scroller-at-top .preview-box {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3 ;
+}
+
+.scroller-at-top .thumb-list {
+  display: grid;
+  align-items: center;
+  grid-column-gap: 0.2em;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2 ;
+  visibility: hidden;
+}
 .scroller-at-bottom {
   display: grid;
-  grid-gap: 0.5em;
+  grid-gap: 0.2em;
   grid-template-columns: 1fr;
+  align-items: center;
 }
 
 .scroller-at-bottom .preview-box {
@@ -272,19 +347,55 @@ export default {
   visibility: hidden;
 }
 
-.scroller-at-right {
-  
-}
-
 .scroller-at-left {
-  
+  display: grid;
+  grid-gap: 0.2em;
+  grid-template-columns: 2fr;
+  justify-items: center;
 }
 
-.scroller-at-top {
-  
+.scroller-at-left .preview-box {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2 ;
 }
 
-.responsive-image {
+.scroller-at-left .thumb-list {
+  display: grid;
+  grid-row-gap: 0.2em;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2 ;
+  visibility: hidden;
+  justify-items: center;
+}
+
+.scroller-at-right {
+  display: grid;
+  grid-gap: 0.2em;
+  grid-template-columns: 2fr;
+  justify-items: center;
+}
+
+.scroller-at-right .preview-box {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2 ;
+}
+
+.scroller-at-right .thumb-list {
+  display: grid;
+  grid-row-gap: 0.2em;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2 ;
+  visibility: hidden;
+  justify-items:center;
+}
+
+
+.scroller-at-right .thumb-list .responsive-image, .scroller-at-left .thumb-list .responsive-image{
+  height: 100%;
+  width: auto;
+}
+
+.scroller-at-top .thumb-list .responsive-image, .scroller-at-bottom .thumb-list .responsive-image{
   height: auto;
   width: 100%;
 }
