@@ -136,7 +136,7 @@ export default {
         scroll_items: 4,
         choosed_thumb_border_color: "#ff3d00",
         scroller_button_style: "line",
-        scroller_position: "left",
+        scroller_position: "right",
         preview_ratio_thumb: "4"
       }
     };
@@ -170,7 +170,6 @@ export default {
             this.scrollerAtBottom();
             break;
           case "right":
-            this.base_container_div.setAttribute("style", "grid-template-columns:1fr " + this.options.preview_ratio_thumb + "fr;");
             this.scrollerAtRight();
             break;
           case "top":
@@ -282,10 +281,32 @@ export default {
           );
     },
     scrollerAtTop() {
-
+      let scrollerItemsCount = parseInt(this.baseZoomerOptions.scroll_items) + 2
+      document
+          .querySelector(".scroller-at-top .thumb-list")
+          .setAttribute(
+            "style",
+            "grid-template-columns:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
+               (scrollerItemsCount - 2) + ", auto) calc(100%/" + scrollerItemsCount + "/2);visibility:visible;"
+          );
     },
     scrollerAtRight() {
-      
+      let scrollerItemsCount = parseInt(this.baseZoomerOptions.scroll_items) + 2;
+      let previewImg = document.querySelector('.preview-box');
+      let thumbList = document.querySelector(".scroller-at-right .thumb-list");
+      document
+          .querySelector(".scroller-at-right")
+          .setAttribute(
+            "style",
+            "width:" + (previewImg.naturalWidth + thumbList.children[1].naturalWidth) + "px"
+          );
+      document
+          .querySelector(".scroller-at-right .thumb-list")
+          .setAttribute(
+            "style",
+            "height:" + previewImg.height + "px;width:"+ thumbList.children[1].naturalWidth + "px;grid-template-rows:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
+               (scrollerItemsCount - 2) + ", auto) calc(100%/" + scrollerItemsCount + "/2);visibility:visible;"
+          );   
     },
     scrollerAtLeft() {
       let scrollerItemsCount = parseInt(this.baseZoomerOptions.scroll_items) + 2;
@@ -294,7 +315,7 @@ export default {
           .querySelector(".scroller-at-left .thumb-list")
           .setAttribute(
             "style",
-            "height:" + height + "px !important;grid-template-rows:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
+            "height:" + height + "px;grid-template-rows:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
                (scrollerItemsCount - 2) + ", auto) calc(100%/" + scrollerItemsCount + "/2);visibility:visible;"
           );    
     }
@@ -371,13 +392,13 @@ export default {
 .scroller-at-right {
   display: grid;
   grid-gap: 0.2em;
-  grid-template-columns: 2fr;
-  justify-items: center;
+  grid-template-columns: 1fr;
 }
 
 .scroller-at-right .preview-box {
   grid-column: 1 / 2;
   grid-row: 1 / 2 ;
+  justify-self: right;
 }
 
 .scroller-at-right .thumb-list {
@@ -386,7 +407,7 @@ export default {
   grid-column: 2 / 3;
   grid-row: 1 / 2 ;
   visibility: hidden;
-  justify-items:center;
+  justify-items: center;
 }
 
 
