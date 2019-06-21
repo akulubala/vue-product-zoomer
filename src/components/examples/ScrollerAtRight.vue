@@ -34,9 +34,7 @@
             </div>
           </div>
           <div class="column is-8 is-narrow">
-            <div class="gatsby-image-wrapper">
                 <ProductZoomer :base-images="images" :base-zoomer-options="zoomerOptions"/>
-            </div>
             <button class="button is-dark">
               <span>Scroller At Left</span>
             </button>

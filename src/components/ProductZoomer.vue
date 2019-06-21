@@ -15,18 +15,18 @@
       >
       <img v-else-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'fill'"
            @click="moveThumbs('backward')"
-           src="../assets/svg-icons/arrow-left-s-fill.svg" 
+           src="../assets/svg-icons/arrow-left-s-fill.svg"
            class="zoomer-control responsive-image"
            alt="move thumb icon"
       >
       <img v-else-if="['left', 'right'].includes(options.scroller_position) && options.scroller_button_style === 'line'" 
            @click="moveThumbs('backward')"
-           src="../assets/svg-icons/arrow-up-s-line.svg" 
+           src="../assets/svg-icons/arrow-up-s-line.svg"
            class="zoomer-control responsive-image"
            alt="move thumb icon"
       >
       <img @click="moveThumbs('backward')"
-           src="../assets/svg-icons/arrow-up-s-fill.svg" 
+           src="../assets/svg-icons/arrow-up-s-fill.svg"
            class="zoomer-control responsive-image"
            alt="move thumb icon"
       v-else>
@@ -50,7 +50,7 @@
       >
       <img v-else-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'fill'"
            @click="moveThumbs('forward')"
-           src="../assets/svg-icons/arrow-right-s-fill.svg" 
+           src="../assets/svg-icons/arrow-right-s-fill.svg"
            class="zoomer-control responsive-image"
            alt="move thumb icon"
       >
@@ -73,19 +73,42 @@
 
 <script>
 import Drift from "../assets/drift-zoom/src/js/Drift.js";
-function caculatePane(paneStyle = 'pane', rect) {
+function getCaculatedPanePosition(paneStyle = 'pane', rect, scrollerPosition) {
+  console.log(scrollerPosition)
   let customStyle = "";
+  switch (scrollerPosition) {
+    case 'left':
+      customStyle =
+          "width:" +
+          rect.width +
+          "px;height:" +
+          rect.height +
+          "px;left:" +
+          (rect.right + window.scrollX + 5) +
+          "px;top:" +
+          (rect.top + window.scrollY) +
+          "px;";
+      break;
+    case 'right':
+      customStyle =
+          "width:" +
+          rect.width +
+          "px;height:" +
+          rect.height +
+          "px;right:" +
+          (rect.left - 5) +
+          "px;";
+      console.log(customStyle);
+      break;
+    case 'top':
+
+      break;
+    case 'bottom':
+
+      break;
+  }
   if (paneStyle === "pane") {
-    customStyle =
-      "width:" +
-      rect.width * 1.2 +
-      "px;height:" +
-      rect.height +
-      "px;left:" +
-      (rect.right + window.scrollX + 5) +
-      "px;top:" +
-      (rect.top + window.scrollY) +
-      "px;";
+    
   } else {
     customStyle =
       "width:" +
@@ -187,8 +210,8 @@ export default {
         } else {
           this.options.inlinePane = false;
           this.options.paneContainer = document.getElementById(this.pane_container_id);
-          let rect = document.querySelector("." + this.options.namespace + "-base-container .preview-box").getBoundingClientRect();
-          document.getElementById(this.pane_container_id).setAttribute("style", caculatePane(this.options.pane, rect));
+          let rect = document.querySelector("." + this.options.namespace + "-base-container").getBoundingClientRect();
+          document.getElementById(this.pane_container_id).setAttribute("style", getCaculatedPanePosition(this.options.pane, rect, this.options.scroller_position));
         }
         this.drift = new Drift(
           document.querySelector(this.preview_img),
@@ -304,7 +327,7 @@ export default {
           .querySelector(".scroller-at-right .thumb-list")
           .setAttribute(
             "style",
-            "height:" + previewImg.height + "px;width:"+ thumbList.children[1].naturalWidth + "px;grid-template-rows:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
+            "height:" + previewImg.naturalWidth + "px;width:"+ thumbList.children[1].naturalWidth + "px;grid-template-rows:calc(100%/" + scrollerItemsCount + "/2) repeat(" + 
                (scrollerItemsCount - 2) + ", auto) calc(100%/" + scrollerItemsCount + "/2);visibility:visible;"
           );   
     },
@@ -398,7 +421,6 @@ export default {
 .scroller-at-right .preview-box {
   grid-column: 1 / 2;
   grid-row: 1 / 2 ;
-  justify-self: right;
 }
 
 .scroller-at-right .thumb-list {
@@ -411,12 +433,12 @@ export default {
 }
 
 
-.scroller-at-right .thumb-list .responsive-image, .scroller-at-left .thumb-list .responsive-image{
-  height: 100%;
+.scroller-at-right .thumb-list .responsive-image, .scroller-at-left .thumb-list .responsive-image {
   width: auto;
+  height: 100%;
 }
 
-.scroller-at-top .thumb-list .responsive-image, .scroller-at-bottom .thumb-list .responsive-image{
+.scroller-at-top .thumb-list .responsive-image, .scroller-at-bottom .thumb-list .responsive-image {
   height: auto;
   width: 100%;
 }

@@ -3,18 +3,18 @@
     <header class="hero-head">
       <Navbar />
     </header>
-    <ScrollerAtLeft />
+    <ScrollerAtRight />
   </div>
 </template>
 
 <script>
 import Navbar from "./components/examples/Navbar";
-import ScrollerAtLeft from "./components/examples/ScrollerAtLeft";
+import ScrollerAtRight from "./components/examples/ScrollerAtRight";
 export default {
   name: "app",
   components: {
     Navbar,
-    ScrollerAtLeft
+    ScrollerAtRight
   }
 };
 </script>

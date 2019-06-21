@@ -220,17 +220,17 @@ export default class ZoomPane {
   }
 
   hide() {
-    this._removeListenersAndResetClasses()
-    this.isShowing = false
+    // this._removeListenersAndResetClasses()
+    // this.isShowing = false
 
-    if (HAS_ANIMATION) {
-      this.el.addEventListener('animationend', this._completeHide, false)
-      this.el.addEventListener('webkitAnimationEnd', this._completeHide, false)
-      addClasses(this.el, this.closingClasses)
-    } else {
-      removeClasses(this.el, this.openClasses)
-      removeClasses(this.el, this.inlineClasses)
-    }
+    // if (HAS_ANIMATION) {
+    //   this.el.addEventListener('animationend', this._completeHide, false)
+    //   this.el.addEventListener('webkitAnimationEnd', this._completeHide, false)
+    //   addClasses(this.el, this.closingClasses)
+    // } else {
+    //   removeClasses(this.el, this.openClasses)
+    //   removeClasses(this.el, this.inlineClasses)
+    // }
   }
 
   _completeShow = () => {
