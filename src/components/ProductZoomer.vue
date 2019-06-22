@@ -106,8 +106,24 @@ function getCaculatedPanePosition(paneStyle = "pane", rect, scrollerPosition) {
         "px;";
       break;
     case "top":
+      customStyle =
+        "width:" +
+        rect.width +
+        "px;height:" +
+        rect.height +
+        "px;left:" +
+        (rect.width + window.scrollX + 5) +
+        "px;";
       break;
     case "bottom":
+      customStyle =
+        "width:" +
+        rect.width +
+        "px;height:" +
+        rect.height +
+        "px;left:" +
+        (rect.width + window.scrollX + 5) +
+        "px;";
       break;
   }
   if (paneStyle === "pane") {
@@ -206,10 +222,6 @@ export default {
           this.scrollerAtRight();
           break;
         case "top":
-          this.base_container_div.setAttribute(
-            "style",
-            "grid-template-rows:" + this.options.preview_ratio_thumb + "fr 1fr;"
-          );
           this.scrollerAtTop();
           break;
         default:
@@ -322,11 +334,33 @@ export default {
     scrollerAtBottom() {
       let scrollerItemsCount =
         parseInt(this.baseZoomerOptions.scroll_items) + 2;
+      let previewImg = document.querySelector(
+        "." + this.options.namespace + "-base-container " + ".preview-box"
+      );
+      let thumbList = document.querySelector(
+        "." + this.options.namespace + "-base-container " + ".thumb-list"
+      );
       document
-        .querySelector(".scroller-at-bottom .thumb-list")
+        .querySelector("." + this.options.namespace + "-base-container")
         .setAttribute(
           "style",
-          "grid-template-columns:calc(100%/" +
+          "height:" +
+            (previewImg.naturalHeight + thumbList.children[1].naturalHeight) +
+            "px;width:" +
+            previewImg.naturalHeight +
+            "px;position:relative"
+        );
+      document
+        .querySelector(
+          "." + this.options.namespace + "-base-container " + ".thumb-list"
+        )
+        .setAttribute(
+          "style",
+          "width:" +
+            previewImg.naturalWidth +
+            "px;height:" +
+            thumbList.children[1].naturalHeight +
+            "px;grid-template-columns:calc(100%/" +
             scrollerItemsCount +
             "/2) repeat(" +
             (scrollerItemsCount - 2) +
@@ -338,11 +372,33 @@ export default {
     scrollerAtTop() {
       let scrollerItemsCount =
         parseInt(this.baseZoomerOptions.scroll_items) + 2;
+      let previewImg = document.querySelector(
+        "." + this.options.namespace + "-base-container " + ".preview-box"
+      );
+      let thumbList = document.querySelector(
+        "." + this.options.namespace + "-base-container " + ".thumb-list"
+      );
       document
-        .querySelector(".scroller-at-top .thumb-list")
+        .querySelector("." + this.options.namespace + "-base-container")
         .setAttribute(
           "style",
-          "grid-template-columns:calc(100%/" +
+          "height:" +
+            (previewImg.naturalHeight + thumbList.children[1].naturalHeight) +
+            "px;width:" +
+            previewImg.naturalHeight +
+            "px;position:relative"
+        );
+      document
+        .querySelector(
+          "." + this.options.namespace + "-base-container " + ".thumb-list"
+        )
+        .setAttribute(
+          "style",
+          "width:" +
+            previewImg.naturalWidth +
+            "px;height:" +
+            thumbList.children[1].naturalHeight +
+            "px;grid-template-columns:calc(100%/" +
             scrollerItemsCount +
             "/2) repeat(" +
             (scrollerItemsCount - 2) +
@@ -375,7 +431,7 @@ export default {
         .setAttribute(
           "style",
           "height:" +
-            previewImg.naturalWidth +
+            previewImg.naturalHeight +
             "px;width:" +
             thumbList.children[1].naturalWidth +
             "px;grid-template-rows:calc(100%/" +
@@ -411,7 +467,7 @@ export default {
         .setAttribute(
           "style",
           "height:" +
-            previewImg.naturalWidth +
+            previewImg.naturalHeight +
             "px;width:" +
             thumbList.children[1].naturalWidth +
             "px;grid-template-rows:calc(100%/" +
