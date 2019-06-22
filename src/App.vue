@@ -1,20 +1,23 @@
 <template>
   <div class="hero">
     <header class="hero-head">
-      <Navbar />
+      <Navbar/>
     </header>
-    <ScrollerAtRight />
+    <ScrollerAtRight/>
+    <ScrollerAtLeft/>
   </div>
 </template>
 
 <script>
 import Navbar from "./components/examples/Navbar";
 import ScrollerAtRight from "./components/examples/ScrollerAtRight";
+import ScrollerAtLeft from "./components/examples/ScrollerAtLeft";
 export default {
   name: "app",
   components: {
     Navbar,
-    ScrollerAtRight
+    ScrollerAtRight,
+    ScrollerAtLeft
   }
 };
 </script>
