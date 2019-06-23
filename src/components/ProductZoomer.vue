@@ -82,64 +82,32 @@
 
 <script>
 import Drift from "../assets/drift-zoom/src/js/Drift.js";
-function getCaculatedPanePosition(paneStyle = "pane", rect, scrollerPosition) {
-  let customStyle = "";
-  switch (scrollerPosition) {
-    case "left":
-      customStyle =
-        "width:" +
-        rect.width +
-        "px;height:" +
-        rect.height +
-        "px;left:" +
-        (rect.width + window.scrollX + 5) +
-        "px;";
-      break;
-    case "right":
-      customStyle =
-        "width:" +
-        rect.width +
-        "px;height:" +
-        (rect.height - 4) +
-        "px;left:" +
-        (0 - rect.width - 5) +
-        "px;";
-      break;
-    case "top":
-      customStyle =
-        "width:" +
-        rect.width +
-        "px;height:" +
-        rect.height +
-        "px;left:" +
-        (rect.width + window.scrollX + 5) +
-        "px;";
-      break;
-    case "bottom":
-      customStyle =
-        "width:" +
-        rect.width +
-        "px;height:" +
-        rect.height +
-        "px;left:" +
-        (rect.width + window.scrollX + 5) +
-        "px;";
-      break;
-  }
-  if (paneStyle === "pane") {
-  } else {
-    customStyle =
+const actionName = s =>
+  "scrollerAt" + (s.substr(0, 1).toUpperCase() + s.substr(1).toLowerCase());
+
+function getCaculatedPanePosition(paneStyle = "pane", rect, PanePosition) {
+  let caculatedPosition = "";
+  if (PanePosition === "left") {
+    caculatedPosition =
       "width:" +
       rect.width +
       "px;height:" +
-      (rect.height + 2) +
+      rect.height +
       "px;left:" +
-      (rect.x + window.scrollX) +
-      "px;top:" +
-      (rect.top + window.scrollY) +
+      (0 - rect.width - window.scrollX - 5) +
+      "px;";
+  } else if (PanePosition === "right") {
+    caculatedPosition =
+      "width:" +
+      rect.width +
+      "px;height:" +
+      rect.height +
+      "px;left:" +
+      (rect.width + window.scrollX + 5) +
       "px;";
   }
-  return customStyle;
+
+  return caculatedPosition;
 }
 
 export default {
@@ -178,6 +146,7 @@ export default {
         choosed_thumb_border_color: "#ff3d00",
         scroller_button_style: "line",
         scroller_position: "left",
+        zoomer_pane_position: "right",
         preview_ratio_thumb: "4"
       }
     };
@@ -206,29 +175,11 @@ export default {
     if (!["fill", "line"].includes(this.options.scroller_button_style)) {
       throw "scroller_button_style is invalid";
     }
+    if (!["left", "right"].includes(this.options.zoomer_pane_position)) {
+      throw "zoomer_pane_position is invalid";
+    }
     window.addEventListener("load", () => {
-      switch (this.options.scroller_position) {
-        case "left":
-          this.scrollerAtLeft();
-          break;
-        case "bottom":
-          this.base_container_div.setAttribute(
-            "style",
-            "grid-template-rows:" + this.options.preview_ratio_thumb + "fr 1fr;"
-          );
-          this.scrollerAtBottom();
-          break;
-        case "right":
-          this.scrollerAtRight();
-          break;
-        case "top":
-          this.scrollerAtTop();
-          break;
-        default:
-          this.scrollerAtBottom();
-          break;
-      }
-
+      this[actionName(this.options.scroller_position)]();
       this.options.injectBaseStyles = true;
       if (this.options.pane === "container-round") {
         this.options.inlinePane = true;
@@ -247,7 +198,7 @@ export default {
             getCaculatedPanePosition(
               this.options.pane,
               rect,
-              this.options.scroller_position
+              this.options.zoomer_pane_position
             )
           );
       }

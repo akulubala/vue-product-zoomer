@@ -28,4 +28,7 @@ export default {
 };
 </script>
 <style>
+pre {
+  padding: 0px !important;
+}
 </style>

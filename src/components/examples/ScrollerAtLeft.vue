@@ -1,32 +1,31 @@
 <template>
   <section class="hero is-fullheight">
     <div class="hero-body is-fullheight">
-      <div class="container has-text-centered">
-        <div class="columns is-vcentered">
+      <div class="container">
+        <div class="columns">
           <div class="column is-7 is-narrow">
             <ProductZoomer :base-images="images" :base-zoomer-options="zoomerOptions"/>
           </div>
           <div class="column is-5 is-narrow">
-            <div class="columns is-vcentered">
-              <h1 class="title is-1 has-text-left-tablet">
-                <span itemprop="name">Scroller At Left</span>
-              </h1>
-            </div>
+            <h1 class="title is-4 has-text-left-tablet">
+              <span itemprop="name">Scroller Left & Pane Right</span>
+            </h1>
             <div class="has-text-left-tablet">
-              <h5 class="subtitle is-5 has-text-left-tablet">
-                <span
-                  itemprop="description"
-                >Product Zoomer, Scroller At Left, Zoomer Container Within A Div.</span>
-              </h5>
-              <div class="columns is-centered is-vcentered">
-                <div class="column">
-                  <div class="checkout-wrapper">
-                    <div class="checkout">
-                      <button class="button is-medium is-success is-rounded">Check Setting Options →</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <pre>
+<code class="javascript">
+  let zoomerOptions = {
+      zoomFactor: 3,
+      pane: "pane",
+      hoverDelay: 300,
+      namespace: "zoomer-left",
+      move_by_click: false,
+      scroll_items: 4,
+      choosed_thumb_border_color: "#dd2c00",
+      scroller_position: "left",
+      zoomer_pane_position: "right"
+  }
+</code>
+</pre>
             </div>
           </div>
         </div>
