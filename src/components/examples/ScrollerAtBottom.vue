@@ -2,15 +2,12 @@
   <section class="hero is-fullheight">
     <div class="hero-body is-fullheight">
       <div class="container">
-        <div class="columns">
-          <div class="column is-7 is-narrow">
+        <div class="columns is-centered is-vcentered">
             <ProductZoomer :base-images="images" :base-zoomer-options="zoomerOptions"/>
-          </div>
-          <div class="column is-5 is-narrow">
-            <h1 class="title is-4 has-text-left-tablet">
+          <div style="margin-left: 2em">
+            <h1 class="title is-4 has-text-centered">
               <span itemprop="name">Scroller Bottom & Container Right</span>
             </h1>
-            <div class="has-text-left-tablet">
               <pre>
 <code class="javascript">
   let zoomerOptions = {
@@ -26,7 +23,6 @@
   }
 </code>
 </pre>
-            </div>
           </div>
         </div>
       </div>

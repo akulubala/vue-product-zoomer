@@ -3,10 +3,17 @@
     <header class="hero-head">
       <Navbar/>
     </header>
-    <ScrollerAtTop/>
-    <ScrollerAtBottom/>
-    <ScrollerAtRight/>
-    <ScrollerAtLeft/>
+    <ScrollerAtTop />
+    <hr class="hr" />
+    <ScrollerAtLeft />
+    <hr class="hr" />
+    <ScrollerAtBottom />
+    <hr class="hr" />
+    <ScrollerAtRight />
+    <hr class="hr" />
+    <InsideRound />
+    <hr class="hr" />
+    <InsideContainer />
   </div>
 </template>
 
@@ -16,6 +23,8 @@ import ScrollerAtBottom from "./components/examples/ScrollerAtBottom";
 import ScrollerAtTop from "./components/examples/ScrollerAtTop";
 import ScrollerAtRight from "./components/examples/ScrollerAtRight";
 import ScrollerAtLeft from "./components/examples/ScrollerAtLeft";
+import InsideRound from "./components/examples/InsideRound";
+import InsideContainer from "./components/examples/InsideContainer";
 export default {
   name: "app",
   components: {
@@ -23,7 +32,9 @@ export default {
     ScrollerAtBottom,
     ScrollerAtTop,
     ScrollerAtRight,
-    ScrollerAtLeft
+    ScrollerAtLeft,
+    InsideRound,
+    InsideContainer
   }
 };
 </script>

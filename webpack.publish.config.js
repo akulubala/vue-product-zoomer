@@ -9,7 +9,6 @@ module.exports = {
   mode: isProduction ? 'production' : 'development',
   devServer: {
     contentBase: './dist',
-    hot: true
   },
   devtool: isProduction ? 'source-map' : false,
   entry: {

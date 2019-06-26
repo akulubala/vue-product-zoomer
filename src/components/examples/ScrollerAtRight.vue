@@ -2,13 +2,12 @@
   <section class="hero is-fullheight">
     <div class="hero-body is-fullheight">
       <div class="container">
-        <div class="columns">
-          <div class="column is-5 is-narrow">
-            <h1 class="title is-4 has-text-left-tablet">
+        <div class="columns is-centered is-vcentered">
+          <div style="margin-right: 2em">
+            <h1 class="title is-4 has-text-centered">
               <span itemprop="name">Scroller Right & Pane Left</span>
             </h1>
-            <div class="has-text-left-tablet">
-              <pre>
+            <pre>
 <code class="javascript">
   let zoomerOptions = {
       zoomFactor: 3,
@@ -23,11 +22,8 @@
   }
 </code>
 </pre>
-            </div>
           </div>
-          <div class="column is-7 is-narrow">
-            <ProductZoomer :base-images="images" :base-zoomer-options="zoomerOptions"/>
-          </div>
+          <ProductZoomer :base-images="images" :base-zoomer-options="zoomerOptions"/>
         </div>
       </div>
     </div>
@@ -191,7 +187,7 @@ export default {
         move_by_click: false,
         scroll_items: 4,
         choosed_thumb_border_color: "#dd2c00",
-        scroller_position: "right"
+        scroller_position: "left"
       }
     };
   },

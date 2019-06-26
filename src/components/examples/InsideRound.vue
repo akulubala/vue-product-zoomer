@@ -3,27 +3,25 @@
     <div class="hero-body is-fullheight">
       <div class="container">
         <div class="columns is-centered is-vcentered">
-            <ProductZoomer :base-images="images" :base-zoomer-options="zoomerOptions"/>
-            <div style="margin-left: 2em">
+              <div style="margin-right: 2em">
                 <h1 class="title is-4 has-text-centered">
-                  <span itemprop="name">Scroller Left & Pane Right</span>
+                  <span itemprop="name">Scroller Top & Pane Left Options</span>
                 </h1>
                 <pre>
-                  <code class="javascript">
-                    let zoomerOptions = {
-                        zoomFactor: 3,
-                        pane: "pane",
-                        hoverDelay: 300,
-                        namespace: "zoomer-left",
-                        move_by_click: false,
-                        scroll_items: 4,
-                        choosed_thumb_border_color: "#dd2c00",
-                        scroller_position: "left",
-                        zoomer_pane_position: "right"
-                    }
-                  </code>
-                </pre>
-            </div>
+<code class="javascript">
+  let zoomerOptions = {
+      "zoomFactor": 4,
+      "pane": "container-round",
+      "hoverDelay": 300,
+      "namespace": "inline-round-zoomer",
+      "move_by_click":true,
+      "scroll_items": 5,
+      "choosed_thumb_border_color": "#bbdefb"
+  }
+</code>
+</pre>
+              </div>
+              <ProductZoomer :base-images="images" :base-zoomer-options="zoomerOptions"/>
         </div>
       </div>
     </div>
@@ -33,7 +31,7 @@
 import ProductZoomer from "../ProductZoomer";
 
 export default {
-  name: "app",
+  name: "inside-round",
   data() {
     return {
       images: {
@@ -180,14 +178,14 @@ export default {
         ]
       },
       zoomerOptions: {
-        zoomFactor: 3,
-        pane: "pane",
+        zoomFactor: 4,
+        pane: "container-round",
         hoverDelay: 300,
-        namespace: "zoomer-left",
+        namespace: "inline-round",
         move_by_click: false,
-        scroll_items: 4,
+        scroll_items: 7,
         choosed_thumb_border_color: "#dd2c00",
-        scroller_position: "left"
+        scroller_position: "bottom"
       }
     };
   },

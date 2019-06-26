@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const isProduction = process.env.NODE_ENV !== 'production'
+const webpack = require('webpack');
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
@@ -81,6 +82,7 @@ module.exports = {
       appMountId: 'app',
       filename: 'demo.html'
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {

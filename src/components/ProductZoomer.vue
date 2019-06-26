@@ -93,8 +93,7 @@ const getCaculatedPanePosition = (paneStyle = "pane", rect, PanePosition) => {
       rect.width +
       "px;height:" +
       rect.height +
-      "px;left:" +
-      (0 - rect.width - window.scrollX - 5) +
+      "px;left:" + (paneStyle === "container" ? 0 : (0 - rect.width - window.scrollX - 5)) +
       "px;";
   } else if (PanePosition === "right") {
     caculatedPosition =
@@ -102,8 +101,7 @@ const getCaculatedPanePosition = (paneStyle = "pane", rect, PanePosition) => {
       rect.width +
       "px;height:" +
       rect.height +
-      "px;left:" +
-      (rect.width + window.scrollX + 5) +
+      "px;left:" + (paneStyle === "container" ? 0 : (rect.width + window.scrollX + 5)) +
       "px;";
   }
 
@@ -301,7 +299,7 @@ export default {
         .setAttribute(
           "style",
           "height:" +
-            (previewImg.naturalHeight + thumbListHeight) +
+            (previewImg.naturalHeight + thumbListHeight + 2) +
             "px;width:" +
             previewImg.naturalHeight +
             "px;position:relative"
@@ -340,7 +338,7 @@ export default {
         .setAttribute(
           "style",
           "height:" +
-            (previewImg.naturalHeight + thumbListHeight) +
+            (previewImg.naturalHeight + thumbListHeight + 2) + // 2px for grid gap
             "px;width:" +
             previewImg.naturalHeight +
             "px;position:relative"
@@ -379,7 +377,7 @@ export default {
         .setAttribute(
           "style",
           "width:" +
-            (previewImg.naturalWidth + thumbListWidth) +
+            (previewImg.naturalWidth + thumbListWidth + 2) +
             "px;position:relative"
         );
       document
@@ -416,7 +414,7 @@ export default {
         .setAttribute(
           "style",
           "width:" +
-            (previewImg.naturalWidth + thumbListWidth) +
+            (previewImg.naturalWidth + thumbListWidth + 2) + // 2px for grid gap
             "px;position:relative"
         );
       document
@@ -448,7 +446,7 @@ export default {
 <style scoped>
 .scroller-at-top {
   display: grid;
-  grid-gap: 0.2em;
+  grid-gap: 2px;
   grid-template-columns: 1fr;
   align-items: center;
 }
@@ -468,7 +466,7 @@ export default {
 }
 .scroller-at-bottom {
   display: grid;
-  grid-gap: 0.2em;
+  grid-gap: 2px;
   grid-template-columns: 1fr;
   align-items: center;
 }
@@ -489,7 +487,7 @@ export default {
 
 .scroller-at-left {
   display: grid;
-  grid-gap: 0.2em;
+  grid-gap: 2px;
   grid-template-columns: 1fr;
 }
 
@@ -509,7 +507,7 @@ export default {
 
 .scroller-at-right {
   display: grid;
-  grid-gap: 0.2em;
+  grid-gap: 2px;
   grid-template-columns: 1fr;
 }
 

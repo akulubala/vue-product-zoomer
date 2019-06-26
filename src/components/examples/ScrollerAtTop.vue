@@ -2,9 +2,9 @@
   <section class="hero is-fullheight">
     <div class="hero-body is-fullheight">
       <div class="container">
-        <div class="columns">
-          <div class="column is-5 is-narrow">
-            <h1 class="title is-4 has-text-left-tablet">
+        <div class="columns is-centered is-vcentered">
+          <div class="column is-narrow">
+            <h1 class="title is-4 has-text-centered">
               <span itemprop="name">Scroller Top & Pane Left</span>
             </h1>
             <div class="has-text-left-tablet">
@@ -25,7 +25,7 @@
 </pre>
             </div>
           </div>
-          <div class="column is-7 is-narrow">
+          <div class="column is-narrow">
             <ProductZoomer :base-images="images" :base-zoomer-options="zoomerOptions"/>
           </div>
         </div>
