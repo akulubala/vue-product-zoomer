@@ -85,7 +85,7 @@ import Drift from "../assets/drift-zoom/src/js/Drift.js";
 const actionName = s =>
   "scrollerAt" + (s.substr(0, 1).toUpperCase() + s.substr(1).toLowerCase());
 
-function getCaculatedPanePosition(paneStyle = "pane", rect, PanePosition) {
+const getCaculatedPanePosition = (paneStyle = "pane", rect, PanePosition) => {
   let caculatedPosition = "";
   if (PanePosition === "left") {
     caculatedPosition =
@@ -108,6 +108,10 @@ function getCaculatedPanePosition(paneStyle = "pane", rect, PanePosition) {
   }
 
   return caculatedPosition;
+}
+
+const caculateThumbListSquare = (total, listCount) => {
+
 }
 
 export default {
@@ -291,12 +295,13 @@ export default {
       let thumbList = document.querySelector(
         "." + this.options.namespace + "-base-container " + ".thumb-list"
       );
+      let thumbListHeight = thumbList.children[1].naturalHeight * (previewImg.naturalWidth / thumbList.children[1].naturalWidth) / (scrollerItemsCount - 1)
       document
         .querySelector("." + this.options.namespace + "-base-container")
         .setAttribute(
           "style",
           "height:" +
-            (previewImg.naturalHeight + thumbList.children[1].naturalHeight) +
+            (previewImg.naturalHeight + thumbListHeight) +
             "px;width:" +
             previewImg.naturalHeight +
             "px;position:relative"
@@ -310,7 +315,7 @@ export default {
           "width:" +
             previewImg.naturalWidth +
             "px;height:" +
-            thumbList.children[1].naturalHeight +
+            thumbListHeight +
             "px;grid-template-columns:calc(100%/" +
             scrollerItemsCount +
             "/2) repeat(" +
@@ -329,12 +334,13 @@ export default {
       let thumbList = document.querySelector(
         "." + this.options.namespace + "-base-container " + ".thumb-list"
       );
+      let thumbListHeight = thumbList.children[1].naturalHeight * (previewImg.naturalWidth / thumbList.children[1].naturalWidth) / (scrollerItemsCount - 1)
       document
         .querySelector("." + this.options.namespace + "-base-container")
         .setAttribute(
           "style",
           "height:" +
-            (previewImg.naturalHeight + thumbList.children[1].naturalHeight) +
+            (previewImg.naturalHeight + thumbListHeight) +
             "px;width:" +
             previewImg.naturalHeight +
             "px;position:relative"
@@ -348,7 +354,7 @@ export default {
           "width:" +
             previewImg.naturalWidth +
             "px;height:" +
-            thumbList.children[1].naturalHeight +
+            thumbListHeight +
             "px;grid-template-columns:calc(100%/" +
             scrollerItemsCount +
             "/2) repeat(" +
@@ -367,12 +373,13 @@ export default {
       let thumbList = document.querySelector(
         "." + this.options.namespace + "-base-container " + ".thumb-list"
       );
+      let thumbListWidth = thumbList.children[1].naturalWidth * (previewImg.naturalHeight / thumbList.children[1].naturalHeight) / (scrollerItemsCount - 1)
       document
         .querySelector("." + this.options.namespace + "-base-container")
         .setAttribute(
           "style",
           "width:" +
-            (previewImg.naturalWidth + thumbList.children[1].naturalWidth) +
+            (previewImg.naturalWidth + thumbListWidth) +
             "px;position:relative"
         );
       document
@@ -384,7 +391,7 @@ export default {
           "height:" +
             previewImg.naturalHeight +
             "px;width:" +
-            thumbList.children[1].naturalWidth +
+            thumbListWidth +
             "px;grid-template-rows:calc(100%/" +
             scrollerItemsCount +
             "/2) repeat(" +
@@ -403,12 +410,13 @@ export default {
       let thumbList = document.querySelector(
         "." + this.options.namespace + "-base-container " + ".thumb-list"
       );
+      let thumbListWidth = thumbList.children[1].naturalWidth * (previewImg.naturalHeight / thumbList.children[1].naturalHeight) / (scrollerItemsCount - 1)
       document
         .querySelector("." + this.options.namespace + "-base-container")
         .setAttribute(
           "style",
           "width:" +
-            (previewImg.naturalWidth + thumbList.children[1].naturalWidth) +
+            (previewImg.naturalWidth + thumbListWidth) +
             "px;position:relative"
         );
       document
@@ -420,7 +428,7 @@ export default {
           "height:" +
             previewImg.naturalHeight +
             "px;width:" +
-            thumbList.children[1].naturalWidth +
+            thumbListWidth +
             "px;grid-template-rows:calc(100%/" +
             scrollerItemsCount +
             "/2) repeat(" +
