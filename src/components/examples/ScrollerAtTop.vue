@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-fullheight">
+  <section class="hero is-fullheight" id="scroll-top">
     <div class="hero-body is-fullheight">
       <div class="container">
         <div class="columns is-centered is-vcentered">
@@ -34,8 +34,6 @@
   </section>
 </template>
 <script>
-import ProductZoomer from "../ProductZoomer";
-
 export default {
   name: "app",
   data() {
@@ -195,9 +193,6 @@ export default {
         zoomer_pane_position: "left"
       }
     };
-  },
-  components: {
-    ProductZoomer
   }
 };
 </script>

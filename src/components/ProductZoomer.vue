@@ -148,8 +148,7 @@ export default {
         choosed_thumb_border_color: "#ff3d00",
         scroller_button_style: "line",
         scroller_position: "left",
-        zoomer_pane_position: "right",
-        preview_ratio_thumb: "4"
+        zoomer_pane_position: "right"
       }
     };
   },

@@ -4,16 +4,6 @@
       <Navbar/>
     </header>
     <ScrollerAtTop />
-    <hr class="hr" />
-    <ScrollerAtLeft />
-    <hr class="hr" />
-    <ScrollerAtBottom />
-    <hr class="hr" />
-    <ScrollerAtRight />
-    <hr class="hr" />
-    <InsideRound />
-    <hr class="hr" />
-    <InsideContainer />
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-fullheight">
+  <section class="hero is-fullheight" id="container">
     <div class="hero-body is-fullheight">
       <div class="container">
         <div class="columns is-centered is-vcentered">
@@ -10,13 +10,14 @@
                 <pre>
 <code class="javascript">
   let zoomerOptions = {
-      "zoomFactor": 4,
-      "pane": "container-round",
-      "hoverDelay": 300,
-      "namespace": "inline-round-zoomer",
-      "move_by_click":true,
-      "scroll_items": 5,
-      "choosed_thumb_border_color": "#bbdefb"
+      zoomFactor: 4,
+      pane: "container",
+      hoverDelay: 300,
+      namespace: "inline-container",
+      move_by_click: false,
+      scroll_items: 7,
+      choosed_thumb_border_color: "#dd2c00",
+      scroller_position: "right"
   }
 </code>
 </pre>
@@ -29,7 +30,6 @@
 </template>
 <script>
 import ProductZoomer from "../ProductZoomer";
-
 export default {
   name: "inside-container",
   data() {
@@ -185,7 +185,7 @@ export default {
         move_by_click: false,
         scroll_items: 7,
         choosed_thumb_border_color: "#dd2c00",
-        scroller_position: "bottom"
+        scroller_position: "right"
       }
     };
   },

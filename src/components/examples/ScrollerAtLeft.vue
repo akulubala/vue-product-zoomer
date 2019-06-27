@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-fullheight">
+  <section class="hero is-fullheight" id="scroll-left">
     <div class="hero-body is-fullheight">
       <div class="container">
         <div class="columns is-centered is-vcentered">
