@@ -9,7 +9,6 @@ module.exports = {
   mode: isProduction ? 'production' : 'development',
   devServer: {
     contentBase: './dist',
-    hot: true
   },
   devtool: isProduction ? 'source-map' : false,
   entry: {
@@ -17,8 +16,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-    library: 'VueProductZoomer',
+    filename: 'assets/js/[name].bundle.js',
+    library: 'ProductZoomer',
     libraryTarget: 'umd'
   },
   resolve: {
@@ -68,7 +67,18 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['vue-style-loader', 'css-loader', 'sass-loader']
-      }
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          }
+        ],
+      },
     ]
   },
   plugins: [
@@ -110,10 +120,6 @@ module.exports = {
           reuseExistingChunk: true
         }
       }
-    },
-    runtimeChunk: {
-      // manage common package relationship
-      name: 'manifest'
     }
   }
 }

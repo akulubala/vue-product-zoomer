@@ -1,24 +1,9 @@
-import ProductZoomer from './components/ProductZoomer'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faChevronRight,
-  faChevronLeft,
-  faAngleDoubleRight,
-  faAngleDoubleLeft
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Zoomer from './components/ProductZoomer'
 
-const VueProductZoomer = {
+const ProductZoomer = {
   install(Vue, options) {
-    Vue.component(ProductZoomer.name, ProductZoomer)
-    library.add(
-      faChevronRight,
-      faChevronLeft,
-      faAngleDoubleRight,
-      faAngleDoubleLeft
-    )
-    Vue.component('font-awesome-icon', FontAwesomeIcon)
+    Vue.component(Zoomer.name, Zoomer)
   }
 }
 
-export default VueProductZoomer
+export default ProductZoomer

@@ -196,7 +196,6 @@ export default class ZoomPane {
     this.imgEl.addEventListener('load', this._handleLoad, false)
     this._setImageURL(imageURL)
     this._setImageSize(triggerWidth, triggerHeight)
-    console.log(this._isInline)
     if (this._isInline) {
       this._showInline()
     } else {
@@ -217,7 +216,6 @@ export default class ZoomPane {
 
   _showInContainer() {
     this.settings.container.style.display = 'block'
-    console.log(this.el)
     this.settings.container.appendChild(this.el)
   }
 

@@ -19,15 +19,13 @@
     <% } %> <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" />
     <% } %>
-    <script
-      async
-      src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/atom-one-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
     <script>
-      ;(adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: 'ca-pub-6396976989685209',
-        enable_page_level_ads: true
-      })
+      hljs.initHighlightingOnLoad()
     </script>
   </head>
 
