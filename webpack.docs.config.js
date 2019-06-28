@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const isProduction = process.env.NODE_ENV !== 'production'
+const webpack = require('webpack');
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
@@ -12,16 +13,15 @@ module.exports = {
     maxAssetSize: 512000
   },
   devServer: {
-    contentBase: './docs',
-    hot: true
+    contentBase: './docs'
   },
   entry: {
     app: './src/docs.js'
   },
   output: {
     path: path.resolve(__dirname, 'docs'),
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js'
+    filename: 'assets/js/[name].bundle.js',
+    chunkFilename: 'assets/js/[name].bundle.js'
   },
   resolve: {
     modules: ['node_modules'],
@@ -70,7 +70,18 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['vue-style-loader', 'css-loader', 'sass-loader']
-      }
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'assets/images',
+            },
+          },
+        ],
+      },
     ]
   },
   plugins: [

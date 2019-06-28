@@ -112,7 +112,6 @@ export default class Trigger {
     if (onShow && typeof onShow === 'function') {
       onShow()
     }
-
     this.settings.zoomPane.show(
       this.settings.el.getAttribute(this.settings.sourceAttribute),
       this.settings.el.clientWidth,

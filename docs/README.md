@@ -56,16 +56,18 @@ Vue.use(ProductZoomer)
 #### zoomerOptions
 
 ```
-{
-	'zoomFactor': 3, // scale for zoomer
-	'pane': 'pane', // three type of pane ['pane', 'container-round', 'container']
-	'hoverDelay': 300, // how long after the zoomer take effect
-	'namespace': 'zoomer', // add a namespace for zoomer component, useful when on page have mutiple zoomer
-	'move_by_click':false // move image by click thumb image or by mouseover
-  'scroll_items': 5, // thumbs for scroll
-  'choosed_thumb_border_color': "#bbdefb", // choosed thumb border color
-   'move_button_style': 'chevron'// default chevron , can be set to angle-double
-}
+| options                    | required | type    |   default | illustrate                                                        | available values(regex)          |
+|----------------------------|----------|---------|----------:|-------------------------------------------------------------------|----------------------------------|
+| zoomFactor                 | false    | numeric |         4 | scale for zoomer                                                  | [1-9]                            |
+| pane                       | false    | string  | container | pane style                                                        | [container|container-rount|pane] |
+| hoverDelay                 | false    | integer |       300 | delay for zoom on hover millisecond                               | \d+                              |
+| namespace                  | false    | string  |        "" | for multiple zoomer on one page, you need add this to each zoomer | \s+                              |
+| move_by_click              | false    | boolean |      true | change image by click thumb or hover thumb                        | true|false                       |
+| scroll_items               | false    | integer |         4 | how many scroller items for thumbs                                | \d+                              |
+| choosed_thumb_border_color | false    | string  | #ff3d00   | choosed thumber border color                                      | RGB color                        |
+| scroller_button_style      | false    | string  | line      | icon for thumb scroller                                           | line|fill                        |
+| scroller_position          | false    | string  | left      | scroller items position                                           | left|right|top|bottom            |
+| zoomer_pane_position       | false    | string  | right     |  only take affect when option pane equal pane                     | left|right|top|bottom            |
 ```
 
 ## example
@@ -108,13 +110,16 @@ export default {
           ]
       },
       'zoomerOptions': {
-        'zoomFactor': 4,
-        'pane': 'container',
-        'hoverDelay': 300,
-        'namespace': 'container-zoomer',
-        'move_by_click':true,
-        'scroll_items': 4,
-        'choosed_thumb_border_color': "#ff3d00"
+        zoomFactor: 3, // scale for zoomer
+        pane: 'pane', // three type of pane ['pane', 'container-round', 'container']
+        hoverDelay: 300, // how long after the zoomer take effect
+        namespace: 'zoomer', // add a namespace for zoomer component, useful when on page have mutiple zoomer
+        move_by_click:false // move image by click thumb image or by mouseover
+        scroll_items: 5, // thumbs for scroll
+        choosed_thumb_border_color: "#bbdefb", // choosed thumb border color
+        scroller_button_style: "line",
+        scroller_position: "left",
+        zoomer_pane_position: "right"
       }
     }
   }

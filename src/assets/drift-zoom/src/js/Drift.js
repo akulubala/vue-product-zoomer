@@ -7,7 +7,6 @@ import ZoomPane from './ZoomPane'
 export default class Drift {
   constructor(triggerEl, options = {}) {
     this.triggerEl = triggerEl
-
     if (!isDOMElement(this.triggerEl)) {
       throw new TypeError(
         '`new Drift` requires a DOM element as its first argument.'
@@ -81,7 +80,6 @@ export default class Drift {
     if (!isDOMElement(inlineContainer)) {
       throw new TypeError('`inlineContainer` must be a DOM element')
     }
-
     this.settings = {
       namespace,
       showWhitespaceAtEdges,
@@ -102,11 +100,9 @@ export default class Drift {
       hoverBoundingBox,
       touchBoundingBox
     }
-
     if (this.settings.injectBaseStyles) {
       injectBaseStylesheet()
     }
-
     this._buildZoomPane()
     this._buildTrigger()
   }

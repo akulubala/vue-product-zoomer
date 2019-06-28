@@ -4,6 +4,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const isProduction = process.env.NODE_ENV !== 'production'
+const webpack = require('webpack');
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
@@ -33,6 +34,14 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+          test: /\.(png|jpg|gif|svg)$/,
+          use: [
+            {
+              loader: 'file-loader'
+            },
+          ],
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -83,6 +92,7 @@ module.exports = {
       title: 'Vue Product Zoomer',
       appMountId: 'app'
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new UglifyJsPlugin({
       uglifyOptions: {
