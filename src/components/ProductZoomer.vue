@@ -133,9 +133,9 @@ export default {
         }
       } else if (["left", "right"].includes(this.options.scroller_position)) {
         if (this.options.scroller_button_style === 'line') {
-          return LineTop;
+          return LineUp;
         } else {
-          return FillTop;
+          return FillUp;
         }
       }
     },

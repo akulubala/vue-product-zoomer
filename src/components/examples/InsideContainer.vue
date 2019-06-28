@@ -5,7 +5,7 @@
         <div class="columns is-centered is-vcentered">
               <div style="margin-right: 2em">
                 <h1 class="title is-4 has-text-centered">
-                  <span itemprop="name">Scroller Top & Pane Left Options</span>
+                  <span itemprop="name">Zoomer Inside Container & Scroller Right</span>
                 </h1>
                 <pre>
 <code class="javascript">
