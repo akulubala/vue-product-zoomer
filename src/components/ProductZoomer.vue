@@ -8,32 +8,10 @@
     >
     <div class="thumb-list">
       <img
-        v-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'line'"
         @click="moveThumbs('backward')"
-        src="../assets/svg-icons/arrow-left-s-line.svg"
+        :src="scroller_icon_first"
         class="zoomer-control responsive-image"
         alt="move thumb icon"
-      >
-      <img
-        v-else-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'fill'"
-        @click="moveThumbs('backward')"
-        src="../assets/svg-icons/arrow-left-s-fill.svg"
-        class="zoomer-control responsive-image"
-        alt="move thumb icon"
-      >
-      <img
-        v-else-if="['left', 'right'].includes(options.scroller_position) && options.scroller_button_style === 'line'"
-        @click="moveThumbs('backward')"
-        src="../assets/svg-icons/arrow-up-s-line.svg"
-        class="zoomer-control responsive-image"
-        alt="move thumb icon"
-      >
-      <img
-        @click="moveThumbs('backward')"
-        src="../assets/svg-icons/arrow-up-s-fill.svg"
-        class="zoomer-control responsive-image"
-        alt="move thumb icon"
-        v-else
       >
       <img
         @mouseover="chooseThumb(thumb, $event)"
@@ -48,30 +26,8 @@
         :class="{'choosed-thumb': thumb.id === choosedThumb.id}"
       >
       <img
-        v-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'line'"
         @click="moveThumbs('forward')"
-        src="../assets/svg-icons/arrow-right-s-line.svg"
-        class="zoomer-control responsive-image"
-        alt="move thumb icon"
-      >
-      <img
-        v-else-if="['top', 'bottom'].includes(options.scroller_position) && options.scroller_button_style === 'fill'"
-        @click="moveThumbs('forward')"
-        src="../assets/svg-icons/arrow-right-s-fill.svg"
-        class="zoomer-control responsive-image"
-        alt="move thumb icon"
-      >
-      <img
-        v-else-if="['left', 'right'].includes(options.scroller_position) && options.scroller_button_style === 'line'"
-        @click="moveThumbs('forward')"
-        src="../assets/svg-icons/arrow-down-s-line.svg"
-        class="zoomer-control responsive-image"
-        alt="move thumb icon"
-      >
-      <img
-        v-else-if="['left', 'right'].includes(options.scroller_position) && options.scroller_button_style === 'fill'"
-        @click="moveThumbs('forward')"
-        src="../assets/svg-icons/arrow-down-s-fill.svg"
+        :src="scroller_icon_second"
         class="zoomer-control responsive-image"
         alt="move thumb icon"
       >
@@ -82,6 +38,14 @@
 
 <script>
 import Drift from "../assets/drift-zoom/src/js/Drift.js";
+import FillDown from "../assets/svg-icons/arrow-down-s-fill.svg";
+import LineDown from "../assets/svg-icons/arrow-down-s-line.svg";
+import FillLeft from "../assets/svg-icons/arrow-left-s-fill.svg";
+import LineLeft from "../assets/svg-icons/arrow-left-s-line.svg";
+import FillRight from "../assets/svg-icons/arrow-right-s-fill.svg";
+import LineRight from "../assets/svg-icons/arrow-right-s-line.svg";
+import FillUp from "../assets/svg-icons/arrow-up-s-fill.svg";
+import LineUp from "../assets/svg-icons/arrow-up-s-line.svg";
 const actionName = s =>
   "scrollerAt" + (s.substr(0, 1).toUpperCase() + s.substr(1).toLowerCase());
 
@@ -106,10 +70,6 @@ const getCaculatedPanePosition = (paneStyle = "pane", rect, PanePosition) => {
   }
 
   return caculatedPosition;
-}
-
-const caculateThumbListSquare = (total, listCount) => {
-
 }
 
 export default {
@@ -163,6 +123,36 @@ export default {
     },
     preview_img: function() {
       return "." + this.options.namespace + "-base-container .preview-box";
+    },
+    scroller_icon_first: function() {
+      if (["top", "bottom"].includes(this.options.scroller_position)) {
+        if (this.options.scroller_button_style === 'line') {
+          return LineLeft;
+        } else {
+          return FillLeft;
+        }
+      } else if (["left", "right"].includes(this.options.scroller_position)) {
+        if (this.options.scroller_button_style === 'line') {
+          return LineTop;
+        } else {
+          return FillTop;
+        }
+      }
+    },
+    scroller_icon_second: function() {
+      if (["top", "bottom"].includes(this.options.scroller_position)) {
+        if (this.options.scroller_button_style === 'line') {
+          return LineRight;
+        } else {
+          return FillRight;
+        }
+      } else if (["left", "right"].includes(this.options.scroller_position)) {
+        if (this.options.scroller_button_style === 'line') {
+          return LineDown;
+        } else {
+          return FillDown;
+        }
+      }
     }
   },
   mounted() {
