@@ -1,38 +1,39 @@
+# Welcome to Vue Product Zoomer 👋
+![Version](https://img.shields.io/badge/version-3.0.0-blue.svg?cacheSeconds=2592000)
 [![npm](https://img.shields.io/npm/dt/vue-product-zoomer.svg)](https://www.npmjs.com/package/vue-product-zoomer)
 [![GitHub issues](https://img.shields.io/github/issues/akulubala/vue-product-zoomer.svg)](https://github.com/akulubala/vue-product-zoomer/issues)
 [![GitHub license](https://img.shields.io/github/license/akulubala/vue-product-zoomer.svg)](https://github.com/akulubala/vue-product-zoomer/blob/master/LICENSE)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://yoohooworld.com)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/akulubala/vue-product-zoomer/graphs/commit-activity)
+[![Twitter: akulubala](https://img.shields.io/twitter/follow/akulubala.svg?style=social)](https://twitter.com/akulubala)
 
-# vue-product-zoomer
+> A Image Zoomer For Eshop Website.Saving Your Time...
 
-> Vue Product Image Zoomer Package, Useful For e-Shop Project.
-> Demo: http://www.yoohooworld.com/demo.html
+### 🏠 [Homepage](https://yoohooworld.com/demo.html)
 
-## Instruction
+## Install
 
-# install
-
-> npm install vue-product-zoomer
-
-# Import
-
-> import ProductZoomer from 'vue-product-zoomer'
-
-> Vue.use(ProductZoomer)
-
-# Usage
-
+```sh
+npm install vue-product-zoomer
 ```
+
+## Usage
+
+```sh
+import ProductZoomer from 'vue-product-zoomer'
+Vue.use(ProductZoomer)
+
 <ProductZoomer
   :base-images="images"
   :base-zoomer-options="zoomerOptions"
 />
+
 ```
 
-# Options
+### Options
 
-### images:
-
-```javascript
+#### images
+```sh
 {
     {
       'thumbs':    // optional, if not present will use normal_size instead
@@ -58,97 +59,40 @@
  }
 ```
 
-### ComponentClass (optional)
+#### zoomerOptions
 
-A string added to zoomer component
-
-### zoomerOptions
-
-there have there default values, you can always pass an custom value to overwrite.
-Also you can use named slots `left` and `right` to replace default arrow buttons.
-
-default:
-
-```
+```sh
 {
-  'zoomFactor': 4,
-  'pane': 'container',
-  'hoverDelay': 300,
-  'namespace': 'container-zoomer',
-  'move_by_click':true,
-  'scroll_items': 4,
-  'choosed_thumb_border_color': "#ff3d00"
+    zoomFactor: 3, // scale for zoomer
+    pane: 'pane', // three type of pane ['pane', 'container-round', 'container']
+    hoverDelay: 300, // how long after the zoomer take effect
+    namespace: 'zoomer', // add a namespace for zoomer component, useful when on page have mutiple zoomer
+    move_by_click:false // move image by click thumb image or by mouseover
+    scroll_items: 5, // thumbs for scroll
+    choosed_thumb_border_color: "#bbdefb", // choosed thumb border color
+    scroller_button_style: "line",
+    scroller_position: "left",
+    zoomer_pane_position: "right"
 }
 ```
 
-```javascript
-{
-	'zoomFactor': 3, // scale for zoomer
-	'pane': 'pane', // three type of pane ['pane', 'container-round', 'container']
-	'hoverDelay': 300, // how long after the zoomer take effect
-	'namespace': 'zoomer', // add a namespace for zoomer component, useful when on page have mutiple zoomer
-	'move_by_click':false // move image by click thumb image or by mouseover
-  'scroll_items': 5, // thumbs for scroll
-  'choosed_thumb_border_color': "#bbdefb", // choosed thumb border color
-   'move_button_style': 'chevron'// default chevron , can be set to angle-double
-}
-```
+## Author
 
-# Example
+👤 **Raymond Cheng**
 
-```javascript
-export default {
-  name: 'app',
-  data() {
-    return {
-      images: {
-        thumbs: [
-          {
-            id: 1,
-            url:
-              'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/1.jpeg'
-          },
-          {
-            id: 2,
-            url:
-              'http://yoohooworld.com/images/vue-product-zoomer/images/thumbs/2.jpeg'
-          }
-        ],
-        normal_size: [
-          {
-            id: 1,
-            url:
-              'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/1.jpeg'
-          },
-          {
-            id: 2,
-            url:
-              'http://yoohooworld.com/images/vue-product-zoomer/images/normal_size/2.jpeg'
-          }
-        ],
-        large_size: [
-          {
-            id: 1,
-            url:
-              'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/1.jpeg'
-          },
-          {
-            id: 2,
-            url:
-              'http://yoohooworld.com/images/vue-product-zoomer/images/large_size/2.jpeg'
-          }
-        ]
-      },
-      zoomerOptions: {
-        zoomFactor: 4,
-        pane: 'container',
-        hoverDelay: 300,
-        namespace: 'container-zoomer',
-        move_by_click: true,
-        scroll_items: 4,
-        choosed_thumb_border_color: '#ff3d00'
-      }
-    }
-  }
-}
-```
+* Twitter: [@akulubala](https://twitter.com/akulubala)
+* Github: [@akulubala](https://github.com/akulubala)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check [issues page](https://github.com/akulubala/vue-product-zoomer/issues).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
