@@ -169,7 +169,7 @@ export default {
     if (!["left", "right"].includes(this.options.zoomer_pane_position)) {
       throw "zoomer_pane_position is invalid";
     }
-    window.addEventListener("load", () => {
+    this.$nextTick(() => {
       this[actionName(this.options.scroller_position)]();
       this.options.injectBaseStyles = true;
       if (this.options.pane === "container-round") {
