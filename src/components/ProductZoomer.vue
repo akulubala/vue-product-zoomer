@@ -170,33 +170,18 @@ export default {
       throw "zoomer_pane_position is invalid";
     }
     this.$nextTick(() => {
-      this[actionName(this.options.scroller_position)]();
+      this.resizePanes();
       this.options.injectBaseStyles = true;
-      if (this.options.pane === "container-round") {
-        this.options.inlinePane = true;
-      } else {
-        this.options.inlinePane = false;
-        this.options.paneContainer = document.getElementById(
-          this.pane_container_id
-        );
-        let rect = document
-          .querySelector("." + this.options.namespace + "-base-container")
-          .getBoundingClientRect();
-        document
-          .getElementById(this.pane_container_id)
-          .setAttribute(
-            "style",
-            getCaculatedPanePosition(
-              this.options.pane,
-              rect,
-              this.options.zoomer_pane_position
-            )
-          );
-      }
       this.drift = new Drift(
         document.querySelector(this.preview_img),
         this.options
       );
+
+      const previewImg = document.querySelector("." + this.options.namespace + "-base-container " + ".preview-box");
+      previewImg.addEventListener('load', ()=>{ this.resizePanes() });
+      const thumbList = document.querySelector("." + this.options.namespace + "-base-container " + ".thumb-list");
+      thumbList.children[1].addEventListener('load', ()=>{ this.resizePanes() });
+
     });
   },
   watch: {
@@ -274,43 +259,7 @@ export default {
       }
     },
     scrollerAtBottom() {
-      let scrollerItemsCount =
-        parseInt(this.baseZoomerOptions.scroll_items) + 2;
-      let previewImg = document.querySelector(
-        "." + this.options.namespace + "-base-container " + ".preview-box"
-      );
-      let thumbList = document.querySelector(
-        "." + this.options.namespace + "-base-container " + ".thumb-list"
-      );
-      let thumbListHeight = thumbList.children[1].naturalHeight * (previewImg.naturalWidth / thumbList.children[1].naturalWidth) / (scrollerItemsCount - 1)
-      document
-        .querySelector("." + this.options.namespace + "-base-container")
-        .setAttribute(
-          "style",
-          "height:" +
-            (previewImg.naturalHeight + thumbListHeight + 2) +
-            "px;width:" +
-            previewImg.naturalHeight +
-            "px;position:relative"
-        );
-      document
-        .querySelector(
-          "." + this.options.namespace + "-base-container " + ".thumb-list"
-        )
-        .setAttribute(
-          "style",
-          "width:" +
-            previewImg.naturalWidth +
-            "px;height:" +
-            thumbListHeight +
-            "px;grid-template-columns:calc(100%/" +
-            scrollerItemsCount +
-            "/2) repeat(" +
-            (scrollerItemsCount - 2) +
-            ", auto) calc(100%/" +
-            scrollerItemsCount +
-            "/2);visibility:visible;"
-        );
+      this.scrollerAtTop(); // same as Top
     },
     scrollerAtTop() {
       let scrollerItemsCount =
@@ -352,41 +301,7 @@ export default {
         );
     },
     scrollerAtRight() {
-      let scrollerItemsCount =
-        parseInt(this.baseZoomerOptions.scroll_items) + 2;
-      let previewImg = document.querySelector(
-        "." + this.options.namespace + "-base-container " + ".preview-box"
-      );
-      let thumbList = document.querySelector(
-        "." + this.options.namespace + "-base-container " + ".thumb-list"
-      );
-      let thumbListWidth = thumbList.children[1].naturalWidth * (previewImg.naturalHeight / thumbList.children[1].naturalHeight) / (scrollerItemsCount - 1)
-      document
-        .querySelector("." + this.options.namespace + "-base-container")
-        .setAttribute(
-          "style",
-          "width:" +
-            (previewImg.naturalWidth + thumbListWidth + 2) +
-            "px;position:relative"
-        );
-      document
-        .querySelector(
-          "." + this.options.namespace + "-base-container " + ".thumb-list"
-        )
-        .setAttribute(
-          "style",
-          "height:" +
-            previewImg.naturalHeight +
-            "px;width:" +
-            thumbListWidth +
-            "px;grid-template-rows:calc(100%/" +
-            scrollerItemsCount +
-            "/2) repeat(" +
-            (scrollerItemsCount - 2) +
-            ", auto) calc(100%/" +
-            scrollerItemsCount +
-            "/2);visibility:visible;"
-        );
+      this.scrollerAtLeft(); // same as Left
     },
     scrollerAtLeft() {
       let scrollerItemsCount =
@@ -424,6 +339,31 @@ export default {
             scrollerItemsCount +
             "/2);visibility:visible;"
         );
+    },
+    resizePanes() {
+      this[actionName(this.options.scroller_position)]();
+
+      if (this.options.pane === "container-round") {
+        this.options.inlinePane = true;
+      } else {
+        this.options.inlinePane = false;
+        this.options.paneContainer = document.getElementById(
+          this.pane_container_id
+        );
+        let rect = document
+          .querySelector("." + this.options.namespace + "-base-container")
+          .getBoundingClientRect();
+        document
+          .getElementById(this.pane_container_id)
+          .setAttribute(
+            "style",
+            getCaculatedPanePosition(
+              this.options.pane,
+              rect,
+              this.options.zoomer_pane_position
+            )
+          );
+      }
     }
   }
 };
