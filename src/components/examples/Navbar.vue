@@ -29,16 +29,16 @@
           </a>
           <hr class="navbar-divider">
           <a class="navbar-item" href="#scroll-left">
-            Scroller At Left && Pane Container Right
+            Scroller At Left && Pane Right
           </a>
           <a class="navbar-item" href="#scroll-right">
-            Scroller At Left && Pane Container Right
+            Scroller At Right && Pane Left
           </a>
           <a class="navbar-item" href="#scroll-top">
-            Scroller At Left && Pane Container Right
+            Scroller At Top && Pane Left
           </a>
           <a class="navbar-item" href="#scroll-bottom">
-            Scroller At Left && Pane Container Right
+            Scroller At Bottom && Pane Right
           </a>
         </div>
       </div>
@@ -48,7 +48,7 @@
 </template>
 <script>
 export default {
-    
+
 }
 </script>
 
