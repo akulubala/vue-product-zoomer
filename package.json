@@ -6,7 +6,7 @@
   "author": "akulubala@gmail.com",
   "private": false,
   "scripts": {
-    "dev": "NODE_ENV=development node_modules/.bin/webpack-dev-server --open --config webpack.dev.config.js",
+    "npm": "NODE_ENV=development node_modules/.bin/webpack-dev-server --open --config webpack.dev.config.js",
     "docs": "NODE_ENV=development node_modules/.bin/webpack --config webpack.docs.config.js",
     "publish": "NODE_ENV=production node_modules/.bin/webpack --config webpack.publish.config.js"
   },
